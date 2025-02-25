@@ -39,7 +39,7 @@ export const Navbar = () => {
     };
 
     return (
-        <header className="flex justify-between items-center bg-light px-4 lg:px-8 py-2 border-b-1 border-b-electric-violet-200 w-full h-20 font-display">
+        <header className="flex justify-between items-center bg-light px-4 lg:px-12 py-2 border-b-1 border-b-electric-violet-200 w-full h-20 font-display">
             <Logo
                 primary="electric-violet-800"
                 secondary="fill-electric-violet-950"
