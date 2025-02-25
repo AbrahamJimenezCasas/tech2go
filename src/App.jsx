@@ -1,20 +1,20 @@
 import { Route, Routes } from "react-router-dom";
-import LayoutPage from "./pages/LayoutPage.jsx";
-import HomePage from "./pages/HomePage.jsx";
-import ProductsPage from "./pages/ProductsPage.jsx";
-import ProductPage from "./pages/ProductPage.jsx";
-import PublishProductPage from "./pages/PublishProductPage.jsx";
-import BuyRequestsPage from "./pages/BuyRequestsPage.jsx";
-import RateProductPage from "./pages/RateProductPage.jsx";
-import PendingProductsPage from "./pages/PendingProductsPage.jsx";
-import UsersPage from "./pages/UsersPage.jsx";
-import ProfilePage from "./pages/ProfilePage.jsx";
-import UserProfilePage from "./pages/UserProfilePage.jsx";
-import EditUserProfilePage from "./pages/EditUserProfilePage.jsx";
-import RegisterPage from "./pages/RegisterPage.jsx";
-import ValidatePage from "./pages/ValidatePage.jsx";
-import LoginPage from "./pages/LoginPage.jsx";
-import NotFoundPage from "./pages/NotFoundPage.jsx";
+import { LayoutPage } from "./pages/LayoutPage.jsx";
+import { HomePage } from "./pages/HomePage.jsx";
+import { ProductsPage } from "./pages/ProductsPage.jsx";
+import { ProductPage } from "./pages/ProductPage.jsx";
+import { PublishProductPage } from "./pages/PublishProductPage.jsx";
+import { BuyRequestsPage } from "./pages/BuyRequestsPage.jsx";
+import { RateProductPage } from "./pages/RateProductPage.jsx";
+import { PendingProductsPage } from "./pages/PendingProductsPage.jsx";
+import { UsersPage } from "./pages/UsersPage.jsx";
+import { ProfilePage } from "./pages/ProfilePage.jsx";
+import { UserProfilePage } from "./pages/UserProfilePage.jsx";
+import { EditUserProfilePage } from "./pages/EditUserProfilePage.jsx";
+import { RegisterPage } from "./pages/RegisterPage.jsx";
+import { ValidatePage } from "./pages/ValidatePage.jsx";
+import { LoginPage } from "./pages/LoginPage.jsx";
+import { NotFoundPage } from "./pages/NotFoundPage.jsx";
 
 const App = () => {
     /* ESTÁN CREADAS LAS RUTAS Y DOCUMENTOS PARA TODAS LAS PÁGINAS QUE TENEMOS EN LAS TAREAS.
