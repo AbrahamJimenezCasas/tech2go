@@ -5,8 +5,8 @@ export const Logo = ({ primary, secondary, isOpen, toggle }) => {
     return (
         <Link
             to="/"
-            className="z-10 w-1/2 sm:w-52 cursor-pointer"
-            onClick={toggle}
+            className="z-40 w-1/2 sm:w-52 cursor-pointer"
+            onClick={isOpen ? toggle : null}
         >
             <motion.svg
                 viewBox="0 0 311 95"
