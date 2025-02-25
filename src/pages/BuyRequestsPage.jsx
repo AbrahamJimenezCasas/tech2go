@@ -1,4 +1,3 @@
-const BuyRequestsPage = () => {
+export const BuyRequestsPage = () => {
     return <div>BuyRequestsPage</div>;
 };
-export default BuyRequestsPage;

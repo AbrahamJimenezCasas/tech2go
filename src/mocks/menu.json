@@ -1,0 +1,27 @@
+[
+    {
+        "name": "telefonos",
+        "text": "Teléfonos",
+        "url": "/telefonos"
+    },
+    {
+        "name": "ordenadores",
+        "text": "Ordenadores",
+        "url": "/ordenadores"
+    },
+    {
+        "name": "consolas",
+        "text": "Consolas",
+        "url": "/consolas"
+    },
+    {
+        "name": "videojuegos",
+        "text": "Videojuegos",
+        "url": "/videojuegos"
+    },
+    {
+        "name": "accesorios",
+        "text": "Accesorios",
+        "url": "/accesorios"
+    }
+]

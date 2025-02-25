@@ -1,14 +1,13 @@
 import { Outlet } from "react-router-dom";
-import Navbar from "../components/navbar/Navbar.jsx";
+import { Navbar } from "../components/navbar/Navbar.jsx";
 
-const LayoutPage = () => {
+export const LayoutPage = () => {
     return (
         <>
             <Navbar />
-            <main>
+            <main className="bg-light">
                 <Outlet />
             </main>
         </>
     );
 };
-export default LayoutPage;

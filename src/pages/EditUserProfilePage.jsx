@@ -1,4 +1,3 @@
-const EditUserProfilePage = () => {
+export const EditUserProfilePage = () => {
     return <div>EditUserProfilePage</div>;
 };
-export default EditUserProfilePage;

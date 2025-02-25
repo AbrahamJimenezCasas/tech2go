@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 
-const ProfilePage = () => {
+export const ProfilePage = () => {
     /* NO TOCAR AQUI DE MOMENTO. Página de usuario es UserProfilePage */
     return (
         <>
@@ -8,4 +8,3 @@ const ProfilePage = () => {
         </>
     );
 };
-export default ProfilePage;
