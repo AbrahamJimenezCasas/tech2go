@@ -2,8 +2,10 @@ import { Link } from "react-router-dom";
 import { Button } from "../components/Button.jsx";
 import { CategoryCover } from "../components/products/CategoryCover.jsx";
 import { CategorySection } from "../components/products/CategorySection.jsx";
+// import { useProducts } from "../hooks/useProducts.js";
 
 export const HomePage = () => {
+    // const { products } = useProducts("?filtros[categoria]=telefono");
     return (
         <>
             <section className="flex md:flex-row flex-col md:justify-between items-center gap-12 md:gap-0 bg-electric-violet-800 p-6 lg:px-32 2xl:px-40 lg:py-8 w-full h-[30rem] overflow-x-hidden">
@@ -51,10 +53,26 @@ export const HomePage = () => {
                     />
                 </section>
             </section>
-            <CategorySection category="Teléfonos" path="/telefonos" />
-            <CategorySection category="Ordenadores" path="/ordenadores" />
-            <CategorySection category="Consolas" path="/consolas" />
-            <CategorySection category="Videojuegos" path="/videojuegos" />
+            <CategorySection
+                category="telefono"
+                name="Teléfonos"
+                path="/telefonos"
+            />
+            <CategorySection
+                category="ordenador"
+                name="Ordenadores"
+                path="/ordenadores"
+            />
+            <CategorySection
+                category="consola"
+                name="Consolas"
+                path="/consolas"
+            />
+            <CategorySection
+                category="videojuego"
+                name="Videojuegos"
+                path="/videojuegos"
+            />
         </>
     );
 };

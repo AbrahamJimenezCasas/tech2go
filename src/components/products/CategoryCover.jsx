@@ -23,10 +23,10 @@ export const CategoryCover = ({ img, margin, category, path }) => {
                         restDelta: 2,
                     },
                 }}
-                className={`${img}  bg-blend-soft-light bg-electric-violet-800/20 hover:bg-blend-normal bg-cover bg-center shadow-lg shadow-dark/10 ${margin} rounded-3xl w-32 lg:w-44 xl:w-56 h-56 lg:h-72 xl:h-80  cursor-pointer relative`}
+                className={`${img} bg-blend-soft-light bg-electric-violet-800/20 hover:bg-blend-normal bg-cover bg-no-repeat bg-center shadow-lg shadow-dark/10 ${margin} rounded-3xl w-32 lg:w-44 xl:w-56 h-56 lg:h-72 xl:h-80  cursor-pointer relative group`}
             >
                 <h3
-                    className={`bottom-0 absolute bg-electric-violet-800 px-3 lg:px-4 py-2 rounded-b-3xl w-full font-display text-electric-violet-50 text-sm lg:text-lg`}
+                    className={`bottom-0 absolute bg-electric-violet-900 px-3 lg:px-4 py-2 rounded-b-3xl w-full font-display text-electric-violet-50 text-sm lg:text-lg group-hover:bg-electric-violet-600 duration-500 transition-all`}
                 >
                     {category}
                 </h3>
