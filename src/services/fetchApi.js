@@ -1,6 +1,19 @@
 const apiPath = import.meta.env.VITE_BACKEND_HOST;
 
 /* USUARIOS */
+export const getOwnUserService = async (token) => {
+    const response = await fetch(`${apiPath}/usuarios/own`, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+
+    const { message, data } = await response.json();
+
+    if (!response.ok) throw new Error(message);
+
+    return data.usuario;
+};
 
 /* ARTICULOS */
 export const getProductsService = async (filters) => {
