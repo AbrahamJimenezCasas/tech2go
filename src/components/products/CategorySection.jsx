@@ -22,14 +22,25 @@ export const CategorySection = ({ category, name }) => {
                     Mejor valorados
                 </h4>
                 <section className="gap-5 sm:gap-10 xl:gap-20 grid grid-cols-2 md:grid-cols-4 pt-2">
-                    {mostValuedProducts.map((product) => (
-                        <ProductCard
-                            key={product.id}
-                            name={product.nombre}
-                            price={product.precio}
-                            pic={product.fotos[0]}
-                        />
-                    ))}
+                    {mostValuedProducts.map((product) => {
+                        let pic = null;
+                        let pic2 = null;
+                        if (product.fotos[0]) {
+                            pic = `${product.vendedorId}/${product.id}/${product.fotos[0].foto}`;
+                        }
+                        if (product.fotos[1]) {
+                            pic2 = `${product.vendedorId}/${product.id}/${product.fotos[1].foto}`;
+                        }
+                        return (
+                            <ProductCard
+                                key={product.id}
+                                name={product.nombre}
+                                price={product.precio}
+                                pic={pic}
+                                pict2={pic2}
+                            />
+                        );
+                    })}
                 </section>
             </section>
             <section className="pt-4">
@@ -37,14 +48,25 @@ export const CategorySection = ({ category, name }) => {
                     Novedades
                 </h4>
                 <section className="gap-5 sm:gap-10 xl:gap-20 grid grid-cols-2 md:grid-cols-4 pt-2">
-                    {recentProducts.map((product) => (
-                        <ProductCard
-                            key={product.id}
-                            name={product.nombre}
-                            price={product.precio}
-                            pic={product.fotos[0]}
-                        />
-                    ))}
+                    {recentProducts.map((product) => {
+                        let pic = null;
+                        let pic2 = null;
+                        if (product.fotos[0]) {
+                            pic = `${product.vendedorId}/${product.id}/${product.fotos[0].foto}`;
+                        }
+                        if (product.fotos[1]) {
+                            pic2 = `${product.vendedorId}/${product.id}/${product.fotos[1].foto}`;
+                        }
+                        return (
+                            <ProductCard
+                                key={product.id}
+                                name={product.nombre}
+                                price={product.precio}
+                                pic={pic}
+                                pict2={pic2}
+                            />
+                        );
+                    })}
                 </section>
             </section>
             <Button colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light mt-6 w-fit self-center">
