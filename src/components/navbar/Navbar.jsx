@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion, useCycle } from "motion/react";
+import { useAuth } from "../../hooks/useAuth.js";
 import menuList from "../../mocks/menu.json";
 import { Logo } from "../Logo.jsx";
 import { MenuItem } from "./MenuItem.jsx";
@@ -8,6 +9,7 @@ import { Button } from "../Button.jsx";
 
 export const Navbar = () => {
     const [isOpen, toggleOpen] = useCycle(false, true);
+    const { token } = useAuth();
 
     const sidebar = {
         open: (height = 1000) => ({
@@ -58,21 +60,34 @@ export const Navbar = () => {
                             <Link to={item.url}>{item.text}</Link>
                         </li>
                     ))}
-                    {/* PENDIENTE AJUSTAR CON DIFERENCIAS LOGIN */}
-                    <li>
-                        <Link to="/registro">
-                            <Button colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light">
-                                Regístrate
-                            </Button>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="login">
-                            <Button colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light">
-                                Inicia sesion
-                            </Button>
-                        </Link>
-                    </li>
+                    {token ? (
+                        <>
+                            <li>
+                                <Link to="/vender-articulo">
+                                    <Button colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light">
+                                        Vender
+                                    </Button>
+                                </Link>
+                            </li>
+                        </>
+                    ) : (
+                        <>
+                            <li>
+                                <Link to="/registro">
+                                    <Button colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light">
+                                        Regístrate
+                                    </Button>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="login">
+                                    <Button colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light">
+                                        Inicia sesion
+                                    </Button>
+                                </Link>
+                            </li>
+                        </>
+                    )}
                 </ul>
             </nav>
 
