@@ -60,18 +60,20 @@ export const Navbar = () => {
                     ))}
                     {/* PENDIENTE AJUSTAR CON DIFERENCIAS LOGIN */}
                     <li>
-                        <Link to="/registro">
-                            <Button colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light">
-                                Regístrate
-                            </Button>
-                        </Link>
+                        <Button
+                            colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light"
+                            path="/registro"
+                        >
+                            Regístrate
+                        </Button>
                     </li>
                     <li>
-                        <Link to="login">
-                            <Button colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light">
-                                Inicia sesion
-                            </Button>
-                        </Link>
+                        <Button
+                            colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light"
+                            path="/login"
+                        >
+                            Inicia sesion
+                        </Button>
                     </li>
                 </ul>
             </nav>

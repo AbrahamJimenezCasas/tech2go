@@ -43,7 +43,7 @@ export const CategorySection = ({ category, name }) => {
                     })}
                 </section>
             </section>
-            <section className="pt-4">
+            <section className="mb-6 pt-4">
                 <h4 className="font-body font-bold text-electric-violet-950 text-lg">
                     Novedades
                 </h4>
@@ -69,9 +69,15 @@ export const CategorySection = ({ category, name }) => {
                     })}
                 </section>
             </section>
-            <Button colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light mt-6 w-fit self-center">
-                Ver todos
-            </Button>
+
+            <div className="self-center">
+                <Button
+                    colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light"
+                    path={`/articulos/?filtros[categoria]=${category}`}
+                >
+                    Ver todos
+                </Button>
+            </div>
         </section>
     );
 };
