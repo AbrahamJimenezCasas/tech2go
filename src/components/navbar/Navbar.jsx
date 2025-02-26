@@ -63,29 +63,31 @@ export const Navbar = () => {
                     {token ? (
                         <>
                             <li>
-                                <Link to="/vender-articulo">
-                                    <Button colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light">
+                        
+                                    <Button colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light" path="/vender-articulo">
                                         Vender
                                     </Button>
-                                </Link>
+   
                             </li>
                         </>
                     ) : (
                         <>
-                            <li>
-                                <Link to="/registro">
-                                    <Button colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light">
-                                        Regístrate
-                                    </Button>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="login">
-                                    <Button colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light">
-                                        Inicia sesion
-                                    </Button>
-                                </Link>
-                            </li>
+                    <li>
+                        <Button
+                            colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light"
+                            path="/registro"
+                        >
+                            Regístrate
+                        </Button>
+                    </li>
+                    <li>
+                        <Button
+                            colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light"
+                            path="/login"
+                        >
+                            Inicia sesion
+                        </Button>
+                    </li>
                         </>
                     )}
                 </ul>

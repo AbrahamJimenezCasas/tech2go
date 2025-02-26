@@ -1,11 +1,11 @@
-import { Link } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth.js";
 import { Button } from "../components/Button.jsx";
 import { CategoryCover } from "../components/products/CategoryCover.jsx";
 import { CategorySection } from "../components/products/CategorySection.jsx";
-import { useAuth } from "../hooks/useAuth.js";
 
 export const HomePage = () => {
     const { token } = useAuth();
+
 
     return (
         <>
@@ -15,11 +15,13 @@ export const HomePage = () => {
                         Tecnología lista para irse contigo
                     </h2>
                     <div className="flex gap-2 lg:gap-3">
-                        <Link to="/articulos">
-                            <Button colors="bg-light hover:bg-electric-violet-50 text-electric-violet-800">
-                                Explorar productos
-                            </Button>
-                        </Link>
+
+                      <Button
+                            colors="bg-light hover:bg-electric-violet-50 text-electric-violet-800"
+                            path="/articulos"
+                        >
+                            Explorar productos
+                        </Button>
                         {token && (
                             <Button
                                 colors="bg-light hover:bg-electric-violet-50 text-electric-violet-800"
@@ -28,31 +30,32 @@ export const HomePage = () => {
                                 Vender
                             </Button>
                         )}
+
                     </div>
                 </div>
                 <section className="flex justify-center w-full md:w-1/2 lg:w-auto select-none">
                     <CategoryCover
                         img="bg-[url(/telefono.jpg)]"
                         category="Teléfonos"
-                        path="/telefonos"
+                        path="/articulos/?filtros[categoria]=telefono"
                     />
                     <CategoryCover
                         img="bg-[url(/ordenador.png)]"
                         margin="-ml-12"
                         category="Ordenadores"
-                        path="/ordenadores"
+                        path="/articulos/?filtros[categoria]=ordenador"
                     />
                     <CategoryCover
                         img="bg-[url(/telefono.png)]"
                         margin="-ml-12"
                         category="Consolas"
-                        path="/consolas"
+                        path="/articulos/?filtros[categoria]=consola"
                     />
                     <CategoryCover
                         img="bg-[url(/ordenador.png)]"
                         margin="-ml-12"
                         category="Videojuegos"
-                        path="/videojuegos"
+                        path="/articulos/?filtros[categoria]=videojuego"
                     />
                 </section>
             </section>
