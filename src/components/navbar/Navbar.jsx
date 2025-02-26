@@ -39,7 +39,7 @@ export const Navbar = () => {
     };
 
     return (
-        <header className="flex justify-between items-center bg-light p-2 lg:px-4 xl:px-8 border-b-1 border-b-electric-violet-200 w-full h-20 font-display">
+        <header className="flex justify-between items-center bg-light px-4 lg:px-12 py-2 border-b-1 border-b-electric-violet-200 w-full h-20 font-display">
             <Logo
                 primary="electric-violet-800"
                 secondary="fill-electric-violet-950"
@@ -83,14 +83,14 @@ export const Navbar = () => {
                 className="lg:hidden"
             >
                 <motion.section
-                    className={`top-0 right-0 w-full h-svh bg-electric-violet-800 ${
+                    className={`z-30 top-0 right-0 w-full h-svh bg-electric-violet-800 ${
                         isOpen ? "fixed" : "absolute"
                     }`}
                     variants={sidebar}
                 />
                 <motion.ul
                     variants={variants}
-                    className={`fixed top-0 right-0 w-full h-screen pt-24 pr-6 flex flex-col items-end gap-4 text-electric-violet-50 text-3xl ${
+                    className={`z-30 fixed top-0 right-0 w-full h-screen pt-24 pr-6 flex flex-col items-end gap-4 text-electric-violet-50 text-3xl ${
                         isOpen ? "pointer-events-auto" : "pointer-events-none"
                     }`}
                 >
