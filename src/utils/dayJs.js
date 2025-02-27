@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-// import 'dayjs/locale/es';
+// import "dayjs/locale/es";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 
@@ -27,7 +27,8 @@ dayjs.locale("es", {
 });
 
 export const formatDate = (date) => {
-    const localDate = dayjs.utc(date).local();
+    if (!date) return "Fecha inválida";
+    const localDate = dayjs.utc(date).tz(dayjs.tz.guess()).subtract(1, "hour");
 
     return localDate.fromNow();
 };
