@@ -1,8 +1,6 @@
 import { UserCard } from "./UserCard.jsx";
 
 export const UsersList = ({ usuarios }) => {
-    console.log(usuarios);
-
     return (
         <ul>
             {usuarios.map((usuario) => (

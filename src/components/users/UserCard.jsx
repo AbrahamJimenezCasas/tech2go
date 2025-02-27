@@ -1,21 +1,18 @@
-import { Icon } from "../Icon.jsx";
+import { Card } from "../Card.jsx";
 
 export const UserCard = ({ usuario }) => {
     const staticPath = import.meta.env.VITE_BACKEND_STATIC;
 
     return (
-        <li>
-            <article>
-                <h3>{usuario.username}</h3>
-                {usuario.avatar ? (
-                    <img
-                        src={`${staticPath}/${usuario.id}/${usuario.avatar}`}
-                        alt={usuario.username}
-                    />
-                ) : (
-                    <Icon name="account_circle" />
-                )}
-            </article>
-        </li>
+        <Card>
+            <img
+                className="rounded-full h-11/12"
+                src="/imgs/no-img-available.png"
+            />
+            <h3 className="font-body font-bold text-electric-violet-950">
+                {/* {usuario.username} */}
+                Usuario
+            </h3>
+        </Card>
     );
 };
