@@ -18,7 +18,6 @@ export const ValidatePage = () => {
                     { method: "PUT" }
                 );
 
-                console.log(`${apiPath}/usuarios/active/${registrationCode}`);
                 if (response.ok) {
                     const result = await response.json();
                     const params = new URLSearchParams({
