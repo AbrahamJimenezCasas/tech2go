@@ -6,9 +6,8 @@ import { toast } from "react-toastify";
 import { registerUserSchema } from "../../schemas/registerUserSchema.js";
 import { registerUserService } from "../../services/fetchApi.js";
 import { Form } from "./Form.jsx";
-import { InputRHF } from "./InputRHF.jsx";
 import { Button } from "../Button.jsx";
-import { Icon } from "../Icon.jsx";
+import { Input } from "./Input.jsx";
 
 /* Aquí se maneja el formulario de registro de usuarios. Su trabajo es:
 
@@ -64,32 +63,34 @@ export const RegisterForm = () => {
     // <Button>: Botón para enviar el formulario
     return (
         <Form className="register-form" handleSubmit={handleSubmit(submit)}>
-            <InputRHF
+            <Input
                 label="Username"
                 name="username"
                 errors={errors}
                 register={register}
             />
-            <InputRHF
-                label="Nombre"
-                name="nombre"
-                errors={errors}
-                register={register}
-            />
-            <InputRHF
-                label="Apellidos"
-                name="apellidos"
-                errors={errors}
-                register={register}
-            />
-            <InputRHF
+            <div className="flex w-full gap-4">
+                <Input
+                    label="Nombre"
+                    name="nombre"
+                    errors={errors}
+                    register={register}
+                />
+                <Input
+                    label="Apellidos"
+                    name="apellidos"
+                    errors={errors}
+                    register={register}
+                />
+            </div>
+            <Input
                 label="Email"
                 type="email"
                 name="email"
                 errors={errors}
                 register={register}
             />
-            <InputRHF
+            <Input
                 label="Contraseña"
                 type="password"
                 name="password"
@@ -97,13 +98,11 @@ export const RegisterForm = () => {
                 register={register}
             />
             <Button
-                id="register"
-                className="submit"
+                colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light w-fit mt-8"
                 type="submit"
                 isLoading={isLoading}
             >
-                <Icon name="send" />
-                <span className="text">Regístrate</span>
+                Regístrate
             </Button>
         </Form>
     );
