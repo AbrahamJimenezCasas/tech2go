@@ -12,7 +12,7 @@ const MenuPath = (props) => (
 export const MenuToggle = ({ toggle }) => (
     <button
         onClick={toggle}
-        className="z-10 relative stroke-light hover:stroke-electric-violet-200 p-3.75 scale-125 transition-colors duration-200 cursor-pointer"
+        className="z-40 relative stroke-light hover:stroke-electric-violet-200 px-2 py-4 scale-125 transition-colors duration-200 cursor-pointer"
     >
         <svg width="23" height="23" viewBox="0 0 23 23" className="pt-0.5">
             <MenuPath
