@@ -33,6 +33,16 @@ export const getOwnUserService = async (token) => {
     return data.usuario;
 };
 
+export const getAllUsersService = async () => {
+    const response = await fetch(`${apiPath}/usuarios`);
+
+    const { message, data } = await response.json();
+
+    if (!response.ok) throw new Error(message);
+
+    return data.users;
+};
+
 export const getUserService = async (id) => {
     const response = await fetch(`${apiPath}/usuarios/${id}`);
 
