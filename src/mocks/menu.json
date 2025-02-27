@@ -2,26 +2,26 @@
     {
         "name": "telefonos",
         "text": "Teléfonos",
-        "url": "/telefonos"
+        "url": "/articulos/?filtros[categoria]=telefono"
     },
     {
         "name": "ordenadores",
         "text": "Ordenadores",
-        "url": "/ordenadores"
+        "url": "/articulos/?filtros[categoria]=ordenador"
     },
     {
         "name": "consolas",
         "text": "Consolas",
-        "url": "/consolas"
+        "url": "/articulos/?filtros[categoria]=consola"
     },
     {
         "name": "videojuegos",
         "text": "Videojuegos",
-        "url": "/videojuegos"
+        "url": "/articulos/?filtros[categoria]=videojuego"
     },
     {
         "name": "accesorios",
         "text": "Accesorios",
-        "url": "/accesorios"
+        "url": "/articulos/?filtros[categoria]=accesorios"
     }
 ]
