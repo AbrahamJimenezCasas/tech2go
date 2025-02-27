@@ -20,7 +20,7 @@ export const useProducts = (filters) => {
         };
 
         fetchProducts();
-    }, []);
+    }, [filters]);
 
     return { products, loading, error };
 };

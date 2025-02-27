@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
 import { motion, useCycle } from "motion/react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../../hooks/useAuth.js";
 import menuList from "../../mocks/menu.json";
 import { Logo } from "../Logo.jsx";
 import { MenuItem } from "./MenuItem.jsx";
 import { MenuToggle } from "./MenuToggle.jsx";
 import { Button } from "../Button.jsx";
+import { IconButton } from "../IconButton.jsx";
 
 export const Navbar = () => {
     const [isOpen, toggleOpen] = useCycle(false, true);
@@ -40,6 +43,23 @@ export const Navbar = () => {
         },
     };
 
+    const items = {
+        open: {
+            y: 0,
+            opacity: 1,
+            transition: {
+                y: { stiffness: 1000, velocity: -100 },
+            },
+        },
+        closed: {
+            y: 50,
+            opacity: 0,
+            transition: {
+                y: { stiffness: 1000 },
+            },
+        },
+    };
+
     return (
         <header className="flex justify-between items-center bg-light px-4 lg:px-12 py-2 border-b-1 border-b-electric-violet-200 w-full h-20 font-display">
             <Logo
@@ -63,31 +83,41 @@ export const Navbar = () => {
                     {token ? (
                         <>
                             <li>
-                        
-                                    <Button colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light" path="/vender-articulo">
-                                        Vender
-                                    </Button>
-   
+                                <Button
+                                    colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light flex gap-2 items-center"
+                                    path="/vender-articulo"
+                                >
+                                    <FontAwesomeIcon icon={faPlus} />
+                                    Vender
+                                </Button>
+                            </li>
+                            <li>
+                                <IconButton
+                                    colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light"
+                                    path="/usuario"
+                                >
+                                    <FontAwesomeIcon icon={faUser} />
+                                </IconButton>
                             </li>
                         </>
                     ) : (
                         <>
-                    <li>
-                        <Button
-                            colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light"
-                            path="/registro"
-                        >
-                            Regístrate
-                        </Button>
-                    </li>
-                    <li>
-                        <Button
-                            colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light"
-                            path="/login"
-                        >
-                            Inicia sesion
-                        </Button>
-                    </li>
+                            <li>
+                                <Button
+                                    colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light"
+                                    path="/registro"
+                                >
+                                    Regístrate
+                                </Button>
+                            </li>
+                            <li>
+                                <Button
+                                    colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light"
+                                    path="/login"
+                                >
+                                    Inicia sesion
+                                </Button>
+                            </li>
                         </>
                     )}
                 </ul>
@@ -119,8 +149,57 @@ export const Navbar = () => {
                             text={item.text}
                         />
                     ))}
-                    {/* PENDIENTE BOTONES */}
+                    {token ? (
+                        <>
+                            <motion.li variants={items}>
+                                <Button
+                                    colors="bg-electric-violet-50 hover:bg-electric-violet-900 
+                                    text-electric-violet-800 hover:text-electric-violet-50 flex gap-2 items-center"
+                                    path="/vender-articulo"
+                                    toggle={() => toggleOpen()}
+                                >
+                                    <FontAwesomeIcon icon={faPlus} />
+                                    Vender
+                                </Button>
+                            </motion.li>
+                            <motion.li variants={items}>
+                                <IconButton
+                                    colors="bg-electric-violet-50 hover:bg-electric-violet-900 
+                                    text-electric-violet-800 hover:text-electric-violet-50 text-lg"
+                                    path="/usuario"
+                                    toggle={() => toggleOpen()}
+                                >
+                                    <FontAwesomeIcon icon={faUser} />
+                                </IconButton>
+                            </motion.li>
+                        </>
+                    ) : (
+                        <>
+                            <motion.li variants={items}>
+                                <Button
+                                    colors="bg-electric-violet-50 hover:bg-electric-violet-900 
+                                    text-electric-violet-800 hover:text-electric-violet-50"
+                                    path="/registro"
+                                    toggle={() => toggleOpen()}
+                                >
+                                    Regístrate
+                                </Button>
+                            </motion.li>
+
+                            <motion.li variants={items}>
+                                <Button
+                                    colors="bg-electric-violet-50 hover:bg-electric-violet-900 
+                                    text-electric-violet-800 hover:text-electric-violet-50"
+                                    path="/login"
+                                    toggle={() => toggleOpen()}
+                                >
+                                    Inicia sesion
+                                </Button>
+                            </motion.li>
+                        </>
+                    )}
                 </motion.ul>
+
                 <MenuToggle toggle={() => toggleOpen()} />
             </motion.nav>
         </header>

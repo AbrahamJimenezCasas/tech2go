@@ -2,10 +2,11 @@ import { useAuth } from "../hooks/useAuth.js";
 import { Button } from "../components/Button.jsx";
 import { CategoryCover } from "../components/products/CategoryCover.jsx";
 import { CategorySection } from "../components/products/CategorySection.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 export const HomePage = () => {
     const { token } = useAuth();
-
 
     return (
         <>
@@ -15,8 +16,7 @@ export const HomePage = () => {
                         Tecnología lista para irse contigo
                     </h2>
                     <div className="flex gap-2 lg:gap-3">
-
-                      <Button
+                        <Button
                             colors="bg-light hover:bg-electric-violet-50 text-electric-violet-800"
                             path="/articulos"
                         >
@@ -24,13 +24,13 @@ export const HomePage = () => {
                         </Button>
                         {token && (
                             <Button
-                                colors="bg-light hover:bg-electric-violet-50 text-electric-violet-800"
+                                colors="bg-light hover:bg-electric-violet-50 text-electric-violet-800 flex gap-1 items-center"
                                 path="/vender-articulo"
                             >
+                                <FontAwesomeIcon icon={faPlus} />
                                 Vender
                             </Button>
                         )}
-
                     </div>
                 </div>
                 <section className="flex justify-center w-full md:w-1/2 lg:w-auto select-none">
