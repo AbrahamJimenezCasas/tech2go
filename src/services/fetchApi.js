@@ -92,3 +92,13 @@ export const getCategoriesService = async () => {
 
     return data.categorias;
 };
+
+export const getAllRequestsService = async () => {
+    const response = await fetch(`${apiPath}/solicitudes`);
+
+    const { message, data } = await response.json();
+
+    if (!response.ok) throw new Error(message);
+
+    return data.solicitudes;
+};
