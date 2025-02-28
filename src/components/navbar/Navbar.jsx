@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
 import { motion, useCycle } from "motion/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../../hooks/useAuth.js";
 import menuList from "../../mocks/menu.json";
 import { Logo } from "../Logo.jsx";
 import { MenuItem } from "./MenuItem.jsx";
 import { MenuToggle } from "./MenuToggle.jsx";
 import { Button } from "../Button.jsx";
-import { IconButton } from "../IconButton.jsx";
+import { ProfileMenu } from "./ProfileMenu.jsx";
 
 export const Navbar = () => {
     const [isOpen, toggleOpen] = useCycle(false, true);
@@ -91,13 +91,8 @@ export const Navbar = () => {
                                     Vender
                                 </Button>
                             </li>
-                            <li>
-                                <IconButton
-                                    colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light"
-                                    path="/usuario"
-                                >
-                                    <FontAwesomeIcon icon={faUser} />
-                                </IconButton>
+                            <li className="relative">
+                                <ProfileMenu colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light" />
                             </li>
                         </>
                     ) : (
@@ -162,15 +157,15 @@ export const Navbar = () => {
                                     Vender
                                 </Button>
                             </motion.li>
-                            <motion.li variants={items}>
-                                <IconButton
+                            <motion.li
+                                variants={items}
+                                className="relative text-lg"
+                            >
+                                <ProfileMenu
                                     colors="bg-electric-violet-50 hover:bg-electric-violet-900 
                                     text-electric-violet-800 hover:text-electric-violet-50 text-lg"
-                                    path="/usuario"
-                                    toggle={() => toggleOpen()}
-                                >
-                                    <FontAwesomeIcon icon={faUser} />
-                                </IconButton>
+                                    toggleOpen={toggleOpen}
+                                />
                             </motion.li>
                         </>
                     ) : (
