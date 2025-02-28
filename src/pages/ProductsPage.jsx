@@ -1,5 +1,5 @@
 import { useSearchParams } from "react-router-dom";
-import { ProductCard } from "../components/products/ProductCard.jsx";
+import { ProductDetailCard } from "../components/products/ProductDetailCard.jsx";
 import { useCategories } from "../hooks/useCategories.js";
 import { useProducts } from "../hooks/useProducts.js";
 
@@ -41,7 +41,7 @@ export const ProductsPage = () => {
                             pic2 = `${product.vendedorId}/${product.id}/${product.fotos[1].foto}`;
                         }
                         return (
-                            <ProductCard
+                            <ProductDetailCard
                                 key={product.id}
                                 id={product.id}
                                 name={product.nombre}
