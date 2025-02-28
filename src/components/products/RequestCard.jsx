@@ -3,11 +3,11 @@ import { Card } from "../Card.jsx";
 import { faSquareCheck } from "@fortawesome/free-solid-svg-icons";
 import { formatDate } from "../../utils/dayJs.js";
 
-export const RequestCard = ({ solicitud }) => {
+export const RequestCard = ({ index, solicitud }) => {
     const staticPath = import.meta.env.VITE_BACKEND_STATIC;
     const fecha = formatDate(solicitud.fecha);
     return (
-        <Card>
+        <Card index={index}>
             <div className="flex items-center gap-4 h-full">
                 <img
                     className="rounded-full h-11/12"
@@ -23,7 +23,7 @@ export const RequestCard = ({ solicitud }) => {
             {solicitud.estado === "aceptada" && (
                 <FontAwesomeIcon
                     icon={faSquareCheck}
-                    className="text-3xl text text-electric-violet-800"
+                    className="text-electric-violet-800 text-3xl text"
                 />
             )}
         </Card>
