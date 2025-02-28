@@ -72,6 +72,77 @@ export const getUserService = async (id) => {
 
     return data.usuario;
 };
+
+export const updateAvatarService = async (info, token) => {
+    const formData = new FormData();
+    formData.append("avatar", info);
+
+    const response = await fetch(`${apiPath}/usuarios/avatar`, {
+        method: "PATCH",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+    });
+
+    const { message, data } = await response.json();
+
+    if (!response.ok) throw new Error(message);
+
+    return data.user;
+};
+
+export const deleteAvatarService = async (token) => {
+    const response = await fetch(`${apiPath}/usuarios/avatar`, {
+        method: "DELETE",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+
+    const { message, data } = await response.json();
+
+    if (!response.ok) throw new Error(message);
+
+    return data.user;
+};
+
+export const updateUserService = async (info, token) => {
+    const response = await fetch(`${apiPath}/usuarios/own`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(info),
+    });
+
+    const { message, data } = await response.json();
+
+    if (!response.ok) throw new Error(message);
+
+    return data.user;
+};
+
+export const updatePasswordService = async (passwords, token) => {
+    const response = await fetch(`${apiPath}/usuarios/password`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(passwords),
+    });
+
+    const { message } = await response.json();
+
+    if (!response.ok) {
+        throw new Error(message);
+    }
+
+    return message;
+};
+
 /* ARTICULOS */
 export const getProductsService = async (filters) => {
     const response = await fetch(`${apiPath}/articulos${filters}`);
