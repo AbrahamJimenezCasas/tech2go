@@ -5,11 +5,13 @@ import { faPenToSquare, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../hooks/useAuth.js";
 import { useUser } from "../hooks/useUser.js";
 import { Star } from "../components/Star.jsx";
+import { RequestCard } from "../components/products/RequestCard.jsx";
+import { SaleCard } from "../components/products/SaleCard.jsx";
 
 export const UserProfilePage = () => {
     const { token, currentUser } = useAuth();
     const { id } = useParams();
-    const { user } = useUser(id, token);
+    const { user, sales, requests } = useUser(id, token);
     const staticPath = import.meta.env.VITE_BACKEND_STATIC;
     const rating = Math.floor(user?.valoracionMediaVendedor);
 
@@ -73,6 +75,51 @@ export const UserProfilePage = () => {
                     {user?.biografia}
                 </p>
             </header>
+            <section className="flex md:flex-row flex-col md:justify-between gap-16 p-6 lg:px-32 2xl:px-40 lg:py-8 w-full">
+                <section className="w-full md:w-1/2 font-body">
+                    <h3 className="font-bold text-electric-violet-950 text-lg">
+                        Ventas
+                    </h3>
+                    {sales ? (
+                        <ul className="flex flex-col gap-4 mt-4">
+                            {sales.map((sale, index) => (
+                                <SaleCard
+                                    key={sale.articuloId}
+                                    sale={sale}
+                                    index={index}
+                                />
+                            ))}
+                        </ul>
+                    ) : (
+                        <p className="mt-4">
+                            {user?.username} todavía no ha vendido ningún
+                            artículo
+                        </p>
+                    )}
+                </section>
+                <section className="w-full md:w-1/2 font-body">
+                    <h3 className="font-bold text-electric-violet-950 text-lg">
+                        Solicitudes de compra
+                    </h3>
+
+                    {requests ? (
+                        <ul className="flex flex-col gap-4 mt-4">
+                            {requests.map((request, index) => (
+                                <RequestCard
+                                    key={request.solicitudId}
+                                    solicitud={request}
+                                    index={index}
+                                />
+                            ))}
+                        </ul>
+                    ) : (
+                        <p className="mt-4">
+                            {user?.username} no ha realizado ninguna solicitud
+                            de compra
+                        </p>
+                    )}
+                </section>
+            </section>
         </main>
     );
 };

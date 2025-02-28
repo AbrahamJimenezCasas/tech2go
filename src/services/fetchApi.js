@@ -72,6 +72,33 @@ export const getUserService = async (id) => {
 
     return data.usuario;
 };
+
+export const getUserSalesService = async (id) => {
+    const response = await fetch(`${apiPath}/usuarios/${id}/ventas`);
+
+    const { message, data } = await response.json();
+
+    if (!response.ok) {
+        throw new Error(message);
+    }
+
+    return data.ventasValoraciones;
+};
+
+export const getUserRequestsService = async (id) => {
+    const response = await fetch(
+        `${apiPath}/usuarios/${id}/solicitudes-compra`
+    );
+
+    const { message, data } = await response.json();
+
+    if (!response.ok) {
+        throw new Error(message);
+    }
+
+    return data.solicitudesCompra;
+};
+
 /* ARTICULOS */
 export const getProductsService = async (filters) => {
     const response = await fetch(`${apiPath}/articulos${filters}`);
