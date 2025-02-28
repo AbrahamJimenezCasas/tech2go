@@ -6,6 +6,7 @@ import { Form } from './Form.jsx';
 import { Input } from './Input.jsx';
 import { Button } from '../Button.jsx';
 import { newProductService } from '../../services/fetchApi.js';
+import { useAuth } from '../../hooks/useAuth.js';
 
 
 
@@ -17,13 +18,14 @@ export const PublishProductForm = () => {
         formState: { errors },
     } = useForm();
     const [isLoading, setIsLoading] = useState(false);
+    const {token} = useAuth()
     const navigate = useNavigate();
 
     const submit = async (data) => {
         try {
             setIsLoading(true);
 
-            const message = await newProductService(data);
+            const message = await newProductService(data, token);
 
             const params = new URLSearchParams({
                 type: "success",
