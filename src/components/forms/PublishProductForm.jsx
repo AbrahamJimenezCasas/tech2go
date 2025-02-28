@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { Form } from './Form.jsx';
 import { Input } from './Input.jsx';
 import { Button } from '../Button.jsx';
+import { newProductService } from '../../services/fetchApi.js';
 
 
 
@@ -22,7 +23,7 @@ export const PublishProductForm = () => {
         try {
             setIsLoading(true);
 
-            const message = await publishArticleService(data);
+            const message = await newProductService(data);
 
             const params = new URLSearchParams({
                 type: "success",
