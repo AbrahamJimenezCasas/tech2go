@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../hooks/useAuth.js";
@@ -7,6 +6,7 @@ import { useUser } from "../hooks/useUser.js";
 import { Star } from "../components/Star.jsx";
 import { RequestCard } from "../components/products/RequestCard.jsx";
 import { SaleCard } from "../components/products/SaleCard.jsx";
+import { useRedirect } from "../hooks/useRedirect.js";
 
 export const UserProfilePage = () => {
     const { token, currentUser } = useAuth();
@@ -15,13 +15,7 @@ export const UserProfilePage = () => {
     const staticPath = import.meta.env.VITE_BACKEND_STATIC;
     const rating = Math.floor(user?.valoracionMediaVendedor);
 
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        if (!token && !id) {
-            navigate("/login/?redirect=usuario");
-        }
-    }, [token]);
+    useRedirect("/usuario");
 
     return (
         <main>
