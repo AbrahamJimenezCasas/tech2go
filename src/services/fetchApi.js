@@ -154,8 +154,8 @@ export const newProductService = async (info, token) => {
     return { message, data };
 };
 
-export const getUserService = async (id) => {
-    const response = await fetch(`${apiPath}/usuarios/${id}`);
+export const getProductService = async (id) => {
+    const response = await fetch(`${apiPath}/articulos/${id}`);
 
     const { message, data } = await response.json();
 
@@ -163,5 +163,5 @@ export const getUserService = async (id) => {
         throw new Error(message);
     }
 
-    return data.usuario;
+    return data.articulo;
 };// enlazarlo con la pagina del producto y llamarla en un archivo en hook. que se llame useproduct
