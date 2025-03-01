@@ -2,7 +2,7 @@ import { useSearchParams } from "react-router-dom";
 import { ProductDetailCard } from "../components/products/ProductDetailCard.jsx";
 import { useCategories } from "../hooks/useCategories.js";
 import { useProducts } from "../hooks/useProducts.js";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export const ProductsPage = () => {
     const [searchParams] = useSearchParams();
@@ -13,8 +13,11 @@ export const ProductsPage = () => {
     const [precioMinFilter, setPrecioMinFilter] = useState(null);
     const [precioMaxFilter, setPrecioMaxFilter] = useState(null);
 
+    const categoryRef = useRef();
+
     const { products } = useProducts(filters);
     const { categories } = useCategories();
+    console.log(filters);
 
     const handleCategoryChange = (event) => {
         setCategoryFilter(`filtros[categoria]=${event.target.value}`);
@@ -27,6 +30,11 @@ export const ProductsPage = () => {
         setFilters(`?${array.filter((n) => n).join("&")}`);
     };
 
+    useEffect(() => {
+        setFilters(`?${searchParams}`);
+        categoryRef.current.reset();
+    }, [searchParams]);
+
     return (
         <>
             <section className="bg-electric-violet-800 w-full h-12"></section>
@@ -34,7 +42,7 @@ export const ProductsPage = () => {
                 <aside className="hidden lg:flex flex-col p-10 border-r-1 border-r-electric-violet-200 w-1/4 h-auto font-body text-dark">
                     <section>
                         <p className="font-bold">Categoría</p>
-                        <form>
+                        <form ref={categoryRef}>
                             {categories.map((category, index) => (
                                 <label
                                     className="group flex items-center gap-2 mt-2 w-fit text-electric-violet-950 capitalize cursor-pointer"
@@ -45,7 +53,7 @@ export const ProductsPage = () => {
                                         name="categoria"
                                         value={category.categoria}
                                         onChange={handleCategoryChange}
-                                        className="bg-light border-1 border-electric-violet-200 group-hover:border-electric-violet-800 focus:border-4 focus:border-electric-violet-800 rounded-full w-4 h-4 transition-colors duration-200 appearance-none"
+                                        className="bg-light border-1 border-electric-violet-200 checked:border-4 checked:border-electric-violet-800 group-hover:border-electric-violet-800 rounded-full w-4 h-4 transition-colors duration-200 appearance-none"
                                     />
                                     {category.categoria}
                                 </label>
