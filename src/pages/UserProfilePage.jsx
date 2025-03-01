@@ -26,7 +26,7 @@ export const UserProfilePage = () => {
                             <img
                                 src={`${staticPath}/avatars/${user.id}/${user.avatar}`}
                                 alt={user?.username}
-                                className="rounded-full w-16 h-16"
+                                className="rounded-full w-16 h-16 object-cover"
                             />
                         ) : (
                             <div className="flex justify-center items-center bg-electric-violet-50 rounded-full min-w-16 min-h-16">
@@ -69,8 +69,8 @@ export const UserProfilePage = () => {
                     {user?.biografia}
                 </p>
             </header>
-            <section className="flex md:flex-row flex-col md:justify-between gap-16 p-6 lg:px-32 2xl:px-40 lg:py-8 w-full">
-                <section className="w-full md:w-1/2 font-body">
+            <section className="flex lg:flex-row flex-col lg:justify-between gap-16 p-6 lg:px-32 2xl:px-40 lg:py-8 w-full">
+                <section className="w-full lg:w-1/2 font-body">
                     <h3 className="font-bold text-electric-violet-950 text-lg">
                         Ventas
                     </h3>
@@ -78,7 +78,7 @@ export const UserProfilePage = () => {
                         <ul className="flex flex-col gap-4 mt-4">
                             {sales.map((sale, index) => (
                                 <SaleCard
-                                    key={sale.articuloId}
+                                    key={index}
                                     sale={sale}
                                     index={index}
                                 />
@@ -91,7 +91,7 @@ export const UserProfilePage = () => {
                         </p>
                     )}
                 </section>
-                <section className="w-full md:w-1/2 font-body">
+                <section className="w-full lg:w-1/2 font-body">
                     <h3 className="font-bold text-electric-violet-950 text-lg">
                         Solicitudes de compra
                     </h3>

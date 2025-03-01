@@ -15,7 +15,7 @@ export const UserCard = ({ index, user }) => {
                         <img
                             src={`${staticPath}/avatars/${user.id}/${user.avatar}`}
                             alt={user?.username}
-                            className="rounded-full w-10 h-10"
+                            className="rounded-full w-10 h-10 object-cover"
                         />
                     ) : (
                         <div className="flex justify-center items-center bg-electric-violet-50 rounded-full min-w-10 min-h-10">
