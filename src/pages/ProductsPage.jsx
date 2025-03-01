@@ -2,11 +2,30 @@ import { useSearchParams } from "react-router-dom";
 import { ProductDetailCard } from "../components/products/ProductDetailCard.jsx";
 import { useCategories } from "../hooks/useCategories.js";
 import { useProducts } from "../hooks/useProducts.js";
+import { useEffect, useState } from "react";
 
 export const ProductsPage = () => {
     const [searchParams] = useSearchParams();
-    const { products } = useProducts(`?${searchParams}`);
+    const [filters, setFilters] = useState(`?${searchParams}`);
+
+    const [categoryFilter, setCategoryFilter] = useState(null);
+    const [placeFilter, setPlaceFilter] = useState(null);
+    const [precioMinFilter, setPrecioMinFilter] = useState(null);
+    const [precioMaxFilter, setPrecioMaxFilter] = useState(null);
+
+    const { products } = useProducts(filters);
     const { categories } = useCategories();
+
+    const handleCategoryChange = (event) => {
+        setCategoryFilter(`filtros[categoria]=${event.target.value}`);
+        const array = [
+            `filtros[categoria]=${event.target.value}`,
+            placeFilter,
+            precioMinFilter,
+            precioMaxFilter,
+        ];
+        setFilters(`?${array.filter((n) => n).join("&")}`);
+    };
 
     return (
         <>
@@ -15,13 +34,23 @@ export const ProductsPage = () => {
                 <aside className="hidden lg:flex flex-col p-10 border-r-1 border-r-electric-violet-200 w-1/4 h-auto font-body text-dark">
                     <section>
                         <p className="font-bold">Categoría</p>
-                        <ul>
+                        <form>
                             {categories.map((category, index) => (
-                                <li className="capitalize" key={index}>
+                                <label
+                                    className="group flex items-center gap-2 mt-2 w-fit text-electric-violet-950 capitalize cursor-pointer"
+                                    key={index}
+                                >
+                                    <input
+                                        type="radio"
+                                        name="categoria"
+                                        value={category.categoria}
+                                        onChange={handleCategoryChange}
+                                        className="bg-light border-1 border-electric-violet-200 group-hover:border-electric-violet-800 focus:border-4 focus:border-electric-violet-800 rounded-full w-4 h-4 transition-colors duration-200 appearance-none"
+                                    />
                                     {category.categoria}
-                                </li>
+                                </label>
                             ))}
-                        </ul>
+                        </form>
                     </section>
                     <section className="mt-6">
                         <p className="font-bold">Precio</p>
