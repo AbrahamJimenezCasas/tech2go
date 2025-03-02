@@ -67,7 +67,7 @@ export const useUser = (id, token) => {
         }
     };
 
-    const updatePassword = async (passwordActual, passwordNuevo) => {
+    const updatedPassword = async (passwordActual, passwordNuevo) => {
         try {
             setLoading(true);
             setError(null);
@@ -93,6 +93,6 @@ export const useUser = (id, token) => {
         updateUser,
         updatedAvatar,
         deletedAvatar,
-        updatePassword,
+        updatedPassword,
     };
 };
