@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import { getLocationsService } from "../services/fetchApi.js";
+import { getPriceRangeService } from "../services/fetchApi.js";
 
-export const useLocations = () => {
-    const [locations, setLocations] = useState([]);
+export const usePriceRange = () => {
+    const [maxPrice, setMaxPrice] = useState("");
+    const [minPrice, setMinPrice] = useState("");
+
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -10,8 +12,9 @@ export const useLocations = () => {
         const fetchLocations = async () => {
             try {
                 setLoading(true);
-                const data = await getLocationsService();
-                setLocations(data);
+                const data = await getPriceRangeService();
+                setMaxPrice(data.max);
+                setMinPrice(data.min);
             } catch (error) {
                 setError(error.message || "Errror al obtener las localidades");
             } finally {
@@ -22,5 +25,5 @@ export const useLocations = () => {
         fetchLocations();
     }, []);
 
-    return { locations, loading, error };
+    return { maxPrice, minPrice, loading, error };
 };

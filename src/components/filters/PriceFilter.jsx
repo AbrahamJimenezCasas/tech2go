@@ -1,6 +1,6 @@
-import React, { useCallback, useEffect, useState, useRef } from "react";
+import { useCallback, useEffect, useState, useRef } from "react";
 
-export const PriceSlider = ({ min, max }) => {
+export const PriceFilter = ({ min, max, handleMinChange, handleMaxChange }) => {
     const [minVal, setMinVal] = useState(min);
     const [maxVal, setMaxVal] = useState(max);
     const minValRef = useRef(min);
@@ -35,7 +35,7 @@ export const PriceSlider = ({ min, max }) => {
     }, [maxVal, getPercent]);
 
     return (
-        <div className="flex mt-4 pb-6 place-center">
+        <div className="flex mt-4 pb-8 place-center">
             <input
                 type="range"
                 min={min}
@@ -48,6 +48,8 @@ export const PriceSlider = ({ min, max }) => {
                     );
                     setMinVal(value);
                     minValRef.current = value;
+
+                    handleMinChange(event);
                 }}
                 className="z-10 absolute outline-0 w-[200px] h-0 appearance-none pointer-events-none thumb"
                 style={{ zIndex: minVal > max - 100 && "5" }}
@@ -64,6 +66,8 @@ export const PriceSlider = ({ min, max }) => {
                     );
                     setMaxVal(value);
                     maxValRef.current = value;
+
+                    handleMaxChange(event);
                 }}
                 className="z-20 absolute outline-0 w-[200px] h-0 appearance-none pointer-events-none thumb"
             />

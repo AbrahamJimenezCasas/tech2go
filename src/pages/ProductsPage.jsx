@@ -5,8 +5,12 @@ import { ProductDetailCard } from "../components/products/ProductDetailCard.jsx"
 import { useCategories } from "../hooks/useCategories.js";
 import { useProducts } from "../hooks/useProducts.js";
 import { Button } from "../components/Button.jsx";
-import { Filters } from "../components/products/Filters.jsx";
 import { useLocations } from "../hooks/useLocations.js";
+import { Filter } from "../components/filters/Filter.jsx";
+import { CategoryFilter } from "../components/filters/CategoryFilter.jsx";
+import { LocationFilter } from "../components/filters/LocationFilter.jsx";
+import { PriceFilter } from "../components/filters/PriceFilter.jsx";
+import { usePriceRange } from "../hooks/usePrices.js";
 
 export const ProductsPage = () => {
     const [searchParams] = useSearchParams();
@@ -15,7 +19,9 @@ export const ProductsPage = () => {
 
     const { products } = useProducts(filters);
     const { categories } = useCategories();
+    const [categoriesChecked, setCategoriesChecked] = useState([]);
     const { locations } = useLocations();
+    const { minPrice, maxPrice } = usePriceRange();
 
     const [categoryFilter, setCategoryFilter] = useState(null);
     const [locationFilter, setLocationFilter] = useState(null);
@@ -35,6 +41,19 @@ export const ProductsPage = () => {
         setFilters(`?${array.filter((n) => n).join("&")}`);
     };
 
+    const handleMinPriceChange = (event) => {
+        const filter = `precio[min]=${event.target.value}`;
+        setMinPriceFilter(filter);
+        const array = [categoryFilter, locationFilter, filter, maxPriceFilter];
+        setFilters(`?${array.filter((n) => n).join("&")}`);
+    };
+    const handleMaxPriceChange = (event) => {
+        const filter = `precio[max]=${event.target.value}`;
+        setMaxPriceFilter(filter);
+        const array = [categoryFilter, locationFilter, minPriceFilter, filter];
+        setFilters(`?${array.filter((n) => n).join("&")}`);
+    };
+
     const handleLocationChange = (event) => {
         const filter =
             event.target.value !== ""
@@ -47,9 +66,19 @@ export const ProductsPage = () => {
 
     useEffect(() => {
         setFilters(`?${searchParams}`);
+        setCategoryFilter(searchParams);
+        setLocationFilter("");
         categoryRef.current.reset();
         locationRef.current.reset();
-    }, [searchParams]);
+
+        const checked = categories.map((category) => {
+            const categoria = category.categoria;
+            const params = `${searchParams}`;
+            const checked = params.includes(category.categoria);
+            return { categoria, checked };
+        });
+        setCategoriesChecked(checked);
+    }, [searchParams, categories]);
 
     return (
         <>
@@ -63,47 +92,74 @@ export const ProductsPage = () => {
                 </Button>
             </section>
             <main className="relative lg:flex items-start px-6 lg:px-32 2xl:px-40 py-2 w-full">
-                <Filters
-                    isOpen={isOpen}
-                    categories={categories}
-                    handleCategoryChange={handleCategoryChange}
-                    categoryRef={categoryRef}
-                    locations={locations}
-                    handleLocationChange={handleLocationChange}
-                    locationRef={locationRef}
-                />
+                <aside
+                    className={`${isOpen ? "scale-100" : "scale-0"} top-10 right-0 absolute lg:relative lg:flex flex-col bg-electric-violet-200/20 lg:bg-transparent backdrop-blur-lg p-10 border-r-1 border-r-electric-violet-200 rounded-3xl lg:rounded-none w-72 h-auto font-body lg:scale-100 text-dark origin-top-right -translate-x-8 md:-translate-x-6 transition-all duration-200 z-20`}
+                >
+                    <Filter section="Categoría">
+                        <CategoryFilter
+                            ref={categoryRef}
+                            filters={categoriesChecked}
+                            handleChange={handleCategoryChange}
+                        />
+                    </Filter>
 
-                <section className="gap-5 sm:gap-10 xl:gap-12 2xl:gap-16 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 auto-rows-fr p-6 w-full">
-                    <AnimatePresence initial={false}>
-                        {products.map((product) => {
-                            let pic = null;
-                            let pic2 = null;
-                            if (product.fotos[0]) {
-                                pic = `${product.vendedorId}/${product.id}/${product.fotos[0].foto}`;
-                            }
-                            if (product.fotos[1]) {
-                                pic2 = `${product.vendedorId}/${product.id}/${product.fotos[1].foto}`;
-                            }
-                            return (
-                                <motion.article
-                                    key={product.id}
-                                    layout
-                                    initial={{ scale: 0 }}
-                                    animate={{ scale: 1 }}
-                                    exit={{ scale: 0 }}
-                                >
-                                    <ProductDetailCard
-                                        id={product.id}
-                                        name={product.nombre}
-                                        price={product.precio}
-                                        pic={pic}
-                                        pict2={pic2}
-                                    />
-                                </motion.article>
-                            );
-                        })}
-                    </AnimatePresence>
-                </section>
+                    <Filter section="Precio">
+                        {minPrice > 0 && (
+                            <PriceFilter
+                                min={minPrice}
+                                max={maxPrice}
+                                handleMinChange={handleMinPriceChange}
+                                handleMaxChange={handleMaxPriceChange}
+                            />
+                        )}
+                    </Filter>
+
+                    <Filter section="Localidad">
+                        <LocationFilter
+                            ref={locationRef}
+                            filters={locations}
+                            handleChange={handleLocationChange}
+                        />
+                    </Filter>
+                </aside>
+                {products.length ? (
+                    <section className="gap-5 sm:gap-10 xl:gap-12 2xl:gap-16 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 auto-rows-fr p-6 w-full">
+                        <AnimatePresence initial={false}>
+                            {products.map((product) => {
+                                let pic = null;
+                                let pic2 = null;
+                                if (product.fotos[0]) {
+                                    pic = `${product.vendedorId}/${product.id}/${product.fotos[0].foto}`;
+                                }
+                                if (product.fotos[1]) {
+                                    pic2 = `${product.vendedorId}/${product.id}/${product.fotos[1].foto}`;
+                                }
+                                return (
+                                    <motion.article
+                                        key={product.id}
+                                        layout
+                                        initial={{ scale: 0 }}
+                                        animate={{ scale: 1 }}
+                                        exit={{ scale: 0 }}
+                                    >
+                                        <ProductDetailCard
+                                            id={product.id}
+                                            name={product.nombre}
+                                            price={product.precio}
+                                            pic={pic}
+                                            pict2={pic2}
+                                        />
+                                    </motion.article>
+                                );
+                            })}
+                        </AnimatePresence>
+                    </section>
+                ) : (
+                    <p className="p-6 text-electric-violet-950 text-center">
+                        No se han encontrado productos con los filtros
+                        proporcionados
+                    </p>
+                )}
             </main>
         </>
     );
