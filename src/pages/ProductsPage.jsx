@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { AnimatePresence, motion } from "motion/react";
 import { ProductDetailCard } from "../components/products/ProductDetailCard.jsx";
 import { useCategories } from "../hooks/useCategories.js";
@@ -32,11 +32,9 @@ export const ProductsPage = () => {
     const locationRef = useRef();
 
     const handleCategoryChange = (event) => {
-        const filter =
-            event.target.value !== ""
-                ? `filtros[categoria]=${event.target.value}`
-                : "";
+        const filter = `filtros[categoria]=${event.target.value}`;
         setCategoryFilter(filter);
+
         const array = [filter, locationFilter, minPriceFilter, maxPriceFilter];
         setFilters(`?${array.filter((n) => n).join("&")}`);
     };
@@ -44,33 +42,45 @@ export const ProductsPage = () => {
     const handleMinPriceChange = (event) => {
         const filter = `precio[min]=${event.target.value}`;
         setMinPriceFilter(filter);
-        const array = [categoryFilter, locationFilter, filter, maxPriceFilter];
+        const array = [
+            categoryFilter || searchParams,
+            locationFilter,
+            filter,
+            maxPriceFilter,
+        ];
         setFilters(`?${array.filter((n) => n).join("&")}`);
     };
+
     const handleMaxPriceChange = (event) => {
         const filter = `precio[max]=${event.target.value}`;
         setMaxPriceFilter(filter);
-        const array = [categoryFilter, locationFilter, minPriceFilter, filter];
+        const array = [
+            categoryFilter || searchParams,
+            locationFilter,
+            minPriceFilter,
+            filter,
+        ];
         setFilters(`?${array.filter((n) => n).join("&")}`);
     };
 
     const handleLocationChange = (event) => {
-        const filter =
-            event.target.value !== ""
-                ? `filtros[localidad]=${event.target.value}`
-                : "";
+        const filter = `filtros[localidad]=${event.target.value}`;
         setLocationFilter(filter);
-        const array = [filter, categoryFilter, minPriceFilter, maxPriceFilter];
+        const array = [
+            filter,
+            categoryFilter || searchParams,
+            minPriceFilter,
+            maxPriceFilter,
+        ];
         setFilters(`?${array.filter((n) => n).join("&")}`);
     };
 
     useEffect(() => {
         setFilters(`?${searchParams}`);
-        setCategoryFilter(searchParams);
+        setCategoryFilter("");
         setLocationFilter("");
         categoryRef.current.reset();
         locationRef.current.reset();
-
         const checked = categories.map((category) => {
             const categoria = category.categoria;
             const params = `${searchParams}`;
@@ -79,6 +89,16 @@ export const ProductsPage = () => {
         });
         setCategoriesChecked(checked);
     }, [searchParams, categories]);
+
+    const handleCleanFilters = () => {
+        setFilters("");
+        setCategoryFilter(null);
+        setLocationFilter(null);
+        setMinPriceFilter(null);
+        setMaxPriceFilter(null);
+        categoryRef.current.reset();
+        locationRef.current.reset();
+    };
 
     return (
         <>
@@ -93,7 +113,7 @@ export const ProductsPage = () => {
             </section>
             <main className="relative lg:flex items-start px-6 lg:px-32 2xl:px-40 py-2 w-full">
                 <aside
-                    className={`${isOpen ? "scale-100" : "scale-0"} top-10 right-0 absolute lg:relative lg:flex flex-col bg-electric-violet-200/20 lg:bg-transparent backdrop-blur-lg p-10 border-r-1 border-r-electric-violet-200 rounded-3xl lg:rounded-none w-72 h-auto font-body lg:scale-100 text-dark origin-top-right -translate-x-8 md:-translate-x-6 transition-all duration-200 z-20`}
+                    className={`${isOpen ? "scale-100" : "scale-0"} top-10 right-0 absolute lg:sticky lg:flex flex-col bg-electric-violet-200/20 lg:bg-transparent backdrop-blur-lg p-10 border-r-1 border-r-electric-violet-200 rounded-3xl lg:rounded-none w-72 h-auto font-body lg:scale-100 text-dark origin-top-right -translate-x-8 md:-translate-x-6 transition-all duration-200 z-20`}
                 >
                     <Filter section="Categoría">
                         <CategoryFilter
@@ -121,6 +141,12 @@ export const ProductsPage = () => {
                             handleChange={handleLocationChange}
                         />
                     </Filter>
+                    <Button
+                        colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light mt-8"
+                        toggle={handleCleanFilters}
+                    >
+                        Limpiar filtros
+                    </Button>
                 </aside>
                 {products.length ? (
                     <section className="gap-5 sm:gap-10 xl:gap-12 2xl:gap-16 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 auto-rows-fr p-6 w-full">
@@ -155,7 +181,7 @@ export const ProductsPage = () => {
                         </AnimatePresence>
                     </section>
                 ) : (
-                    <p className="p-6 text-electric-violet-950 text-center">
+                    <p className="p-6 w-full text-electric-violet-950 text-center">
                         No se han encontrado productos con los filtros
                         proporcionados
                     </p>

@@ -1,6 +1,12 @@
 import { useCallback, useEffect, useState, useRef } from "react";
 
-export const PriceFilter = ({ min, max, handleMinChange, handleMaxChange }) => {
+export const PriceFilter = ({
+    min,
+    max,
+    handleMinChange,
+    handleMaxChange,
+    priceRef,
+}) => {
     const [minVal, setMinVal] = useState(min);
     const [maxVal, setMaxVal] = useState(max);
     const minValRef = useRef(min);
