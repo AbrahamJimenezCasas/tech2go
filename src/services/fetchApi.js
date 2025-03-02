@@ -135,6 +135,26 @@ export const getCategoriesService = async () => {
     return data.categorias;
 };
 
+export const getLocationsService = async () => {
+    const response = await fetch(`${apiPath}/articulos/localidades`);
+
+    const { message, data } = await response.json();
+
+    if (!response.ok) throw new Error(message);
+
+    return data.localidades;
+};
+
+export const getPriceRangeService = async () => {
+    const response = await fetch(`${apiPath}/articulos/precios`);
+
+    const { message, data } = await response.json();
+
+    if (!response.ok) throw new Error(message);
+
+    return data.prices;
+};
+
 export const getAllRequestsService = async () => {
     const response = await fetch(`${apiPath}/solicitudes`);
 
