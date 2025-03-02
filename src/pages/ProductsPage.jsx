@@ -61,7 +61,7 @@ export const ProductsPage = () => {
         const filter = `precio[min]=${event.target.value}`;
         setMinPriceFilter(filter);
         const array = [
-            categoryFilter || searchParams,
+            categoryFilter,
             locationFilter,
             filter,
             maxPriceFilter,
@@ -74,7 +74,7 @@ export const ProductsPage = () => {
         const filter = `precio[max]=${event.target.value}`;
         setMaxPriceFilter(filter);
         const array = [
-            categoryFilter || searchParams,
+            categoryFilter,
             locationFilter,
             minPriceFilter,
             filter,
@@ -88,7 +88,7 @@ export const ProductsPage = () => {
         setLocationFilter(filter);
         const array = [
             filter,
-            categoryFilter || searchParams,
+            categoryFilter,
             minPriceFilter,
             maxPriceFilter,
             sortFilter,
@@ -98,7 +98,7 @@ export const ProductsPage = () => {
 
     useEffect(() => {
         setFilters(`?${searchParams}`);
-        setCategoryFilter("");
+        setCategoryFilter(`${searchParams}`);
         setLocationFilter("");
         setMinPriceFilter("");
         setMaxPriceFilter("");
@@ -124,6 +124,12 @@ export const ProductsPage = () => {
         setMaxPriceFilter(null);
         categoryRef.current.reset();
         locationRef.current.reset();
+
+        const checked = categories.map((category) => {
+            const categoria = category.categoria;
+            return { categoria, checked: false };
+        });
+        setCategoriesChecked(checked);
     };
 
     const handleSortChange = (sort) => {
@@ -141,7 +147,7 @@ export const ProductsPage = () => {
         setSortFilter(filter);
 
         const array = [
-            categoryFilter || searchParams,
+            categoryFilter,
             locationFilter,
             minPriceFilter,
             maxPriceFilter,
@@ -180,7 +186,7 @@ export const ProductsPage = () => {
             </section>
             <main className="relative lg:flex items-start px-6 lg:px-32 2xl:px-40 py-2 w-full">
                 <aside
-                    className={`${isOpen ? "scale-100" : "scale-0"} top-10 right-0 absolute lg:sticky lg:flex flex-col bg-electric-violet-200/20 lg:bg-transparent backdrop-blur-lg p-10 border-r-1 border-r-electric-violet-200 rounded-3xl lg:rounded-none w-72 h-auto font-body lg:scale-100 text-dark origin-top-right -translate-x-8 md:-translate-x-6 transition-all duration-200 z-20`}
+                    className={`${isOpen ? "scale-100" : "scale-0"} top-10 right-0 absolute lg:sticky lg:flex flex-col bg-electric-violet-200/20 lg:bg-transparent backdrop-blur-lg p-10 border-r-1 border-r-electric-violet-200 rounded-3xl lg:rounded-none w-72 h-auto font-body lg:scale-100 text-dark origin-top-right -translate-x-8 md:-translate-x-6 transition-all duration-200 z-10`}
                 >
                     <Filter section="Categoría">
                         <CategoryFilter
