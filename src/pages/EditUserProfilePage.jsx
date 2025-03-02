@@ -6,42 +6,23 @@ import { useUser } from "../hooks/useUser.js";
 
 export const EditUserProfilePage = () => {
     const { token, currentUser } = useAuth();
-    const { updateUser, updatedAvatar, deletedAvatar } = useUser();
+
+    const { updateUser, updatedAvatar, deletedAvatar } = useUser(null, token);
     const staticPath = import.meta.env.VITE_BACKEND_STATIC;
 
     // Estados individuales para cada campo
     const [avatar, setAvatar] = useState(null);
     const [username, setUsername] = useState(currentUser?.username || "");
     const [biografia, setBiografia] = useState(currentUser?.biografia || "");
-    const [password, setPassword] = useState("");
+    const [newpassword, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [oldPassword, setOldPassword] = useState("");
 
     const [message, setMessage] = useState("");
 
     // Función para actualizar los datos del perfil
-    const updateProfile = async (/* data, isFormData = false */) => {
+    const updateProfile = async () => {
         await updateUser();
-        /* try {
-            const response = await fetch(
-                `${import.meta.env.VITE_BACKEND_URL}/usuarios/${currentUser.id}`,
-                {
-                    method: "PUT",
-                    headers: isFormData
-                        ? { Authorization: `Bearer ${token}` }
-                        : {
-                              "Content-Type": "application/json",
-                              Authorization: `Bearer ${token}`,
-                          },
-                    body: isFormData ? data : JSON.stringify(data),
-                }
-            );
-
-            if (!response.ok) throw new Error("Error al actualizar");
-
-            setMessage("Perfil actualizado correctamente");
-        } catch (error) {
-            setMessage(error.message);
-        } */
     };
 
     // Función para actualizar el avatar
@@ -54,6 +35,7 @@ export const EditUserProfilePage = () => {
         if (!avatar) return;
 
         await updatedAvatar(avatar, token);
+        // setMessage("Avatar actualizado correctamente");
     };
 
     // Eliminar el avatar
@@ -65,17 +47,17 @@ export const EditUserProfilePage = () => {
 
     // Función para actualizar la contraseña
     const updatePassword = async () => {
-        if (!password || !confirmPassword) {
-            setMessage("Por favor, completa ambos campos.");
+        if (!oldPassword || !newpassword || !confirmPassword) {
+            setMessage("Por favor, completa todos los campos.");
             return;
         }
 
-        if (password !== confirmPassword) {
-            setMessage("Las contraseñas no coinciden.");
+        if (newpassword !== confirmPassword) {
+            setMessage("Las contraseñas nuevas no coinciden.");
             return;
         }
 
-        await updateProfile({ password });
+        await updateProfile({ oldPassword, newpassword });
     };
 
     return (
@@ -174,12 +156,21 @@ export const EditUserProfilePage = () => {
 
                 {/* Editar Contraseña */}
                 <div className="mb-4">
+                    <label className="block text-gray-700 font-medium mt-2 text-center">
+                        Contraseña actual:
+                    </label>
+                    <input
+                        type="password"
+                        value={oldPassword}
+                        onChange={(e) => setOldPassword(e.target.value)}
+                        className="border p-2 rounded-full w-full"
+                    />
                     <label className="block text-gray-700 font-medium text-center">
                         Nueva contraseña:
                     </label>
                     <input
                         type="password"
-                        value={password}
+                        value={newpassword}
                         onChange={(e) => setPassword(e.target.value)}
                         className="border p-2 rounded-full w-full"
                     />

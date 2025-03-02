@@ -109,7 +109,7 @@ export const deleteAvatarService = async (token) => {
 
 export const updateUserService = async (info, token) => {
     const response = await fetch(`${apiPath}/usuarios/own`, {
-        method: "PATCH",
+        method: "PUT",
         headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
@@ -126,7 +126,7 @@ export const updateUserService = async (info, token) => {
 
 export const updatePasswordService = async (passwords, token) => {
     const response = await fetch(`${apiPath}/usuarios/password`, {
-        method: "PATCH",
+        method: "PUT",
         headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
