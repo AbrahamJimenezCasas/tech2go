@@ -7,11 +7,10 @@ export const useProduct = (id) => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-                const fetchProduct = async () => {
+        const fetchProduct = async () => {
             try {
                 setLoading(true);
-                setError(null); 
-                const data = await getProductService(id);
+                const data = await getProductService(id);                          
                 setProduct(data);
             } catch (error) {
                    setError(error.message || "Error al obtener el artículo");

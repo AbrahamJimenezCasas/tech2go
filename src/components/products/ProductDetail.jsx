@@ -1,9 +1,12 @@
+import { Button } from "../Button.jsx";
+
  export const ProductDetail = ({ product }) => {
   return (
-    <section className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden mt-10">
-      <article className="md:w-1/3 bg-gray-200 flex items-center justify-center p-6">
+
+    <section className="w-full min-h-screen bg-electric-violet-200 shadow-lg rounded-lg overflow-hidden mt-10 flex justify-center items-center">
+        <article className="w-full md:w-1/3 bg-gray-200 flex items-center justify-center p-6">
         <img
-          className="h-48 w-full object-cover md:h-full md:w-48"
+          className="w-48  h-48 md:w-64  object-cover  rounded-lg"
           src={product.imageUrl}
           alt={product.nombre}
         ></img>
@@ -16,15 +19,20 @@
           Categoria: <p className ="mt-1 text-black text-sm"> {product.categoria}</p>
         </article>
         <p className="text-lg leading-tight text-electric-violet-500">
-          Descripción: {product.descripcion}
+          Descripción: <p className ="mt-1 text-black text-sm"> {product.descripcion}</p>
         </p>
-        <p className="mt-2 text-slate-900">
-          Precio: {product.precio} €
+        <p className="text-lg leading-tight text-electric-violet-500">
+          Precio:<p className ="mt-1 text-black text-sm">{product.precio} € </p>
         </p>
-        <p className="mt-2 text-slate-500">
-          Localidad: {product.localidad}
+        <p className="text-lg leading-tight text-electric-violet-500">
+          Localidad: <p className ="mt-1 text-black text-sm">{product.localidad}</p>
         </p>
-
+        <Button
+                            colors="bg-light hover:bg-electric-violet-50 text-electric-violet-800"
+                            path="/usuarios/:"
+                        > Solicitar Compra
+                            
+                        </Button>
       </article>
     </section>
   );

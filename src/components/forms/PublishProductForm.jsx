@@ -33,7 +33,7 @@ export const PublishProductForm = () => {
             });
 
             setTimeout(() => {
-                navigate(`/articles?${params.toString()}`);
+                navigate(`/articulos`);
                 toast.info("Artículo publicado con éxito.");
             }, 5000);
         } catch (error) {
