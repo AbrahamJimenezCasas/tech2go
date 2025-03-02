@@ -135,6 +135,8 @@ export const updatePasswordService = async (passwords, token) => {
     });
 
     const { message } = await response.json();
+    return message;
+};
 
 export const getUserSalesService = async (id) => {
     const response = await fetch(`${apiPath}/usuarios/${id}/ventas`);
