@@ -3,6 +3,8 @@ import {
     deleteAvatarService,
     getOwnUserService,
     getUserService,
+    getUserRequestsService,
+    getUserSalesService,
     updateAvatarService,
     updatePasswordService,
     updateUserService,
@@ -10,6 +12,8 @@ import {
 
 export const useUser = (id, token) => {
     const [user, setUser] = useState(null);
+    const [sales, setSales] = useState(null);
+    const [requests, setRequests] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [successMessage, setSuccessMessage] = useState(null);
@@ -29,7 +33,33 @@ export const useUser = (id, token) => {
             }
         };
 
+        const fetchSales = async () => {
+            try {
+                setLoading(true);
+                const data = await getUserSalesService(id);
+                setSales(data);
+            } catch (error) {
+                setError(error.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        const fetchRequests = async () => {
+            try {
+                setLoading(true);
+                const data = await getUserRequestsService(id);
+                setRequests(data);
+            } catch (error) {
+                setError(error.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
         fetchUser();
+        fetchSales();
+        fetchRequests();
     }, [id, token]);
 
     const updateUser = async (info) => {
@@ -87,6 +117,8 @@ export const useUser = (id, token) => {
 
     return {
         user,
+        sales,
+        requests,
         loading,
         error,
         successMessage,

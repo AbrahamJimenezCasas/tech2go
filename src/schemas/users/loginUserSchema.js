@@ -9,3 +9,4 @@ export const loginUserSchema = joi.object({
         .messages(joiErrorMessages),
     password: joi.string().min(8).required().messages(joiErrorMessages),
 });
+

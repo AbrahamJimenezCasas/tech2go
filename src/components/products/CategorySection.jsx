@@ -1,6 +1,6 @@
 import { useProducts } from "../../hooks/useProducts.js";
 import { Button } from "../Button.jsx";
-import { ProductCard } from "./ProductCard.jsx";
+import { ProductDetailCard } from "./ProductDetailCard.jsx";
 
 export const CategorySection = ({ category, name }) => {
     const mostValued = useProducts(
@@ -32,7 +32,7 @@ export const CategorySection = ({ category, name }) => {
                             pic2 = `${product.vendedorId}/${product.id}/${product.fotos[1].foto}`;
                         }
                         return (
-                            <ProductCard
+                            <ProductDetailCard
                                 key={product.id}
                                 name={product.nombre}
                                 price={product.precio}
@@ -58,7 +58,7 @@ export const CategorySection = ({ category, name }) => {
                             pic2 = `${product.vendedorId}/${product.id}/${product.fotos[1].foto}`;
                         }
                         return (
-                            <ProductCard
+                            <ProductDetailCard
                                 key={product.id}
                                 name={product.nombre}
                                 price={product.precio}

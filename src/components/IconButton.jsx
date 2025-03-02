@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export const IconButton = ({ colors, path, children, toggle }) => {
     return (
         <>
-            {path ? (
+            {path || toggle ? (
                 <Link to={path} onClick={toggle}>
                     <motion.button
                         whileHover={{ scale: 1.05 }}

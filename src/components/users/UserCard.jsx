@@ -4,18 +4,18 @@ import { Star } from "../Star.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 
-export const UserCard = ({ user }) => {
+export const UserCard = ({ index, user }) => {
     const staticPath = import.meta.env.VITE_BACKEND_STATIC;
     const rating = Math.floor(user?.valoracionMediaVendedor);
     return (
         <Link to={`/usuario/${user.id}`}>
-            <Card>
+            <Card index={index}>
                 <div className="flex items-center gap-4 h-full">
                     {user?.avatar ? (
                         <img
                             src={`${staticPath}/avatars/${user.id}/${user.avatar}`}
                             alt={user?.username}
-                            className="rounded-full w-10 h-10"
+                            className="rounded-full w-10 h-10 object-cover"
                         />
                     ) : (
                         <div className="flex justify-center items-center bg-electric-violet-50 rounded-full min-w-10 min-h-10">

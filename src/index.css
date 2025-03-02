@@ -60,3 +60,37 @@
     --font-display: "Oswald", "sans-serif";
     --font-body: "Lato", "sans-serif";
 }
+
+@layer components {
+    .thumb,
+    .thumb::-webkit-slider-thumb {
+        -webkit-appearance: none;
+    }
+
+    .thumb::-webkit-slider-thumb {
+        background-color: var(--color-light);
+        border: none;
+        border-radius: 50%;
+        box-shadow: 0 0 2px 1px var(--color-electric-violet-200);
+        cursor: pointer;
+        height: 18px;
+        width: 18px;
+        margin-top: 4px;
+        pointer-events: all;
+        position: relative;
+    }
+
+    /* For Firefox browsers */
+    .thumb::-moz-range-thumb {
+        background-color: var(--color-light);
+        border: none;
+        border-radius: 50%;
+        box-shadow: 0 0 2px 1px var(--color-electric-violet-200);
+        cursor: pointer;
+        height: 18px;
+        width: 18px;
+        margin-top: 4px;
+        pointer-events: all;
+        position: relative;
+    }
+}
