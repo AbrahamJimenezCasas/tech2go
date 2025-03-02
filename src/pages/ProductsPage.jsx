@@ -1,16 +1,18 @@
 import { useEffect, useRef, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { AnimatePresence, motion } from "motion/react";
-import { ProductDetailCard } from "../components/products/ProductDetailCard.jsx";
-import { useCategories } from "../hooks/useCategories.js";
 import { useProducts } from "../hooks/useProducts.js";
-import { Button } from "../components/Button.jsx";
+import { useCategories } from "../hooks/useCategories.js";
+import { usePriceRange } from "../hooks/usePrices.js";
 import { useLocations } from "../hooks/useLocations.js";
+import { ProductDetailCard } from "../components/products/ProductDetailCard.jsx";
+import { Button } from "../components/Button.jsx";
 import { Filter } from "../components/filters/Filter.jsx";
 import { CategoryFilter } from "../components/filters/CategoryFilter.jsx";
 import { LocationFilter } from "../components/filters/LocationFilter.jsx";
 import { PriceFilter } from "../components/filters/PriceFilter.jsx";
-import { usePriceRange } from "../hooks/usePrices.js";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowDown, faArrowUp } from "@fortawesome/free-solid-svg-icons";
 
 export const ProductsPage = () => {
     const [searchParams] = useSearchParams();
@@ -28,6 +30,16 @@ export const ProductsPage = () => {
     const [minPriceFilter, setMinPriceFilter] = useState(null);
     const [maxPriceFilter, setMaxPriceFilter] = useState(null);
 
+    const sorts = [
+        { sort: "nombre", nombre: "Nombre" },
+        { sort: "precio", nombre: "Precio" },
+        { sort: "fechaCreacion", nombre: "Fecha" },
+        { sort: "valoracionMediaVendedor", nombre: "Valoración" },
+    ];
+    const [sortFilter, setSortFilter] = useState(null);
+    const [active, setActive] = useState(null);
+    const [activeIcon, setActiveIcon] = useState(faArrowUp);
+
     const categoryRef = useRef();
     const locationRef = useRef();
 
@@ -35,7 +47,13 @@ export const ProductsPage = () => {
         const filter = `filtros[categoria]=${event.target.value}`;
         setCategoryFilter(filter);
 
-        const array = [filter, locationFilter, minPriceFilter, maxPriceFilter];
+        const array = [
+            filter,
+            locationFilter,
+            minPriceFilter,
+            maxPriceFilter,
+            sortFilter,
+        ];
         setFilters(`?${array.filter((n) => n).join("&")}`);
     };
 
@@ -47,6 +65,7 @@ export const ProductsPage = () => {
             locationFilter,
             filter,
             maxPriceFilter,
+            sortFilter,
         ];
         setFilters(`?${array.filter((n) => n).join("&")}`);
     };
@@ -59,6 +78,7 @@ export const ProductsPage = () => {
             locationFilter,
             minPriceFilter,
             filter,
+            sortFilter,
         ];
         setFilters(`?${array.filter((n) => n).join("&")}`);
     };
@@ -71,6 +91,7 @@ export const ProductsPage = () => {
             categoryFilter || searchParams,
             minPriceFilter,
             maxPriceFilter,
+            sortFilter,
         ];
         setFilters(`?${array.filter((n) => n).join("&")}`);
     };
@@ -79,6 +100,11 @@ export const ProductsPage = () => {
         setFilters(`?${searchParams}`);
         setCategoryFilter("");
         setLocationFilter("");
+        setMinPriceFilter("");
+        setMaxPriceFilter("");
+        setSortFilter("");
+        setActive(null);
+        setActiveIcon(faArrowUp);
         categoryRef.current.reset();
         locationRef.current.reset();
         const checked = categories.map((category) => {
@@ -100,13 +126,54 @@ export const ProductsPage = () => {
         locationRef.current.reset();
     };
 
+    const handleSortChange = (sort) => {
+        setActive(sort);
+
+        if (activeIcon === faArrowUp) {
+            setActiveIcon(faArrowDown);
+        } else {
+            setActiveIcon(faArrowUp);
+        }
+
+        const direction = activeIcon === faArrowUp ? "ASC" : "DESC";
+
+        const filter = `order[by]=${sort}&order[direction]=${direction}`;
+        setSortFilter(filter);
+
+        const array = [
+            categoryFilter || searchParams,
+            locationFilter,
+            minPriceFilter,
+            maxPriceFilter,
+            filter,
+        ];
+
+        setFilters(`?${array.filter((n) => n).join("&")}`);
+    };
+
     return (
         <>
-            <section className="flex justify-end bg-electric-violet-800 px-6 lg:px-32 2xl:px-40 py-2 w-full h-16">
+            <section className="flex justify-end items-center gap-8 bg-electric-violet-800 px-6 lg:px-32 2xl:px-40 py-2 w-full h-16">
+                <ul className="flex gap-4 text-electric-violet-300">
+                    {sorts.map((sort, i) => (
+                        <li
+                            key={i}
+                            className={`${active === sort.sort && "text-electric-violet-50"} flex items-center gap-1 hover:text-electric-violet-50 capitalize transition-colors duration-200 cursor-pointer`}
+                            onClick={() => handleSortChange(sort.sort)}
+                        >
+                            {sort.nombre}
+
+                            {active === sort.sort ? (
+                                <FontAwesomeIcon icon={activeIcon} />
+                            ) : (
+                                <FontAwesomeIcon icon={faArrowUp} />
+                            )}
+                        </li>
+                    ))}
+                </ul>
                 <Button
                     toggle={() => setIsOpen((prev) => !prev)}
-                    colors="bg-electric-violet-50 hover:bg-electric-violet-900 
-                                                    text-electric-violet-800 hover:text-electric-violet-50 lg:hidden"
+                    colors="bg-electric-violet-50 hover:bg-electric-violet-900 text-electric-violet-800 hover:text-electric-violet-50 lg:hidden"
                 >
                     Filtros
                 </Button>
