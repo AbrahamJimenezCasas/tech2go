@@ -35,24 +35,24 @@ export const HomePage = () => {
                 </div>
                 <section className="flex justify-center w-full md:w-1/2 lg:w-auto select-none">
                     <CategoryCover
-                        img="bg-[url(/telefono.jpg)]"
+                        img="bg-[url(/imgs/telefono.jpg)]"
                         category="Teléfonos"
                         path="/articulos/?filtros[categoria]=telefono"
                     />
                     <CategoryCover
-                        img="bg-[url(/ordenador.png)]"
+                        img="bg-[url(/imgs/ordenador.webp)]"
                         margin="-ml-12"
                         category="Ordenadores"
                         path="/articulos/?filtros[categoria]=ordenador"
                     />
                     <CategoryCover
-                        img="bg-[url(/telefono.png)]"
+                        img="bg-[url(/imgs/consola.webp)]"
                         margin="-ml-12"
                         category="Consolas"
                         path="/articulos/?filtros[categoria]=consola"
                     />
                     <CategoryCover
-                        img="bg-[url(/ordenador.png)]"
+                        img="bg-[url(/imgs/videojuego.webp)]"
                         margin="-ml-12"
                         category="Videojuegos"
                         path="/articulos/?filtros[categoria]=videojuego"
