@@ -7,6 +7,8 @@ import { loginUserService } from "../../services/fetchApi.js";
 import { Form } from "./Form.jsx";
 import { Button } from "../Button.jsx";
 import { Input } from "./Input.jsx";
+import { useState } from "react";
+import { toast } from "react-toastify";
 
 export const LoginForm = () => {
     const {
@@ -16,9 +18,11 @@ export const LoginForm = () => {
     } = useForm({ resolver: joiResolver(loginUserSchema) });
     const { onLogin } = useAuth();
     const [searchParams] = useSearchParams();
+    const [isLoading, setIsLoading] = useState(false);
 
     const submit = async (data) => {
         try {
+            setIsLoading(true);
             const { message, token } = await loginUserService(data);
 
             await onLogin(token);
@@ -35,8 +39,11 @@ export const LoginForm = () => {
                     ? `${redirect}?${params.toString()}`
                     : `/?${params.toString()}`
             );
+            toast.info("¡Bienvenido a Tech2Go!");
         } catch (error) {
-            console.error(error);
+            toast.error(error.message || "Error al hacer login");
+        } finally {
+            setIsLoading(false); // desactiva el estado de carga
         }
     };
 
@@ -51,7 +58,7 @@ export const LoginForm = () => {
                 register={register}
             />
             <Input
-                label="Password"
+                label="Contraseña"
                 type="password"
                 name="password"
                 errors={errors}
@@ -60,6 +67,7 @@ export const LoginForm = () => {
             <Button
                 colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light w-fit mt-8"
                 type="submit"
+                isLoading={isLoading}
             >
                 Inicia sesión
             </Button>

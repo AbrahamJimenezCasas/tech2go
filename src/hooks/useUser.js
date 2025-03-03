@@ -33,10 +33,16 @@ export const useUser = (id, token) => {
             }
         };
 
+        fetchUser();
+    }, [id, token]);
+
+    useEffect(() => {
         const fetchSales = async () => {
             try {
                 setLoading(true);
-                const data = await getUserSalesService(id);
+                const data = id
+                    ? await getUserSalesService(id)
+                    : await getUserSalesService(user.id);
                 setSales(data);
             } catch (error) {
                 setError(error.message);
@@ -48,7 +54,9 @@ export const useUser = (id, token) => {
         const fetchRequests = async () => {
             try {
                 setLoading(true);
-                const data = await getUserRequestsService(id);
+                const data = id
+                    ? await getUserRequestsService(id)
+                    : await getUserRequestsService(user.id);
                 setRequests(data);
             } catch (error) {
                 setError(error.message);
@@ -57,10 +65,9 @@ export const useUser = (id, token) => {
             }
         };
 
-        fetchUser();
         fetchSales();
         fetchRequests();
-    }, [id, token]);
+    }, [id, user]);
 
     const updateUser = async (info) => {
         try {

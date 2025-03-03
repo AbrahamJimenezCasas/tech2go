@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { LoginForm } from "../components/forms/LoginForm.jsx";
 
 export const LoginPage = () => {
@@ -7,6 +8,11 @@ export const LoginPage = () => {
                 Inicia sesión
             </h2>
             <LoginForm />
+            <Link to="/registro">
+                <p className="mt-4 p-6 w-full text-electric-violet-950 hover:text-electric-violet-800 text-center transition-colors duration-200">
+                    ¿Aún no estás registrado? ¡Únete hoy a Tech2Go!
+                </p>
+            </Link>
         </section>
     );
 };
