@@ -18,7 +18,7 @@ export const PendingProductsPage = () => {
 
     const { user } = useUser(null, token);
     const navigate = useNavigate();
-    if (user?.rol !== "admin") {
+    if (user?.rol == "user") {
         const route = `/articulos`;
         navigate(route);
     }
