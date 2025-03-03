@@ -5,6 +5,8 @@ import { ProductCard } from "../components/products/ProductCard.jsx";
 import { useRedirect } from "../hooks/useRedirect.js";
 import { useUser } from "../hooks/useUser.js";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { Loader } from "../components/Loader.jsx";
 
 export const PendingProductsPage = () => {
     const [products, setProducts] = useState([]);
@@ -29,6 +31,7 @@ export const PendingProductsPage = () => {
                 setProducts(data);
             } catch (error) {
                 setError(error.message || "Errror al obtener los articulos");
+                toast.error("No hay artículos pendientes");
             } finally {
                 setLoading(false);
             }
@@ -43,7 +46,9 @@ export const PendingProductsPage = () => {
                 <h2 className="font-display text-electric-violet-800 text-4xl">
                     Articulos pendientes de publicar
                 </h2>
-                {products.length ? (
+                {loading ? (
+                    <Loader />
+                ) : products.length ? (
                     <ul className="gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 auto-rows-fr mt-4 lg:mt-10 w-full">
                         {products.map((product, index) => (
                             <ProductCard

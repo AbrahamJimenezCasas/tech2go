@@ -7,11 +7,12 @@ import { Star } from "../components/Star.jsx";
 import { RequestCard } from "../components/products/RequestCard.jsx";
 import { SaleCard } from "../components/products/SaleCard.jsx";
 import { useRedirect } from "../hooks/useRedirect.js";
+import { Loader } from "../components/Loader.jsx";
 
 export const UserProfilePage = () => {
     const { token, currentUser } = useAuth();
     const { id } = useParams();
-    const { user, sales, requests } = useUser(id, token);
+    const { user, sales, requests, loading } = useUser(id, token);
     const staticPath = import.meta.env.VITE_BACKEND_STATIC;
     const rating = Math.floor(user?.valoracionMediaVendedor);
 
@@ -74,7 +75,9 @@ export const UserProfilePage = () => {
                     <h3 className="font-bold text-electric-violet-950 text-lg">
                         Ventas
                     </h3>
-                    {sales ? (
+                    {loading ? (
+                        <Loader />
+                    ) : sales ? (
                         <ul className="flex flex-col gap-4 mt-4">
                             {sales.map((sale, index) => (
                                 <SaleCard
@@ -96,7 +99,9 @@ export const UserProfilePage = () => {
                         Solicitudes de compra
                     </h3>
 
-                    {requests ? (
+                    {loading ? (
+                        <Loader />
+                    ) : requests ? (
                         <ul className="flex flex-col gap-4 mt-4">
                             {requests.map((request, index) => (
                                 <RequestCard

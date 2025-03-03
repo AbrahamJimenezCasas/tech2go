@@ -13,13 +13,14 @@ import { LocationFilter } from "../components/filters/LocationFilter.jsx";
 import { PriceFilter } from "../components/filters/PriceFilter.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDown, faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import { Loader } from "../components/Loader.jsx";
 
 export const ProductsPage = () => {
     const [searchParams] = useSearchParams();
     const [isOpen, setIsOpen] = useState(false);
     const [filters, setFilters] = useState(`?${searchParams}`);
 
-    const { products } = useProducts(filters);
+    const { products, loading } = useProducts(filters);
     const { categories } = useCategories();
     const [categoriesChecked, setCategoriesChecked] = useState([]);
     const { locations } = useLocations();
@@ -221,7 +222,9 @@ export const ProductsPage = () => {
                         Limpiar filtros
                     </Button>
                 </aside>
-                {products.length ? (
+                {loading ? (
+                    <Loader />
+                ) : products.length ? (
                     <section className="gap-5 sm:gap-10 xl:gap-12 2xl:gap-16 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 auto-rows-fr p-6 w-full">
                         <AnimatePresence initial={false}>
                             {products.map((product) => {

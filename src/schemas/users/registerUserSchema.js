@@ -1,5 +1,5 @@
 import joi from "joi";
-import { joiErrorMessages } from "./joiErrorMessages.js";
+import { joiErrorMessages } from "../joiErrorMessages.js";
 
 export const registerUserSchema = joi.object({
     username: joi.string().min(5).required().messages(joiErrorMessages),

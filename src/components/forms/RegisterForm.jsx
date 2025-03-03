@@ -3,11 +3,12 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { registerUserSchema } from "../../schemas/registerUserSchema.js";
+
 import { registerUserService } from "../../services/fetchApi.js";
 import { Form } from "./Form.jsx";
 import { Button } from "../Button.jsx";
 import { Input } from "./Input.jsx";
+import { registerUserSchema } from "../../schemas/users/registerUserSchema.js";
 
 /* Aquí se maneja el formulario de registro de usuarios. Su trabajo es:
 
@@ -49,7 +50,7 @@ export const RegisterForm = () => {
             setTimeout(() => {
                 navigate(`/login?${params.toString()}`);
                 toast.info("Comprueba tu correo para activar tu cuenta");
-            }, 5000);
+            }, 1000);
         } catch (error) {
             toast.error(error.message || "Error al registrar el usuario");
         } finally {
@@ -69,7 +70,7 @@ export const RegisterForm = () => {
                 errors={errors}
                 register={register}
             />
-            <div className="flex w-full gap-4">
+            <div className="flex gap-4 w-full">
                 <Input
                     label="Nombre"
                     name="nombre"

@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -9,6 +8,8 @@ import { Form } from "./Form.jsx";
 import { Input } from "./Input.jsx";
 import { Button } from "../Button.jsx";
 import { ImageInput } from "./ImageInput.jsx";
+import { joiResolver } from "@hookform/resolvers/joi";
+import { newProductSchema } from "../../schemas/products/newProductSchema.js";
 
 export const PublishProductForm = () => {
     const {
@@ -17,7 +18,7 @@ export const PublishProductForm = () => {
         setValue,
         watch,
         formState: { errors },
-    } = useForm();
+    } = useForm({ resolver: joiResolver(newProductSchema) });
     const [isLoading, setIsLoading] = useState(false);
     const [previews, setPreviews] = useState({});
 
@@ -60,8 +61,6 @@ export const PublishProductForm = () => {
             delete data.images;
 
             const payload = { ...data, ...imagesData };
-            console.log(payload);
-
             const message = await newProductService(payload, token);
 
             const params = new URLSearchParams({
@@ -70,7 +69,7 @@ export const PublishProductForm = () => {
             });
 
             navigate(`/articulos?${params.toString()}`);
-            toast.info("Artículo publicado con éxito.");
+            toast.success("Artículo publicado con éxito");
         } catch (error) {
             toast.error(error.message || "Error al publicar el artículo");
         } finally {
