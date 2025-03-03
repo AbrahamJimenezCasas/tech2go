@@ -1,7 +1,6 @@
 import { toast } from "react-toastify";
 import { useAuth } from "../../hooks/useAuth.js";
 import { Button } from "../Button.jsx";
-import { sendPurchaseRequestService } from "../../services/fetchApi.js";
 
 
 
@@ -19,9 +18,9 @@ import { sendPurchaseRequestService } from "../../services/fetchApi.js";
   return (
 
     <section className="w-full min-h-screen bg-electric-violet-200 shadow-lg rounded-lg overflow-hidden mt-10 flex justify-center items-center">
-        <article className="w-full md:w-1/3 bg-gray-200 flex items-center justify-center p-6">
+        <article className="w-full md:w-1/3 bg-electric-violet-200 flex items-center justify-center p-6">
         <img
-          className="w-48  h-48 md:w-64  object-cover  rounded-lg"
+          className="w-50 h-50 md:w-64  object-cover  rounded-lg"
           src={product.imageUrl}
           alt={product.nombre}
         ></img>
@@ -42,8 +41,8 @@ import { sendPurchaseRequestService } from "../../services/fetchApi.js";
         <p className="text-lg leading-tight text-electric-violet-500">
           Localidad: <p className ="mt-1 text-black text-sm">{product.localidad}</p>
         </p>
-        {token && <Button
-                    colors="bg-light hover:bg-electric-violet-50 text-electric-violet-800" toggle={()=>purchase()}
+        {token && <Button 
+                    colors="mt-8  bg-light hover:bg-electric-violet-50 text-electric-violet-800 " toggle={()=>purchase()}
                 > Solicitar Compra
                     
                 </Button >}
