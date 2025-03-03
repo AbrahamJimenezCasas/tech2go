@@ -1,24 +1,21 @@
-import { useForm } from 'react-hook-form';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { Form } from './Form.jsx';
-import { Input } from './Input.jsx';
-import { Button } from '../Button.jsx';
-import { newProductService } from '../../services/fetchApi.js';
-import { useAuth } from '../../hooks/useAuth.js';
-
-
-
+import { useForm } from "react-hook-form";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { Form } from "./Form.jsx";
+import { Input } from "./Input.jsx";
+import { Button } from "../Button.jsx";
+import { newProductService } from "../../services/fetchApi.js";
+import { useAuth } from "../../hooks/useAuth.js";
 
 export const PublishProductForm = () => {
-    const { 
-        register, 
-        handleSubmit, 
+    const {
+        register,
+        handleSubmit,
         formState: { errors },
     } = useForm();
     const [isLoading, setIsLoading] = useState(false);
-    const {token} = useAuth()
+    const { token } = useAuth();
     const navigate = useNavigate();
 
     const submit = async (data) => {
