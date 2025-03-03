@@ -98,6 +98,21 @@ export const getUserRequestsService = async (id) => {
 
     return data.solicitudesCompra;
 };
+export const sendPurchaseRequestService = async(articuloId, token) => {
+const response = await fetch(`${apiPath}/articulos/${articuloId}/comprar`, {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+    },
+        body: JSON.stringify({articuloId}),
+        });
+        const { message, data } = await response.json();
+        if (!response.ok) {
+            throw new Error(message);
+        }
+        return data.solicitud;
+    };
 
 /* ARTICULOS */
 export const getProductsService = async (filters) => {
@@ -164,4 +179,4 @@ export const getProductService = async (id) => {
     }
 
     return data.articulo;
-};// enlazarlo con la pagina del producto y llamarla en un archivo en hook. que se llame useproduct
+};

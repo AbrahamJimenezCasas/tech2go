@@ -1,6 +1,21 @@
+import { toast } from "react-toastify";
+import { useAuth } from "../../hooks/useAuth.js";
 import { Button } from "../Button.jsx";
+import { sendPurchaseRequestService } from "../../services/fetchApi.js";
+
+
 
  export const ProductDetail = ({ product }) => {
+  const { token } = useAuth();
+  const purchase = async ()=> {
+    try {
+      const message = await sendPurchaseRequestService(product.id, token);
+      console.log(message)
+    toast.success(message);
+  } catch (error) {
+    console.log(error.message)
+      toast.error(error.message || "Error al enviar la solicitud de compra.");
+  }}
   return (
 
     <section className="w-full min-h-screen bg-electric-violet-200 shadow-lg rounded-lg overflow-hidden mt-10 flex justify-center items-center">
@@ -27,12 +42,16 @@ import { Button } from "../Button.jsx";
         <p className="text-lg leading-tight text-electric-violet-500">
           Localidad: <p className ="mt-1 text-black text-sm">{product.localidad}</p>
         </p>
-        <Button
-                            colors="bg-light hover:bg-electric-violet-50 text-electric-violet-800"
-                            path="/usuarios/:"
-                        > Solicitar Compra
-                            
-                        </Button>
+        {token && <Button
+                    colors="bg-light hover:bg-electric-violet-50 text-electric-violet-800" toggle={()=>purchase()}
+                > Solicitar Compra
+                    
+                </Button >}
+        
+        
+        
+        
+        
       </article>
     </section>
   );
