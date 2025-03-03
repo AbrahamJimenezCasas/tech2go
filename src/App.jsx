@@ -15,6 +15,7 @@ import { RegisterPage } from "./pages/RegisterPage.jsx";
 import { ValidatePage } from "./pages/ValidatePage.jsx";
 import { LoginPage } from "./pages/LoginPage.jsx";
 import { NotFoundPage } from "./pages/NotFoundPage.jsx";
+import { WhoWeAre } from "./pages/WhoWeAre.jsx";
 
 const App = () => {
     /* ESTÁN CREADAS LAS RUTAS Y DOCUMENTOS PARA TODAS LAS PÁGINAS QUE TENEMOS EN LAS TAREAS.
@@ -74,6 +75,7 @@ const App = () => {
                 {/* SARA login */}
                 <Route path="*" element={<NotFoundPage />} />{" "}
                 {/* ANA not found*/}
+                <Route path="/sobre-nosotros" element={<WhoWeAre />} />
             </Route>
         </Routes>
     );
