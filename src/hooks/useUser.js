@@ -97,14 +97,14 @@ export const useUser = (id, token) => {
         }
     };
 
-    const updatedPassword = async (passwordActual, passwordNuevo) => {
+    const updatedPassword = async (oldPassword, newPassword) => {
         try {
             setLoading(true);
             setError(null);
             setSuccessMessage(null);
 
             const message = await updatePasswordService(
-                { passwordActual, passwordNuevo },
+                { oldPassword, newPassword },
                 token
             );
             setSuccessMessage(message);

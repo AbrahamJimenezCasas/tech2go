@@ -107,15 +107,18 @@ export const EditUserProfilePage = () => {
             return;
         }
         //await updateUser(passwordData);
-        await updatedPassword(passwordData);
+        await updatedPassword(
+            passwordData.oldPassword,
+            passwordData.newPassword
+        );
         setMessage("Contraseña actualizada correctamente");
         setMessageType("success");
     };
 
     return (
         <main>
-            <div className="max-w-2xl mx-auto mt-8 p-6 bg-white shadow-md rounded-lg">
-                <h1 className="text-3xl font-bold mb-4 text-electric-violet-700 text-center">
+            <div className="bg-white shadow-md mx-auto mt-8 p-6 rounded-lg max-w-2xl">
+                <h1 className="mb-4 font-bold text-electric-violet-700 text-3xl text-center">
                     Editar Perfil
                 </h1>
                 {message && (
@@ -132,16 +135,16 @@ export const EditUserProfilePage = () => {
                         <img
                             src={URL.createObjectURL(avatar)}
                             alt="Avatar Preview"
-                            className="w-20 h-20 rounded-full"
+                            className="rounded-full w-20 h-20"
                         />
                     ) : currentUser?.avatar ? (
                         <img
                             src={`${staticPath}/avatars/${currentUser.id}/${currentUser.avatar}`}
                             alt="Avatar"
-                            className="w-20 h-20 rounded-full"
+                            className="rounded-full w-20 h-20"
                         />
                     ) : (
-                        <div className="w-20 h-20 flex items-center justify-center bg-gray-200 rounded-full">
+                        <div className="flex justify-center items-center bg-gray-200 rounded-full w-20 h-20">
                             <FontAwesomeIcon
                                 icon={faUser}
                                 className="text-gray-500 text-3xl"
@@ -156,13 +159,13 @@ export const EditUserProfilePage = () => {
                     <div className="flex justify-center gap-4 mt-2">
                         <button
                             onClick={updateAvatar}
-                            className="bg-electric-violet-600 text-white py-2 px-4 rounded-full transition duration-200 ease-in-out transform hover:bg-electric-violet-700 hover:scale-105 active:scale-95 shadow-md"
+                            className="bg-electric-violet-600 hover:bg-electric-violet-700 shadow-md px-4 py-2 rounded-full text-white hover:scale-105 active:scale-95 transition duration-200 ease-in-out transform"
                         >
                             Guardar Avatar
                         </button>
                         <button
                             onClick={deleteAvatar}
-                            className="bg-electric-violet-600 text-white py-2 px-4 rounded-full transition duration-200 ease-in-out transform hover:bg-electric-violet-700 hover:scale-105 active:scale-95 shadow-md"
+                            className="bg-electric-violet-600 hover:bg-electric-violet-700 shadow-md px-4 py-2 rounded-full text-white hover:scale-105 active:scale-95 transition duration-200 ease-in-out transform"
                         >
                             Eliminar Avatar
                         </button>
@@ -171,12 +174,12 @@ export const EditUserProfilePage = () => {
 
                 {/* Editar Información Personal */}
                 <div className="mb-4">
-                    <h2 className="text-xl font-semibold text-center mb-2">
+                    <h2 className="mb-2 font-semibold text-xl text-center">
                         Información Personal
                     </h2>
                     {Object.entries(formData).map(([key, value]) => (
                         <div key={key} className="mb-2">
-                            <label className="block text-gray-700 font-medium">
+                            <label className="block font-medium text-gray-700">
                                 {key.charAt(0).toUpperCase() + key.slice(1)}:
                             </label>
                             <input
@@ -184,14 +187,14 @@ export const EditUserProfilePage = () => {
                                 name={key}
                                 value={value}
                                 onChange={handleInputChange}
-                                className="border p-2 rounded-full w-full"
+                                className="p-2 border rounded-full w-full"
                             />
                         </div>
                     ))}
                     <div className="flex justify-center gap-4 mt-2">
                         <button
                             onClick={updateProfile}
-                            className="mt-2 bg-electric-violet-600 text-white py-2 px-4 rounded-full transition duration-200 ease-in-out transform hover:bg-electric-violet-700 hover:scale-105 active:scale-95 shadow-md"
+                            className="bg-electric-violet-600 hover:bg-electric-violet-700 shadow-md mt-2 px-4 py-2 rounded-full text-white hover:scale-105 active:scale-95 transition duration-200 ease-in-out transform"
                         >
                             Guardar Cambios
                         </button>
@@ -200,12 +203,12 @@ export const EditUserProfilePage = () => {
 
                 {/* Editar Contraseña */}
                 <div className="mb-4">
-                    <h2 className="text-xl font-semibold text-center mb-2">
+                    <h2 className="mb-2 font-semibold text-xl text-center">
                         Cambiar Contraseña
                     </h2>
                     {Object.entries(passwordData).map(([key, value]) => (
-                        <div key={key} className="mb-2 relative">
-                            <label className="block text-gray-700 font-medium">
+                        <div key={key} className="relative mb-2">
+                            <label className="block font-medium text-gray-700">
                                 {key === "oldPassword"
                                     ? "Contraseña actual"
                                     : key === "newPassword"
@@ -221,13 +224,13 @@ export const EditUserProfilePage = () => {
                                     name={key}
                                     value={value}
                                     onChange={handlePasswordChange}
-                                    className="border p-2 rounded-full w-full pr-10"
+                                    className="p-2 pr-10 border rounded-full w-full"
                                 />
                                 <FontAwesomeIcon
                                     icon={
                                         showPassword[key] ? faEyeSlash : faEye
                                     }
-                                    className="absolute right-3 top-3 text-gray-500 cursor-pointer"
+                                    className="top-3 right-3 absolute text-gray-500 cursor-pointer"
                                     onClick={() =>
                                         setShowPassword((prev) => ({
                                             ...prev,
@@ -241,7 +244,7 @@ export const EditUserProfilePage = () => {
                     <div className="flex justify-center gap-4 mt-2">
                         <button
                             onClick={updatePassword}
-                            className="mt-2 bg-electric-violet-600 text-white py-2 px-4 rounded-full transition duration-200 ease-in-out transform hover:bg-electric-violet-700 hover:scale-105 active:scale-95 shadow-md"
+                            className="bg-electric-violet-600 hover:bg-electric-violet-700 shadow-md mt-2 px-4 py-2 rounded-full text-white hover:scale-105 active:scale-95 transition duration-200 ease-in-out transform"
                         >
                             Guardar Contraseña
                         </button>
