@@ -67,7 +67,6 @@ export const PublishProductForm = () => {
                 type: "success",
                 message,
             });
-
             navigate(`/articulos?${params.toString()}`);
             toast.success("Artículo publicado con éxito");
         } catch (error) {
