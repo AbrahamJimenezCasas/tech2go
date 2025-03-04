@@ -19,7 +19,6 @@ export const ProductDetail = ({ product }) => {
     const foto = fotos ? fotos[0] : null;
     const fecha = formatDate(product.fechaCreacion);
     const { user } = useUser(product?.vendedorId);
-    console.log(user);
 
     const purchase = async () => {
         try {
@@ -82,55 +81,5 @@ export const ProductDetail = ({ product }) => {
                 </section>
             </main>
         </article>
-        // <section className="flex justify-center items-center bg-electric-violet-200 shadow-lg mt-10 rounded-lg w-full min-h-screen overflow-hidden">
-        //     <article className="flex justify-center items-center bg-electric-violet-200 p-6 w-full md:w-1/3">
-        //         <img
-        //             className="rounded-lg w-50 md:w-64 h-50 object-cover"
-        //             src={product.imageUrl}
-        //             alt={product.nombre}
-        //         ></img>
-        //     </article>
-        //     <article className="p-8">
-        //         <p className="text-electric-violet-500 text-lg leading-tight">
-        //             Nombre:{" "}
-        //             <p className="mt-1 text-black text-sm"> {product.nombre}</p>
-        //         </p>
-        //         <article className="mt-1 text-electric-violet-500 text-lg leading-tight">
-        //             Categoria:{" "}
-        //             <p className="mt-1 text-black text-sm">
-        //                 {" "}
-        //                 {product.categoria}
-        //             </p>
-        //         </article>
-        //         <p className="text-electric-violet-500 text-lg leading-tight">
-        //             Descripción:{" "}
-        //             <p className="mt-1 text-black text-sm">
-        //                 {" "}
-        //                 {product.descripcion}
-        //             </p>
-        //         </p>
-        //         <p className="text-electric-violet-500 text-lg leading-tight">
-        //             Precio:
-        //             <p className="mt-1 text-black text-sm">
-        //                 {product.precio} €{" "}
-        //             </p>
-        //         </p>
-        //         <p className="text-electric-violet-500 text-lg leading-tight">
-        //             Localidad:{" "}
-        //             <p className="mt-1 text-black text-sm">
-        //                 {product.localidad}
-        //             </p>
-        //         </p>
-        //         {token && (
-        //             <Button
-        //                 colors="mt-8  bg-light hover:bg-electric-violet-50 text-electric-violet-800 "
-        //                 toggle={() => purchase()}
-        //             >
-        //                 {" "}
-        //                 Solicitar Compra
-        //             </Button>
-        //         )}
-        //     </article>
-        // </section>
     );
 };
