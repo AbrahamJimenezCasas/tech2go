@@ -279,8 +279,7 @@ export const newProductService = async (info, token) => {
 
     if (!response.ok) throw new Error(message);
 
-
-     return message;
+    return message;
 };
 
 /* VALORACION */
@@ -299,19 +298,6 @@ export const newValorationService = async (id, data, token) => {
     const { message } = await response.json();
 
     return message;
-};
-
-export const getProductService = async (id) => {
-    const response = await fetch(`${apiPath}/articulos/${id}`);
-
-    const { message, data } = await response.json();
-
-
-    if (!response.ok) {
-        throw new Error(message);
-    }
-
-    return data.articulo;
 };
 
 export const getValorationService = async (id) => {
