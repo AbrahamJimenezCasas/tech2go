@@ -59,6 +59,11 @@ export const ProfileMenu = ({ colors, toggleOpen }) => {
                             <ProfileMenuItem toggle={toggleVisible}>
                                 <Link to="/usuario/editar">Editar</Link>
                             </ProfileMenuItem>
+                            <ProfileMenuItem toggle={toggleVisible}>
+                                <Link to="/solicitudes-compra">
+                                    Solicitudes
+                                </Link>
+                            </ProfileMenuItem>
                             <ProfileMenuItem toggle={logout}>
                                 Cerrar sesión
                             </ProfileMenuItem>

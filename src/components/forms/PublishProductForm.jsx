@@ -68,7 +68,12 @@ export const PublishProductForm = () => {
                 message,
             });
             navigate(`/articulos?${params.toString()}`);
-            toast.success("Artículo publicado con éxito");
+
+            // Ya hace el toast el message de los params
+            //  toast.success("Artículo publicado con éxito");
+            toast.info(
+                "El administrador revisará el artículo antes publicarlo"
+            );
         } catch (error) {
             toast.error(error.message || "Error al publicar el artículo");
         } finally {

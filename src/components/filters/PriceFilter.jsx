@@ -5,7 +5,7 @@ export const PriceFilter = ({
     max,
     handleMinChange,
     handleMaxChange,
-    priceRef,
+    clean,
 }) => {
     const [minVal, setMinVal] = useState(min);
     const [maxVal, setMaxVal] = useState(max);
@@ -39,6 +39,13 @@ export const PriceFilter = ({
             range.current.style.width = `${maxPercent - minPercent}%`;
         }
     }, [maxVal, getPercent]);
+
+    useEffect(() => {
+        setMinVal(min);
+        minValRef.current = min;
+        setMaxVal(max);
+        maxValRef.current = max;
+    }, [clean]);
 
     return (
         <div className="flex mt-4 pb-8 place-center">

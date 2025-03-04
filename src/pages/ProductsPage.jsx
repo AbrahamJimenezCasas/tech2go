@@ -13,18 +13,18 @@ import { LocationFilter } from "../components/filters/LocationFilter.jsx";
 import { PriceFilter } from "../components/filters/PriceFilter.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDown, faArrowUp } from "@fortawesome/free-solid-svg-icons";
-import { Loader } from "../components/Loader.jsx";
 
 export const ProductsPage = () => {
     const [searchParams] = useSearchParams();
     const [isOpen, setIsOpen] = useState(false);
     const [filters, setFilters] = useState(`?${searchParams}`);
 
-    const { products, loading } = useProducts(filters);
+    const { products } = useProducts(filters);
     const { categories } = useCategories();
     const [categoriesChecked, setCategoriesChecked] = useState([]);
     const { locations } = useLocations();
     const { minPrice, maxPrice } = usePriceRange();
+    const [clean, setClean] = useState(false);
 
     const [categoryFilter, setCategoryFilter] = useState(null);
     const [locationFilter, setLocationFilter] = useState(null);
@@ -125,6 +125,7 @@ export const ProductsPage = () => {
         setMaxPriceFilter(null);
         categoryRef.current.reset();
         locationRef.current.reset();
+        setClean((prev) => !prev);
 
         const checked = categories.map((category) => {
             const categoria = category.categoria;
@@ -204,6 +205,7 @@ export const ProductsPage = () => {
                                 max={maxPrice}
                                 handleMinChange={handleMinPriceChange}
                                 handleMaxChange={handleMaxPriceChange}
+                                clean={clean}
                             />
                         )}
                     </Filter>
@@ -222,9 +224,7 @@ export const ProductsPage = () => {
                         Limpiar filtros
                     </Button>
                 </aside>
-                {loading ? (
-                    <Loader />
-                ) : products.length ? (
+                {products.length ? (
                     <section className="gap-5 sm:gap-10 xl:gap-12 2xl:gap-16 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 auto-rows-fr p-6 w-full">
                         <AnimatePresence initial={false}>
                             {products.map((product) => {
