@@ -36,6 +36,7 @@ export const RatingForm = ({ productId }) => {
                 "¡Gracias por tu valoración! Su opinión es importante para nosotros."
             );
         } catch (error) {
+            console.log(error);
             toast.error(
                 error.message ||
                     "Error al enviar la valoración. Inténtelo de nuevo."

@@ -46,6 +46,7 @@ export const RateProductPage = () => {
     }
 
     return (
+
         <section className="flex flex-col justify-center items-center bg-light shadow-lg p-10 rounded-xl min-h-screen">
             <h2 className="mb-8 font-bold text-electric-violet-800 text-4xl text-center">
                 {valoration
@@ -54,6 +55,7 @@ export const RateProductPage = () => {
                       ? null
                       : "¡Cuéntanos tu experiencia!"}
             </h2>
+
 
             <div className="flex flex-row items-center gap-9 bg-light shadow-lg mx-auto p-10 rounded-xl w-[90%] max-w-5xl">
                 {product && <RateProductCard product={product} />}
