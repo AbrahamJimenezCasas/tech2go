@@ -163,21 +163,21 @@ export const getUserRequestsService = async (id) => {
 
     return data.solicitudesCompra;
 };
-export const sendPurchaseRequestService = async(articuloId, token) => {
-const response = await fetch(`${apiPath}/articulos/${articuloId}/comprar`, {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-    },
-        body: JSON.stringify({articuloId}),
-        });
-        const { message, data } = await response.json();
-        if (!response.ok) {
-            throw new Error(message);
-        }
-        return data.solicitud;
-    };
+export const sendPurchaseRequestService = async (articuloId, token) => {
+    const response = await fetch(`${apiPath}/articulos/${articuloId}/comprar`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ articuloId }),
+    });
+    const { message, data } = await response.json();
+    if (!response.ok) {
+        throw new Error(message);
+    }
+    return data.solicitud;
+};
 
 /* ARTICULOS */
 export const getProductsService = async (filters) => {
@@ -266,7 +266,7 @@ export const newProductService = async (info, token) => {
 
     if (!response.ok) throw new Error(message);
 
-    return { message, data };
+    return message;
 };
 
 export const getProductService = async (id) => {
@@ -281,3 +281,18 @@ export const getProductService = async (id) => {
     return data.articulo;
 };
 
+export const updateBuyRequestState = async (id, id_sol, token, estado) => {
+    const response = await fetch(`${apiPath}/usuarios/avatar`, {
+        method: "PATCH",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+        body: estado,
+    });
+
+    const { message, data } = await response.json();
+
+    if (!response.ok) throw new Error(message);
+
+    return data.solicitudActualizada;
+};

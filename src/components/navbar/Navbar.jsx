@@ -27,7 +27,7 @@ export const Navbar = () => {
         closed: {
             clipPath: "circle(25px at calc(100% - 35px) 40px)",
             transition: {
-                delay: 0.1,
+                delay: 0.3,
                 type: "spring",
                 stiffness: 400,
                 damping: 40,

@@ -16,6 +16,7 @@ import { ValidatePage } from "./pages/ValidatePage.jsx";
 import { LoginPage } from "./pages/LoginPage.jsx";
 import { NotFoundPage } from "./pages/NotFoundPage.jsx";
 import { WhoWeAre } from "./pages/WhoWeAre.jsx";
+import { AcceptRejectBuyRequestPage } from "./pages/AcceptRejectBuyRequestPage.jsx";
 
 const App = () => {
     /* ESTÁN CREADAS LAS RUTAS Y DOCUMENTOS PARA TODAS LAS PÁGINAS QUE TENEMOS EN LAS TAREAS.
@@ -26,7 +27,7 @@ const App = () => {
     return (
         <Routes>
             <Route path="/" element={<LayoutPage />}>
-                <Route index element={<HomePage />} />{" "}
+                <Route index element={<HomePage />} />
                 {/* SARA, principal & landing articulos */}
                 <Route path="/articulos" element={<ProductsPage />} />
                 {/* SARA principal & landing articulos */}
@@ -43,9 +44,13 @@ const App = () => {
                 />{" "}
                 {/* NATALIA lista solicitudes de compra*/}
                 <Route
+                    path="/articulos/:id/solicitudes/:id_sol"
+                    element={<AcceptRejectBuyRequestPage />}
+                />
+                <Route
                     path="/articulos/:id/valorar"
                     element={<RateProductPage />}
-                />{" "}
+                />
                 {/* ANA valoracion de una venta*/}
                 <Route
                     path="/articulos-pendientes"

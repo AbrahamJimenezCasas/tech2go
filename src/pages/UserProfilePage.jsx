@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../hooks/useAuth.js";
@@ -41,10 +41,12 @@ export const UserProfilePage = () => {
                             {user?.username}
 
                             {currentUser && currentUser?.id === user?.id && (
-                                <FontAwesomeIcon
-                                    icon={faPenToSquare}
-                                    className="text-electric-violet-200 hover:text-light text-3xl transition-colors duration-200 cursor-pointer"
-                                />
+                                <Link to="/usuario/editar">
+                                    <FontAwesomeIcon
+                                        icon={faPenToSquare}
+                                        className="text-electric-violet-200 hover:text-light text-3xl transition-colors duration-200 cursor-pointer"
+                                    />
+                                </Link>
                             )}
                         </h2>
                     </section>
