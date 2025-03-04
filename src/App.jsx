@@ -69,8 +69,8 @@ const App = () => {
                     path="/validar/:registrationCode"
                     element={<ValidatePage />}
                 />
-                <Route path="/login" element={<LoginPage />} />{" "}
-                <Route path="*" element={<NotFoundPage />} />{" "}
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="*" element={<NotFoundPage />} />
                 <Route path="/sobre-nosotros" element={<WhoWeAre />} />
             </Route>
         </Routes>

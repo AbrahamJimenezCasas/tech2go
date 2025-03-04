@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 
 export const ProductDetailCard = ({ id, name, price, pic }) => {
     const staticPath = import.meta.env.VITE_BACKEND_STATIC;
+    console.log(id);
     return (
         <Link
             to={`/articulos/${id}`}

@@ -54,7 +54,7 @@ export const AcceptRejectBuyRequestPage = () => {
                         {request.estado === "aceptada" && (
                             <FontAwesomeIcon
                                 icon={faSquareCheck}
-                                className="text-electric-violet-800 text-4xl text"
+                                className="text-electric-violet-800 text-4xl"
                             />
                         )}
                         {request.estado === "rechazada" && (
