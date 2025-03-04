@@ -7,8 +7,6 @@ import { Star } from "../Star.jsx";
 import { Button } from "../Button.jsx";
 import { Input } from "./Input.jsx";
 import { newValorationService } from "../../services/fetchApi.js";
-import { useParams } from "react-router-dom";
-import { useUser } from "../../hooks/useUser.js";
 
 export const RatingForm = ({ productId }) => {
     const {
@@ -23,8 +21,6 @@ export const RatingForm = ({ productId }) => {
     // Cuando el usuario presiona "Enviar", ponemos isLoading = true para deshabilitar el botón.
     const [isLoading, setIsLoading] = useState(false);
     const { token } = useAuth();
-    const { id } = useParams();
-    const { user } = useUser;
 
     // Observar el valor de la calificación seleccionada
     const valoracion = watch("valoracion", 0);
@@ -33,16 +29,8 @@ export const RatingForm = ({ productId }) => {
     const submit = async (data) => {
         try {
             setIsLoading(true); // desactivamos el botón mientras se envía
-            const reviewData = {
-                comentario: data.comment,
-                productId,
-                compradorId: user.id,
-                valoracion: data.valoracion,
-            };
 
-            console.log(data);
-
-            await newValorationService(id, reviewData, token); // enviamos los datos a la API
+            await newValorationService(productId, data, token); // enviamos los datos a la API
 
             toast.success(
                 "¡Gracias por tu valoración! Su opinión es importante para nosotros."
@@ -91,7 +79,7 @@ export const RatingForm = ({ productId }) => {
 
                 <Input
                     label="Comentario"
-                    name="comment"
+                    name="comentario"
                     as="textarea"
                     register={register}
                     errors={errors}

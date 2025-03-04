@@ -48,7 +48,7 @@ export const UserProfilePage = () => {
                             {currentUser && currentUser?.id === user?.id && (
                                 <FontAwesomeIcon
                                     icon={faPenToSquare}
-                                    className="text-electric-violet-200 hover:text-light text-3xl transition-colors duration-200 cursor-pointer"
+                                    className="text-electric-violet-200 hover:text-light text-3xl transition-colors 00 cursor-pointer"
                                 />
                             )}
                         </h2>

@@ -61,7 +61,7 @@ export const Navbar = () => {
     };
 
     return (
-        <header className="flex justify-between items-center bg-light px-4 lg:px-12 py-2 border-b-1 border-b-electric-violet-200 w-full h-20 font-display">
+        <header className="flex justify-between items-center bg-light px-4 lg:px-12 py-2 border-b-1 border-b-electric-violet-200 w-full h-20 font-display z-10">
             <Logo
                 primary="electric-violet-800"
                 secondary="fill-electric-violet-950"
@@ -75,7 +75,7 @@ export const Navbar = () => {
                     {menuList.map((item) => (
                         <li
                             key={item.name}
-                            className="hover:text-electric-violet-950 transition-colors duration-200"
+                            className="hover:text-electric-violet-950 transition-colors 00"
                         >
                             <Link to={item.url}>{item.text}</Link>
                         </li>

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { getValorationService } from "../services/fetchApi.js";
 
 export const useValoration = (id) => {
-    const [valoracion, setValoracion] = useState(null);
+    const [valoration, setValoration] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -11,7 +11,7 @@ export const useValoration = (id) => {
             try {
                 setLoading(true);
                 const data = await getValorationService(id);
-                setValoracion(data);
+                setValoration(data);
             } catch (error) {
                 setError(error.message || "Error al obtener la valoración");
             } finally {
@@ -22,5 +22,5 @@ export const useValoration = (id) => {
         fetchValoration();
     }, [id]);
 
-    return { valoracion, loading, error };
+    return { valoration, loading, error };
 };
