@@ -73,6 +73,71 @@ export const getUserService = async (id) => {
     return data.usuario;
 };
 
+export const updateAvatarService = async (info, token) => {
+    const formData = new FormData();
+    formData.append("avatar", info);
+
+    const response = await fetch(`${apiPath}/usuarios/avatar`, {
+        method: "PATCH",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+    });
+
+    const { message, data } = await response.json();
+
+    if (!response.ok) throw new Error(message);
+
+    return data.user;
+};
+
+export const deleteAvatarService = async (token) => {
+    const response = await fetch(`${apiPath}/usuarios/avatar`, {
+        method: "DELETE",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+
+    const { message, data } = await response.json();
+
+    if (!response.ok) throw new Error(message);
+
+    return data.user;
+};
+
+export const updateUserService = async (info, token) => {
+    const response = await fetch(`${apiPath}/usuarios/own`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(info),
+    });
+
+    const { message, data } = await response.json();
+
+    if (!response.ok) throw new Error(message);
+
+    return data.user;
+};
+
+export const updatePasswordService = async (passwords, token) => {
+    const response = await fetch(`${apiPath}/usuarios/password`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(passwords),
+    });
+
+    const { message } = await response.json();
+    return message;
+};
+
 export const getUserSalesService = async (id) => {
     const response = await fetch(`${apiPath}/usuarios/${id}/ventas`);
 
@@ -97,6 +162,21 @@ export const getUserRequestsService = async (id) => {
     }
 
     return data.solicitudesCompra;
+};
+export const sendPurchaseRequestService = async (articuloId, token) => {
+    const response = await fetch(`${apiPath}/articulos/${articuloId}/comprar`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ articuloId }),
+    });
+    const { message, data } = await response.json();
+    if (!response.ok) {
+        throw new Error(message);
+    }
+    return data.solicitud;
 };
 
 /* ARTICULOS */
@@ -123,6 +203,21 @@ export const getProductsService = async (filters) => {
     return data.articulos;
 };
 
+export const getPendingProductsService = async (token) => {
+    const response = await fetch(`${apiPath}/articulos-pendientes`, {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+
+    const { message, data } = await response.json();
+
+    if (!response.ok) throw new Error(message);
+
+    return data.articulos;
+};
+
 export const getCategoriesService = async () => {
     const response = await fetch(`${apiPath}/articulos/categorias`);
 
@@ -131,6 +226,26 @@ export const getCategoriesService = async () => {
     if (!response.ok) throw new Error(message);
 
     return data.categorias;
+};
+
+export const getLocationsService = async () => {
+    const response = await fetch(`${apiPath}/articulos/localidades`);
+
+    const { message, data } = await response.json();
+
+    if (!response.ok) throw new Error(message);
+
+    return data.localidades;
+};
+
+export const getPriceRangeService = async () => {
+    const response = await fetch(`${apiPath}/articulos/precios`);
+
+    const { message, data } = await response.json();
+
+    if (!response.ok) throw new Error(message);
+
+    return data.prices;
 };
 
 export const getAllRequestsService = async () => {
@@ -164,7 +279,8 @@ export const newProductService = async (info, token) => {
 
     if (!response.ok) throw new Error(message);
 
-    return { message, data };
+
+     return message;
 };
 
 /* VALORACION */
@@ -182,11 +298,20 @@ export const newValorationService = async (id, data, token) => {
 
     const { message } = await response.json();
 
+    return message;
+};
+
+export const getProductService = async (id) => {
+    const response = await fetch(`${apiPath}/articulos/${id}`);
+
+    const { message, data } = await response.json();
+
+
     if (!response.ok) {
         throw new Error(message);
     }
 
-    return message;
+    return data.articulo;
 };
 
 export const getValorationService = async (id) => {
@@ -199,4 +324,20 @@ export const getValorationService = async (id) => {
     }
 
     return data.valoracion;
+};
+
+export const updateBuyRequestState = async (id, id_sol, token, estado) => {
+    const response = await fetch(`${apiPath}/usuarios/avatar`, {
+        method: "PATCH",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+        body: estado,
+    });
+
+    const { message, data } = await response.json();
+
+    if (!response.ok) throw new Error(message);
+
+    return data.solicitudActualizada;
 };

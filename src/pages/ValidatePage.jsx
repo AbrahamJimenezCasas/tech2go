@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { Loading } from "../components/Loading.jsx";
+import { Loader } from "../components/Loader.jsx";
 
 export const ValidatePage = () => {
     const { registrationCode } = useParams();
@@ -37,7 +37,7 @@ export const ValidatePage = () => {
                     return;
                 }
             } catch (error) {
-                toast;
+                toast.error(error.message);
             }
         };
         activeUser();
@@ -46,7 +46,7 @@ export const ValidatePage = () => {
     return (
         <section>
             {loading && <p>Validando tu cuenta...</p>}
-            {!loading && <Loading />}
+            {!loading && <Loader />}
         </section>
     );
 };

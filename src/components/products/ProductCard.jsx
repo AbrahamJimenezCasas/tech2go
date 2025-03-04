@@ -1,26 +1,36 @@
+import { Card } from "../Card.jsx";
+
+import { formatDate } from "../../utils/dayJs.js";
 import { Link } from "react-router-dom";
 
-export const ProductCard = ({ id, name, price, pic }) => {
+export const ProductCard = ({ index, product }) => {
     const staticPath = import.meta.env.VITE_BACKEND_STATIC;
+    const fecha = formatDate(product.fechaCreacion);
+    const foto = product.fotos[0];
     return (
-        <Link
-            to={`/articulos/${id}`}
-            className="group flex flex-col items-center bg-light hover:bg-electric-violet-50 shadow-dark/10 shadow-lg p-4 rounded-2xl transition-colors 00"
-        >
-            <img
-                src={
-                    pic
-                        ? `${staticPath}/articulos/${pic}`
-                        : "/imgs/no-img-available.png"
-                }
-                className="rounded-2xl w-full min-h-3/4 object-cover transition-transform group-hover:-translate-y-1 00"
-            />
-            <p className="group-hover:text-electric-violet-800 mt-2 w-full font-body font-bold text-electric-violet-950 text-right leading-none transition-colors 00">
-                {name}
-            </p>
-            <p className="w-full font-body font-light text-electric-violet-950 text-right leading-none">
-                {price}
-            </p>
+
+        <Link to={`/articulos/${product.id}`}>
+            <Card index={index}>
+                <div className="flex items-center gap-4 h-full">
+                    {foto ? (
+                        <img
+                            className="rounded-2xl h-11/12"
+                            src={`${staticPath}/articulos/${product.vendedorId}/${product.id}/${foto.foto}`}
+                        />
+                    ) : (
+                        <img
+                            className="rounded-2xl h-11/12"
+                            src="/imgs/no-img-available.png"
+                        />
+                    )}
+                    <div className="font-body">
+                        <h3 className="font-bold text-electric-violet-950">
+                            {product.nombre}
+                        </h3>
+                        <p>{fecha}</p>
+                    </div>
+                </div>
+            </Card>
         </Link>
     );
 };

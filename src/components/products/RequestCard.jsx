@@ -9,13 +9,22 @@ export const RequestCard = ({ index, solicitud }) => {
     const navigate = useNavigate();
     const fecha = formatDate(solicitud.fecha);
 
+    const foto = solicitud.fotos[0];
+
     return (
         <Card index={index}>
             <div className="flex items-center gap-4 h-full">
-                <img
-                    className="rounded-full h-11/12"
-                    src="/imgs/no-img-available.png"
-                />
+                {foto ? (
+                    <img
+                        className="rounded-2xl h-11/12"
+                        src={`${staticPath}/articulos/${solicitud.vendedorId}/${solicitud.articuloId}/${foto.foto}`}
+                    />
+                ) : (
+                    <img
+                        className="rounded-2xl h-11/12"
+                        src="/imgs/no-img-available.png"
+                    />
+                )}
                 <div className="font-body">
                     <h3 className="font-bold text-electric-violet-950">
                         {solicitud.articulo}
