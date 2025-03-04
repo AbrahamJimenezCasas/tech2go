@@ -25,14 +25,14 @@ export const RateProductPage = () => {
     }
 
     return (
-        <section className="flex flex-col justify-center items-center bg-light shadow-lg p-10 rounded-xl min-h-screen">
-            <h1 className="mb-8 font-bold text-electric-violet-800 text-4xl text-center">
+        <section className="flex flex-col justify-center items-center p-10 rounded-xl min-h-[80vh]">
+            <h1 className="mb-8 font-bold text-electric-violet-800 text-3xl md:text-4xl lg:text-4xl text-center">
                 {valoration
                     ? "Reseña del producto"
                     : "¡Cuéntanos tu experiencia!"}
             </h1>
 
-            <div className="flex flex-row items-center gap-9 bg-white shadow-lg mx-auto p-10 rounded-xl w-[90%] max-w-5xl">
+            <div className="flex flex-col md:flex-row items-center gap-9 bg-white shadow-lg mx-auto p-10 rounded-xl w-[90%] max-w-5xl">
                 {product && <RateProductCard product={product} />}
 
                 <div className="w-2/3">
