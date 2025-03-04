@@ -4,6 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { Navbar } from "../components/navbar/Navbar.jsx";
 import { useAuth } from "../hooks/useAuth.js";
 import { useRequestsByUser } from "../hooks/useRequestsByUser.js";
+import { Footer } from "../components/Footer.jsx";
 
 export const LayoutPage = () => {
     const [searchParams] = useSearchParams();
@@ -57,6 +58,7 @@ export const LayoutPage = () => {
                     }}
                 />
             </main>
+            <Footer />
         </>
     );
 };

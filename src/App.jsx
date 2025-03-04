@@ -29,21 +29,16 @@ const App = () => {
         <Routes>
             <Route path="/" element={<LayoutPage />}>
                 <Route index element={<HomePage />} />
-                {/* SARA, principal & landing articulos */}
                 <Route path="/articulos" element={<ProductsPage />} />
-                {/* SARA principal & landing articulos */}
                 <Route path="/articulos/:id" element={<ProductPage />} />
-                {/* ESTER detalle artículo*/}
                 <Route
                     path="/vender-articulo"
                     element={<PublishProductPage />}
                 />
-                {/* ESTER publicación artículos*/}
                 <Route
                     path="/solicitudes-compra"
                     element={<BuyRequestsPage />}
                 />
-                {/* NATALIA lista solicitudes de compra*/}
                 <Route
                     path="/usuario/solicitudes"
                     element={<BuyRequestsUserPage />}
@@ -56,35 +51,26 @@ const App = () => {
                     path="/articulos/:id/:id_sol/valorar"
                     element={<RateProductPage />}
                 />
-                {/* ANA valoracion de una venta*/}
                 <Route
                     path="/articulos-pendientes"
                     element={<PendingProductsPage />}
-                />{" "}
-                {/* NATALIA articulos no publicados*/}
+                />
                 <Route path="/usuarios" element={<UsersPage />} />
-                {/* ABRAHAM lista usuarios*/}
                 <Route path="/usuario" element={<ProfilePage />}>
                     <Route index element={<UserProfilePage />} />
                     <Route path="/usuario/:id" element={<UserProfilePage />} />
-                </Route>{" "}
-                {/* SARA detalle usuario con historico*/}
+                </Route>
                 <Route
                     path="/usuario/editar"
                     element={<EditUserProfilePage />}
                 />
-                {/* NATALIA datos usuario con posibilidad de cambio*/}
                 <Route path="/registro" element={<RegisterPage />} />
-                {/* ANA registro*/}
                 <Route
                     path="/validar/:registrationCode"
                     element={<ValidatePage />}
                 />
-                {/* ABRAHAM validacion usuario*/}
                 <Route path="/login" element={<LoginPage />} />{" "}
-                {/* SARA login */}
                 <Route path="*" element={<NotFoundPage />} />{" "}
-                {/* ANA not found*/}
                 <Route path="/sobre-nosotros" element={<WhoWeAre />} />
             </Route>
         </Routes>
