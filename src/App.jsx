@@ -17,6 +17,7 @@ import { LoginPage } from "./pages/LoginPage.jsx";
 import { NotFoundPage } from "./pages/NotFoundPage.jsx";
 import { WhoWeAre } from "./pages/WhoWeAre.jsx";
 import { AcceptRejectBuyRequestPage } from "./pages/AcceptRejectBuyRequestPage.jsx";
+import { BuyRequestsUserPage } from "./pages/BuyRequestsUserPage.jsx";
 
 const App = () => {
     /* ESTÁN CREADAS LAS RUTAS Y DOCUMENTOS PARA TODAS LAS PÁGINAS QUE TENEMOS EN LAS TAREAS.
@@ -41,8 +42,12 @@ const App = () => {
                 <Route
                     path="/solicitudes-compra"
                     element={<BuyRequestsPage />}
-                />{" "}
+                />
                 {/* NATALIA lista solicitudes de compra*/}
+                <Route
+                    path="/usuario/solicitudes"
+                    element={<BuyRequestsUserPage />}
+                />
                 <Route
                     path="/articulos/:id/solicitudes/:id_sol"
                     element={<AcceptRejectBuyRequestPage />}

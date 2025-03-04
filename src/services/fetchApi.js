@@ -312,7 +312,12 @@ export const getValorationService = async (id) => {
     return data.valoracion;
 };
 
-export const updateBuyRequestState = async (id, id_sol, token, estado) => {
+export const updateBuyRequestStateService = async (
+    id,
+    id_sol,
+    token,
+    estado
+) => {
     const response = await fetch(`${apiPath}/usuarios/avatar`, {
         method: "PATCH",
         headers: {
@@ -326,4 +331,35 @@ export const updateBuyRequestState = async (id, id_sol, token, estado) => {
     if (!response.ok) throw new Error(message);
 
     return data.solicitudActualizada;
+};
+
+export const getBuyRequestService = async (id, id_sol) => {
+    const response = await fetch(
+        `${apiPath}/articulos/${id}/solicitudes/${id_sol}`
+    );
+
+    const { message, data } = await response.json();
+
+    if (!response.ok) {
+        throw new Error(message);
+    }
+
+    return data.solicitud;
+};
+
+export const getBuyRequestsByUserService = async (token) => {
+    const response = await fetch(`${apiPath}/usuarios/solicitudes`, {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+
+    const { message, data } = await response.json();
+
+    if (!response.ok) {
+        throw new Error(message);
+    }
+
+    return data.solicitudes;
 };

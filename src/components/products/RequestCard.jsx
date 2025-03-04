@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Card } from "../Card.jsx";
 import { faSquareCheck, faComment } from "@fortawesome/free-solid-svg-icons";
 import { formatDate } from "../../utils/dayJs.js";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const RequestCard = ({ index, solicitud }) => {
     const staticPath = import.meta.env.VITE_BACKEND_STATIC;
@@ -29,7 +29,19 @@ export const RequestCard = ({ index, solicitud }) => {
                     <h3 className="font-bold text-electric-violet-950">
                         {solicitud.articulo}
                     </h3>
-                    <p>{fecha}</p>
+                    {solicitud.username ? (
+                        <p>
+                            Solicitud de{" "}
+                            <Link
+                                to={`/usuario/${solicitud.compradorId}`}
+                                className="text-electric-violet-900 hover:text-electric-violet-600 transition-colors duration-200"
+                            >
+                                {solicitud.username}
+                            </Link>
+                        </p>
+                    ) : (
+                        <p>{fecha}</p>
+                    )}
                 </div>
             </div>
             {solicitud.estado === "aceptada" && (
