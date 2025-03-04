@@ -53,7 +53,7 @@ const App = () => {
                     element={<AcceptRejectBuyRequestPage />}
                 />
                 <Route
-                    path="/articulos/:id/valorar"
+                    path="/articulos/:id/:id_sol/valorar"
                     element={<RateProductPage />}
                 />
                 {/* ANA valoracion de una venta*/}

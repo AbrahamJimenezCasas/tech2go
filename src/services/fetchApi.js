@@ -285,7 +285,6 @@ export const newProductService = async (info, token) => {
 /* VALORACION */
 
 export const newValorationService = async (id, data, token) => {
-    console.log(data);
     const response = await fetch(`${apiPath}/articulos/${id}/valorar`, {
         method: "POST",
         headers: {
@@ -338,7 +337,6 @@ export const updateBuyRequestStateService = async (
     token,
     estado
 ) => {
-    console.log(estado);
     const response = await fetch(
         `${apiPath}/articulos/${id}/solicitudes/${id_sol}`,
         {

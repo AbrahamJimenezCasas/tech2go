@@ -15,7 +15,9 @@ export const useRequestsByUser = (token) => {
                 setRequests(data);
             } catch (error) {
                 setError(error.message || "Errror al obtener las solicitudes");
-                toast.error("No hay solicitudes de compra para tus articulos");
+
+                // Sin toast pq ya aparece el mensaje en la pagina si no hay
+                // toast.error("No hay solicitudes de compra para tus articulos");
             } finally {
                 setLoading(false);
             }
