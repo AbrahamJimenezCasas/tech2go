@@ -1,34 +1,14 @@
-import { useEffect, useState } from "react";
 import { Loader } from "../components/Loader.jsx";
 import { RequestList } from "../components/products/RequestList.jsx";
 import { useAuth } from "../hooks/useAuth.js";
 import { useUser } from "../hooks/useUser.js";
-import { toast } from "react-toastify";
-import { getBuyRequestsByUserService } from "../services/fetchApi.js";
+import { useRequestsByUser } from "../hooks/useRequestsByUser.js";
 
 export const BuyRequestsUserPage = () => {
     const { token } = useAuth();
     const { user } = useUser(null, token);
-    const [requests, setRequests] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const fetchRequests = async () => {
-            try {
-                setLoading(true);
-                const data = await getBuyRequestsByUserService(token);
-                setRequests(data);
-            } catch (error) {
-                setError(error.message || "Errror al obtener las solicitudes");
-                toast.error("No hay solicitudes de compra para tus articulos");
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchRequests();
-    }, []);
+    const { requests, loading } = useRequestsByUser(token);
 
     return (
         <section className="bg-light p-6 lg:px-32 2xl:px-40 lg:py-8 w-full">
