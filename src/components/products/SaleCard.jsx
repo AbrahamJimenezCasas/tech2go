@@ -1,11 +1,17 @@
 import { Card } from "../Card.jsx";
 import { formatDate } from "../../utils/dayJs.js";
 import { Star } from "../Star.jsx";
+import { useNavigate } from "react-router-dom";
 
 export const SaleCard = ({ index, sale }) => {
     const staticPath = import.meta.env.VITE_BACKEND_STATIC;
     const fecha = formatDate(sale.fecha);
+
+    const navigate = useNavigate();
+    const valoracion = Math.min(5, sale.valoracion);
+
     const foto = sale.fotos[0];
+
 
     return (
         <Card index={index}>
@@ -29,22 +35,27 @@ export const SaleCard = ({ index, sale }) => {
                     <p>{fecha}</p>
                 </div>
             </div>
-            <section className="flex gap-1">
-                {sale.valoracion &&
-                    [...Array(sale.valoracion)].map((e, i) => (
+            {valoracion > 0 && (
+                <section
+                    className="flex gap-1 cursor-pointer"
+                    onClick={() =>
+                        navigate(`/articulos/${sale.articuloId}/valorar`)
+                    }
+                >
+                    {[...Array(valoracion)].map((_, i) => (
                         <Star
                             key={i}
                             classes="w-6 stroke-electric-violet-800 fill-electric-violet-800"
                         />
                     ))}
-                {sale.valoracion &&
-                    [...Array(5 - sale.valoracion)].map((e, i) => (
+                    {[...Array(5 - valoracion)].map((_, i) => (
                         <Star
                             key={i}
                             classes="w-6 stroke-electric-violet-800"
                         />
                     ))}
-            </section>
+                </section>
+            )}
         </Card>
     );
 };

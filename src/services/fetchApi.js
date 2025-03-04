@@ -180,6 +180,19 @@ export const sendPurchaseRequestService = async (articuloId, token) => {
 };
 
 /* ARTICULOS */
+
+export const getProductService = async (id) => {
+    const response = await fetch(`${apiPath}/articulos/${id}`);
+
+    const { message, data } = await response.json();
+
+    if (!response.ok) {
+        throw new Error(message);
+    }
+
+    return data.articulo;
+};
+
 export const getProductsService = async (filters) => {
     const response = await fetch(`${apiPath}/articulos${filters}`);
 
@@ -266,6 +279,25 @@ export const newProductService = async (info, token) => {
 
     if (!response.ok) throw new Error(message);
 
+
+     return message;
+};
+
+/* VALORACION */
+
+export const newValorationService = async (id, data, token) => {
+    console.log(data);
+    const response = await fetch(`${apiPath}/articulos/${id}/valorar`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(data),
+    });
+
+    const { message } = await response.json();
+
     return message;
 };
 
@@ -274,11 +306,24 @@ export const getProductService = async (id) => {
 
     const { message, data } = await response.json();
 
+
     if (!response.ok) {
         throw new Error(message);
     }
 
     return data.articulo;
+};
+
+export const getValorationService = async (id) => {
+    const response = await fetch(`${apiPath}/valoraciones/${id}`);
+
+    const { message, data } = await response.json();
+
+    if (!response.ok) {
+        throw new Error(message);
+    }
+
+    return data.valoracion;
 };
 
 export const updateBuyRequestState = async (id, id_sol, token, estado) => {

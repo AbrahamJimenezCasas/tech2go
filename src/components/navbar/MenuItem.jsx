@@ -23,7 +23,7 @@ export const MenuItem = ({ path, text, toggle }) => {
         <motion.li variants={items}>
             <Link
                 onClick={toggle}
-                className="hover:text-electric-violet-200 transition-colors duration-200"
+                className="hover:text-electric-violet-200 transition-colors 00"
                 to={path}
             >
                 {text}

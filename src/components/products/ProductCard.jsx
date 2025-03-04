@@ -8,6 +8,7 @@ export const ProductCard = ({ index, product }) => {
     const fecha = formatDate(product.fechaCreacion);
     const foto = product.fotos[0];
     return (
+
         <Link to={`/articulos/${product.id}`}>
             <Card index={index}>
                 <div className="flex items-center gap-4 h-full">

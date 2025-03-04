@@ -9,7 +9,7 @@ import { useAuth } from "../../hooks/useAuth.js";
 const ProfileMenuItem = ({ toggle, children }) => {
     return (
         <li
-            className="hover:text-electric-violet-800 duration-200 cursor-pointer trasition-colors"
+            className="hover:text-electric-violet-800 00 cursor-pointer trasition-colors"
             onClick={toggle}
         >
             {children}

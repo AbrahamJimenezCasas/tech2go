@@ -41,6 +41,7 @@ export const UserProfilePage = () => {
                             {user?.username}
 
                             {currentUser && currentUser?.id === user?.id && (
+
                                 <Link to="/usuario/editar">
                                     <FontAwesomeIcon
                                         icon={faPenToSquare}
