@@ -22,14 +22,11 @@ export const ProductDetail = ({ product }) => {
 
     const purchase = async () => {
         try {
-            const message = await sendPurchaseRequestService(product.id, token);
-            console.log(message);
-            toast.success(message);
+            await sendPurchaseRequestService(product.id, token);
+            toast.success("Solicitud de compra enviada con éxito");
         } catch (error) {
             console.log(error.message);
-            toast.error(
-                error.message || "Error al enviar la solicitud de compra."
-            );
+            toast.error("Error al enviar la solicitud de compra.");
         }
     };
 
@@ -74,7 +71,7 @@ export const ProductDetail = ({ product }) => {
                             colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light w-fit "
                             toggle={() => purchase()}
                         >
-                            Solicitar Compra
+                            Solicitar compra
                         </Button>
                     )}
                     {user && <UserCard user={user} />}
