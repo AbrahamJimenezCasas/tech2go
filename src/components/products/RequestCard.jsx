@@ -2,11 +2,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Card } from "../Card.jsx";
 import { faSquareCheck, faComment } from "@fortawesome/free-solid-svg-icons";
 import { formatDate } from "../../utils/dayJs.js";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const RequestCard = ({ index, solicitud }) => {
     const staticPath = import.meta.env.VITE_BACKEND_STATIC;
-    const navigate = useNavigate();
     const fecha = formatDate(solicitud.fecha);
 
     const fotos = solicitud.fotos;

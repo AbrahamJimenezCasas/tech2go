@@ -8,6 +8,7 @@ import { useAuth } from "../hooks/useAuth.js";
 import { useRequest } from "../hooks/useRequest.js";
 import { Button } from "../components/Button.jsx";
 import { useEffect, useState } from "react";
+import { useUser } from "../hooks/useUser.js";
 
 export const RateProductPage = () => {
     const { id, id_sol } = useParams(); // Obtener el ID del producto desde la URL
@@ -16,13 +17,14 @@ export const RateProductPage = () => {
 
     // Para que la valoracion solo la pueda poner si es el usuario
     const { token } = useAuth();
+    const { user } = useUser(null, token);
     const { request } = useRequest(id, id_sol, token);
     const [showForm, setShowForm] = useState(null);
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (request) {
+        if (request?.compradorId === user?.id) {
             setShowForm(true);
         } else {
             setShowForm(false);
