@@ -50,9 +50,9 @@ export const RatingForm = ({ productId }) => {
         <div className="flex justify-center items-center">
             <Form
                 handleSubmit={handleSubmit(submit)}
-                className="mt-6 flex flex-col items-center bg-white p-6 rounded-xl shadow-md w-80"
+                className="flex flex-col items-center bg-light shadow-md mt-6 p-6 rounded-xl w-80"
             >
-                <h2 className="text-lg font-bold text-electric-violet-800 mb-4">
+                <h2 className="mb-4 font-bold text-electric-violet-800 text-lg">
                     Evalúa tu compra
                 </h2>
 
@@ -84,11 +84,11 @@ export const RatingForm = ({ productId }) => {
                     as="textarea"
                     register={register}
                     errors={errors}
-                    className="w-full h-24 resize-none border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-electric-violet-500"
+                    className="p-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-electric-violet-500 w-full h-24 resize-none"
                 />
 
                 <Button
-                    colors="bg-electric-violet-500 text-white mt-4"
+                    colors="bg-electric-violet-500 text-light mt-4"
                     type="submit"
                     isLoading={isLoading}
                 >

@@ -10,8 +10,8 @@ export const SaleCard = ({ index, sale }) => {
     const navigate = useNavigate();
     const valoracion = Math.min(5, sale.valoracion);
 
-    const foto = sale.fotos[0];
-
+    const fotos = sale.fotos;
+    const foto = fotos ? fotos[0] : null;
 
     return (
         <Card index={index}>

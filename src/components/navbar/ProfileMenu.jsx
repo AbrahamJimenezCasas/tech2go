@@ -9,7 +9,7 @@ import { useAuth } from "../../hooks/useAuth.js";
 const ProfileMenuItem = ({ toggle, children }) => {
     return (
         <li
-            className="hover:text-electric-violet-800 00 cursor-pointer trasition-colors"
+            className="hover:text-electric-violet-800 cursor-pointer 00 trasition-colors"
             onClick={toggle}
         >
             {children}
@@ -60,7 +60,7 @@ export const ProfileMenu = ({ colors, toggleOpen }) => {
                                 <Link to="/usuario/editar">Editar</Link>
                             </ProfileMenuItem>
                             <ProfileMenuItem toggle={toggleVisible}>
-                                <Link to="/solicitudes-compra">
+                                <Link to="/usuario/solicitudes">
                                     Solicitudes
                                 </Link>
                             </ProfileMenuItem>

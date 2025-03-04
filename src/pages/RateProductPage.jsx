@@ -1,16 +1,37 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { RatingForm } from "../components/forms/RatingForm.jsx";
 import { useProduct } from "../hooks/useProduct.js";
 import { useValoration } from "../hooks/useValoration.js";
 import { RateProductCard } from "../components/products/RateProductCard.jsx";
 import { Star } from "../components/Star.jsx";
+import { useAuth } from "../hooks/useAuth.js";
+import { useRequest } from "../hooks/useRequest.js";
+import { Button } from "../components/Button.jsx";
+import { useEffect, useState } from "react";
+import { useUser } from "../hooks/useUser.js";
 
 export const RateProductPage = () => {
-    const { id } = useParams(); // Obtener el ID del producto desde la URL
+    const { id, id_sol } = useParams(); // Obtener el ID del producto desde la URL
     const { product, loading: loadingProduct } = useProduct(id);
     const { valoration, loading: loadingValoration } = useValoration(id);
 
-    console.log(valoration);
+    // Para que la valoracion solo la pueda poner si es el usuario
+    const { token } = useAuth();
+    const { user } = useUser(null, token);
+    const { request } = useRequest(id, id_sol, token);
+    const [showForm, setShowForm] = useState(null);
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (request?.compradorId === user?.id) {
+            setShowForm(true);
+        } else {
+            setShowForm(false);
+        }
+    }, [request]);
+
+    // Para que la valoracion solo la pueda poner si es el usuario
 
     /* mensaje de cargando página con animación */
     if (loadingProduct || loadingValoration) {
@@ -25,21 +46,25 @@ export const RateProductPage = () => {
     }
 
     return (
-        <section className="flex flex-col justify-center items-center p-10 rounded-xl min-h-[80vh]">
-            <h1 className="mb-8 font-bold text-electric-violet-800 text-3xl md:text-4xl lg:text-4xl text-center">
+
+        <section className="flex flex-col justify-center items-center bg-light shadow-lg p-10 rounded-xl min-h-screen">
+            <h2 className="mb-8 font-bold text-electric-violet-800 text-4xl text-center">
                 {valoration
                     ? "Reseña del producto"
-                    : "¡Cuéntanos tu experiencia!"}
-            </h1>
+                    : request
+                      ? null
+                      : "¡Cuéntanos tu experiencia!"}
+            </h2>
 
-            <div className="flex flex-col md:flex-row items-center gap-9 bg-white shadow-lg mx-auto p-10 rounded-xl w-[90%] max-w-5xl">
+
+            <div className="flex flex-row items-center gap-9 bg-light shadow-lg mx-auto p-10 rounded-xl w-[90%] max-w-5xl">
                 {product && <RateProductCard product={product} />}
 
                 <div className="w-2/3">
                     {valoration ? (
-                        <div className=" p-4 rounded-lg">
+                        <div className="p-4 rounded-lg">
                             <div className="flex items-center gap-2">
-                                <p className="text-xl font-semibold text-electric-violet-900">
+                                <p className="font-semibold text-electric-violet-900 text-xl">
                                     Valoración:
                                 </p>
                                 <div className="flex">
@@ -55,12 +80,24 @@ export const RateProductPage = () => {
                                     ))}
                                 </div>
                             </div>
-                            <p className="text-gray-700 mt-4">
+                            <p className="mt-4 text-gray-700">
                                 Comentario: {valoration?.comentario}
                             </p>
                         </div>
-                    ) : (
+                    ) : showForm ? (
                         <RatingForm productId={id} />
+                    ) : (
+                        <section className="flex flex-col items-center gap-4">
+                            <p className="font-bold text-electric-violet-950 text-2xl text-center">
+                                Este producto aún no ha sido valorado
+                            </p>
+                            <Button
+                                colors="bg-electric-violet-900 text-light"
+                                toggle={() => navigate(-1)}
+                            >
+                                Volver atrás
+                            </Button>
+                        </section>
                     )}
                 </div>
             </div>
