@@ -6,9 +6,10 @@ import { Link } from "react-router-dom";
 export const ProductCard = ({ index, product }) => {
     const staticPath = import.meta.env.VITE_BACKEND_STATIC;
     const fecha = formatDate(product.fechaCreacion);
-    const foto = product.fotos[0];
-    return (
+    const fotos = product.fotos;
+    const foto = fotos ? fotos[0] : null;
 
+    return (
         <Link to={`/articulos/${product.id}`}>
             <Card index={index}>
                 <div className="flex items-center gap-4 h-full">

@@ -11,7 +11,7 @@ export const BuyRequestsUserPage = () => {
     const { requests, loading } = useRequestsByUser(token);
 
     return (
-        <section className="bg-light p-6 lg:px-32 2xl:px-40 lg:py-8 w-full">
+        <section className="bg-light p-6 lg:px-32 2xl:px-40 lg:py-8 w-full min-h-[calc(100svh-15rem)]">
             <h2 className="font-display text-electric-violet-800 text-4xl">
                 Solicitudes de compra
             </h2>

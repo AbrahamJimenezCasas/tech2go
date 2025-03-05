@@ -39,6 +39,7 @@ export const CategorySection = ({ category, name }) => {
                             return (
                                 <ProductDetailCard
                                     key={product.id}
+                                    id={product.id}
                                     name={product.nombre}
                                     price={product.precio}
                                     pic={pic}
@@ -73,6 +74,7 @@ export const CategorySection = ({ category, name }) => {
                             return (
                                 <ProductDetailCard
                                     key={product.id}
+                                    id={product.id}
                                     name={product.nombre}
                                     price={product.precio}
                                     pic={pic}

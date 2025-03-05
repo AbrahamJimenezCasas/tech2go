@@ -18,10 +18,13 @@ export const PendingProductsPage = () => {
 
     const { user } = useUser(null, token);
     const navigate = useNavigate();
-    if (user?.rol == "user") {
-        const route = `/articulos`;
-        navigate(route);
-    }
+
+    useEffect(() => {
+        if (user?.rol == "user") {
+            const route = `/articulos`;
+            navigate(route);
+        }
+    }, [user]);
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -42,7 +45,7 @@ export const PendingProductsPage = () => {
 
     return (
         <div>
-            <section className="flex flex-col items-center p-6 lg:px-32 2xl:px-40 lg:py-8 min-h-[calc(100svh-5rem)]">
+            <section className="flex flex-col items-center p-6 lg:px-32 2xl:px-40 lg:py-8 min-h-[calc(100svh-15rem)]">
                 <h2 className="font-display text-electric-violet-800 text-4xl">
                     Articulos pendientes de publicar
                 </h2>

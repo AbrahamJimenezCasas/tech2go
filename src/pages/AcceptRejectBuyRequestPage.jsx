@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth.js";
 import { useProduct } from "../hooks/useProduct.js";
 import { useUser } from "../hooks/useUser.js";
@@ -21,8 +21,8 @@ export const AcceptRejectBuyRequestPage = () => {
     const { request } = useRequest(id, id_sol, token);
     const [loading, setIsLoading] = useState(false);
     const [finalIcon, setFinalIcon] = useState(null);
-    // console.log(request);
-    // console.log(product?.vendedorId === user?.id);
+
+    const navigate = useNavigate();
 
     const handleClick = async (accion) => {
         try {
@@ -32,6 +32,10 @@ export const AcceptRejectBuyRequestPage = () => {
             await updateBuyRequestStateService(id, id_sol, token, estado);
 
             setFinalIcon(accion === "aceptada" ? faSquareCheck : faSquareXmark);
+
+            accion === "aceptada" &&
+                navigate(`/articulos/vendido/${product.id}/`);
+            console.log(`/articulos/${product.id}/vendido`);
 
             toast.success(`Solicitud ${accion} con éxito`);
         } catch (error) {
@@ -45,8 +49,8 @@ export const AcceptRejectBuyRequestPage = () => {
     };
 
     return (
-        <section className="flex justify-center bg-light p-6 lg:px-32 2xl:px-40 lg:py-8 w-full">
-            <section className="flex items-center gap-4 bg-electric-violet-50 shadow-lg mt-20 p-10 rounded-2xl w-10/12">
+        <section className="flex justify-center items-center bg-light p-6 lg:px-32 2xl:px-40 lg:py-8 w-full min-h-[calc(100svh-15rem)]">
+            <section className="flex items-center gap-4 bg-electric-violet-50 shadow-lg p-10 rounded-2xl w-10/12">
                 {product && <RateProductCard product={product} />}
                 {request && (
                     <div className="flex flex-col gap-2 w-2/3 font-body text-electric-violet-950 text-center">
@@ -54,7 +58,7 @@ export const AcceptRejectBuyRequestPage = () => {
                         {request.estado === "aceptada" && (
                             <FontAwesomeIcon
                                 icon={faSquareCheck}
-                                className="text-electric-violet-800 text-4xl text"
+                                className="text-electric-violet-800 text-4xl"
                             />
                         )}
                         {request.estado === "rechazada" && (
@@ -82,10 +86,21 @@ export const AcceptRejectBuyRequestPage = () => {
                                 </div>
                             )}
                         {finalIcon && (
-                            <FontAwesomeIcon
-                                icon={finalIcon}
-                                className="text-electric-violet-800 text-4xl text"
-                            />
+                            <>
+                                <FontAwesomeIcon
+                                    icon={finalIcon}
+                                    className="text-electric-violet-800 text-4xl text"
+                                />
+                                {/* <Link
+                                    to={`/articulos/${product.id}/vendido`}
+                                    className="text-electric-violet-800 hover:text-electric-violet-400 transition-colors duration-200"
+                                >
+                                    <p>
+                                        Continuar a marcar el artículo como
+                                        vendido
+                                    </p>
+                                </Link> */}
+                            </>
                         )}
                     </div>
                 )}

@@ -40,7 +40,7 @@ export const LayoutPage = () => {
     return (
         <>
             <Navbar />
-            <main className="bg-light">
+            <main className="bg-light min-h-[calc(100svh-15rem)]">
                 <Outlet />
                 <ToastContainer
                     position="top-right"

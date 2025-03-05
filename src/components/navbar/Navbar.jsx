@@ -127,14 +127,14 @@ export const Navbar = () => {
                     className="lg:hidden"
                 >
                     <motion.section
-                        className={`z-30 top-0 right-0 w-full h-svh bg-electric-violet-800 ${
+                        className={`z-30 top-0 right-0 max-w-full w-full h-screen bg-electric-violet-800 ${
                             isOpen ? "fixed" : "absolute"
                         }`}
                         variants={sidebar}
                     />
                     <motion.ul
                         variants={variants}
-                        className={`z-30 fixed top-0 right-0 w-full h-screen pt-24 pr-6 flex flex-col items-end gap-4 text-electric-violet-50 text-3xl ${
+                        className={`z-30  fixed top-0 right-0 w-full h-screen pt-24 pr-6 flex flex-col items-end gap-4 text-electric-violet-50 text-3xl ${
                             isOpen
                                 ? "pointer-events-auto"
                                 : "pointer-events-none"
