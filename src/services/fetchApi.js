@@ -223,6 +223,24 @@ export const updateProductVisibilityService = async (id, token) => {
     return data.articulo;
 };
 
+export const updateProductSoldService = async (id, token) => {
+    const response = await fetch(`${apiPath}/articulos/${id}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        },
+    });
+
+    const { message, data } = await response.json();
+
+    if (!response.ok) {
+        throw new Error(message);
+    }
+
+    return data.articulo;
+};
+
 export const getProductService = async (id) => {
     const response = await fetch(`${apiPath}/articulos/${id}`);
 
