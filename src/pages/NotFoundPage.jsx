@@ -5,7 +5,7 @@ export const NotFoundPage = () => {
     const navigate = useNavigate();
 
     return (
-        <section className="relative flex justify-center items-center bg-[url('/smwalle.jpg')] sm:bg-[url('/smwalle.jpg')] md:bg-[url('/mdwalle.jpg')] lg:bg-[url('/mdwalle.jpg')] bg-cover bg-center w-full h-screen">
+        <section className="relative flex justify-center items-center bg-[url('/imgs/smwalle.jpg')] sm:bg-[url('/imgs/smwalle.jpg')] md:bg-[url('/imgs/mdwalle.jpg')] lg:bg-[url('/imgs/mdwalle.jpg')] bg-cover bg-center w-full h-screen">
             <div className="top-10 sm:top-10 md:top-16 left-10 sm:left-10 md:left-16 absolute p-10 max-w-lg text-left">
                 <h1 className="mb-10 font-bold text-white text-4xl md:text-5xl lg:text-5xl lg:whitespace-nowrap">
                     ¡Oops! Página no encontrada

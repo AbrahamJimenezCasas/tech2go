@@ -15,10 +15,10 @@ import { RegisterPage } from "./pages/RegisterPage.jsx";
 import { ValidatePage } from "./pages/ValidatePage.jsx";
 import { LoginPage } from "./pages/LoginPage.jsx";
 import { NotFoundPage } from "./pages/NotFoundPage.jsx";
-import { WhoWeAre } from "./pages/WhoWeAre.jsx";
 import { AcceptRejectBuyRequestPage } from "./pages/AcceptRejectBuyRequestPage.jsx";
 import { BuyRequestsUserPage } from "./pages/BuyRequestsUserPage.jsx";
 import { SoldProductPage } from "./pages/SoldProductPage.jsx";
+import { WhoWeArePage } from "./pages/WhoWeArePage.jsx";
 
 const App = () => {
     /* ESTÁN CREADAS LAS RUTAS Y DOCUMENTOS PARA TODAS LAS PÁGINAS QUE TENEMOS EN LAS TAREAS.
@@ -76,7 +76,7 @@ const App = () => {
                 />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="*" element={<NotFoundPage />} />
-                <Route path="/sobre-nosotros" element={<WhoWeAre />} />
+                <Route path="/sobre-nosotros" element={<WhoWeArePage />} />
             </Route>
         </Routes>
     );
