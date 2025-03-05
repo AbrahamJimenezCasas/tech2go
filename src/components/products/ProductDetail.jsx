@@ -1,6 +1,9 @@
 import { toast } from "react-toastify";
 import { useAuth } from "../../hooks/useAuth.js";
-import { sendPurchaseRequestService } from "../../services/fetchApi.js";
+import {
+    sendPurchaseRequestService,
+    updateProductVisibilityService,
+} from "../../services/fetchApi.js";
 import { Button } from "../Button.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -10,6 +13,7 @@ import {
 import { formatDate } from "../../utils/dayJs.js";
 import { useUser } from "../../hooks/useUser.js";
 import { UserCard } from "../users/UserCard.jsx";
+import { useNavigate } from "react-router-dom";
 
 export const ProductDetail = ({ product }) => {
     const { token } = useAuth();
@@ -18,21 +22,42 @@ export const ProductDetail = ({ product }) => {
     const fotos = product.fotos;
     const foto = fotos ? fotos[0] : null;
     const fecha = formatDate(product.fechaCreacion);
-    const { user } = useUser(product?.vendedorId);
+    const { user: userSeller } = useUser(product?.vendedorId);
+
+    const { user: userActive } = useUser(null, token);
+
+    const navigate = useNavigate();
 
     const purchase = async () => {
         try {
-            await sendPurchaseRequestService(product.id, token);
+            await sendPurchaseRequestService(product?.id, token);
             toast.success("Solicitud de compra enviada con éxito");
         } catch (error) {
-            console.log(error.message);
-            toast.error("Error al enviar la solicitud de compra.");
+            toast.error("Error al enviar la solicitud de compra");
+        }
+    };
+
+    const publish = async () => {
+        try {
+            await updateProductVisibilityService(product?.id, token);
+            navigate("/articulos-pendientes");
+            toast.success("Artículo publicado con éxito");
+        } catch (error) {
+            toast.error("No se ha podido publicar el artículo");
         }
     };
 
     return (
         <article className="flex sm:flex-row flex-col items-center gap-4 w-full sm:h-auto min-h-[calc(100svh-9rem)] sm:min-h-[calc(100svh-17rem)]">
-            <header className="flex justify-center items-center p-6 w-full sm:w-1/2 h-6/12 sm:h-full">
+            <header className="flex flex-col justify-center items-center p-6 w-full sm:w-1/2 h-6/12 sm:h-full">
+                {userActive?.rol === "admin" && product?.visibilidad === 0 && (
+                    <Button
+                        colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light w-fit -mb-5 z-10"
+                        toggle={() => publish()}
+                    >
+                        Publicar artículo
+                    </Button>
+                )}
                 <img
                     src={
                         foto
@@ -43,6 +68,7 @@ export const ProductDetail = ({ product }) => {
                     alt={`Imagen de ${product.nombre}`}
                 />
             </header>
+
             <main className="flex lg:flex-row flex-col sm:justify-center items-center lg:items-start gap-8 bg-electric-violet-50 sm:bg-light p-6 rounded-t-4xl w-full sm:w-1/2 lg:w-3/4 h-6/12 sm:h-full">
                 <section className="w-full lg:w-1/2">
                     <h2 className="font-display font-bold text-electric-violet-800 text-3xl">
@@ -74,7 +100,7 @@ export const ProductDetail = ({ product }) => {
                             Solicitar compra
                         </Button>
                     )}
-                    {user && <UserCard user={user} />}
+                    {userSeller && <UserCard user={userSeller} />}
                 </section>
             </main>
         </article>
