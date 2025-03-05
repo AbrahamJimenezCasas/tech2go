@@ -78,11 +78,14 @@ export const EditUserProfilePage = () => {
     };
 
     const updateProfile = async () => {
-        await updateUser(formData);
-        setMessage("Perfil actualizado correctamente");
-        setMessageType("success");
-        setMessage("Error al actualizar el perfil");
-        setMessageType("error");
+        try {
+            await updateUser(formData);
+            setMessage("Perfil actualizado correctamente");
+            setMessageType("success");
+        } catch (error) {
+            setMessage("Error al actualizar el perfil");
+            setMessageType("error");
+        }
     };
 
     // Función para cambiar la contraseña
