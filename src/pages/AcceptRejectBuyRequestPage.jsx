@@ -33,10 +33,6 @@ export const AcceptRejectBuyRequestPage = () => {
 
             setFinalIcon(accion === "aceptada" ? faSquareCheck : faSquareXmark);
 
-            accion === "aceptada" &&
-                navigate(`/articulos/vendido/${product.id}/`);
-            console.log(`/articulos/${product.id}/vendido`);
-
             toast.success(`Solicitud ${accion} con éxito`);
         } catch (error) {
             toast.error(
@@ -78,29 +74,22 @@ export const AcceptRejectBuyRequestPage = () => {
                                         name="rechazada"
                                         onClick={() => handleClick("rechazada")}
                                     />
-                                    <FontAwesomeIcon
-                                        icon={faSquareCheck}
-                                        className="text-electric-violet-500 hover:text-electric-violet-800 text-5xl transition-colors duration-200 cursor-pointer text"
-                                        onClick={() => handleClick("aceptada")}
-                                    />
+                                    <Link to={`/vendido/${product?.id}`}>
+                                        <FontAwesomeIcon
+                                            icon={faSquareCheck}
+                                            className="text-electric-violet-500 hover:text-electric-violet-800 text-5xl transition-colors duration-200 cursor-pointer text"
+                                            onClick={() =>
+                                                handleClick("aceptada")
+                                            }
+                                        />
+                                    </Link>
                                 </div>
                             )}
                         {finalIcon && (
-                            <>
-                                <FontAwesomeIcon
-                                    icon={finalIcon}
-                                    className="text-electric-violet-800 text-4xl text"
-                                />
-                                {/* <Link
-                                    to={`/articulos/${product.id}/vendido`}
-                                    className="text-electric-violet-800 hover:text-electric-violet-400 transition-colors duration-200"
-                                >
-                                    <p>
-                                        Continuar a marcar el artículo como
-                                        vendido
-                                    </p>
-                                </Link> */}
-                            </>
+                            <FontAwesomeIcon
+                                icon={finalIcon}
+                                className="text-electric-violet-800 text-4xl text"
+                            />
                         )}
                     </div>
                 )}

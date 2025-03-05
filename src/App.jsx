@@ -48,10 +48,7 @@ const App = () => {
                     path="/articulos/:id/solicitudes/:id_sol"
                     element={<AcceptRejectBuyRequestPage />}
                 />
-                <Route
-                    path="/articulos/vendido/:id"
-                    element={<SoldProductPage />}
-                />
+                <Route path="/vendido/:id" element={<SoldProductPage />} />
                 <Route
                     path="/articulos/:id/:id_sol/valorar"
                     element={<RateProductPage />}
