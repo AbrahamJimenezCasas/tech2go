@@ -1,4 +1,4 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth.js";
 import { useProduct } from "../hooks/useProduct.js";
 import { useUser } from "../hooks/useUser.js";
@@ -21,8 +21,6 @@ export const AcceptRejectBuyRequestPage = () => {
     const { request } = useRequest(id, id_sol, token);
     const [loading, setIsLoading] = useState(false);
     const [finalIcon, setFinalIcon] = useState(null);
-
-    const navigate = useNavigate();
 
     const handleClick = async (accion) => {
         try {

@@ -20,7 +20,7 @@ export const SoldProductPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (product?.vendedorId !== user?.id) {
+        if (product && user && product?.vendedorId !== user?.id) {
             const route = `/articulos/${product?.id}`;
             navigate(route);
         }
