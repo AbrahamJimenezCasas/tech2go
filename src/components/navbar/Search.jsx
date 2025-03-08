@@ -39,7 +39,7 @@ export const Search = () => {
                 <img
                     className="right-2 absolute w-16"
                     onClick={() => setIsSearching(false)}
-                    src="../../../public/imgs/png-clipart-spyro-year-of-the-dragon-spyro-reignited-trilogy-spyro-the-dragon-spyro-2-ripto-s-rage-playstation-playstation-Photoroom.png"
+                    src="/imgs/png-clipart-spyro-year-of-the-dragon-spyro-reignited-trilogy-spyro-the-dragon-spyro-2-ripto-s-rage-playstation-playstation-Photoroom.png"
                     alt="Spyro pa"
                 />
             </div>
