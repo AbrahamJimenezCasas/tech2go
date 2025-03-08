@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "motion/react";
 
 import { useProducts } from "../../hooks/useProducts.js";
 import { Link } from "react-router-dom";
+import { Button } from "../Button.jsx";
 
 export const Search = () => {
     const [search, setSearch] = useState("");
@@ -25,15 +26,23 @@ export const Search = () => {
 
     return (
         <section className="relative w-full lg:w-3/4 xl:w-1/2 font-body text-electric-violet-950">
-            <input
-                type="text"
-                name="search"
-                value={search}
-                onChange={handleChange}
-                placeholder="Busca un artículo por su nombre"
-                autoComplete="off"
-                className="bg-electric-violet-50 px-6 py-2 border-2 border-electric-violet-50 focus:border-electric-violet-300 rounded-3xl focus:outline-none focus:ring-0 w-full transition-colors duration-200"
-            />
+            <div className="relative flex gap-0.5 bg-electric-violet-50 bg-clip-padding border-2 border-electric-violet-50 rounded-3xl">
+                <input
+                    type="text"
+                    name="search"
+                    value={search}
+                    onChange={handleChange}
+                    placeholder="Busca un artículo por su nombre"
+                    autoComplete="off"
+                    className="bg-electric-violet-50 px-6 py-2 border-2 border-electric-violet-50 focus:border-electric-violet-300 rounded-3xl focus:outline-none focus:ring-0 w-full transition-colors duration-200"
+                />
+                <img
+                    className="right-2 absolute w-16"
+                    onClick={() => setIsSearching(false)}
+                    src="../../../public/imgs/png-clipart-spyro-year-of-the-dragon-spyro-reignited-trilogy-spyro-the-dragon-spyro-2-ripto-s-rage-playstation-playstation-Photoroom.png"
+                    alt="Spyro pa"
+                />
+            </div>
             <AnimatePresence initial={false}>
                 {isSearching && (
                     <motion.ul
