@@ -54,10 +54,10 @@ export const LayoutPage = () => {
                     rtl={false}
                     pauseOnFocusLoss={false}
                     draggable
-                    pauseOnHover={false}
+                    pauseOnHover
                     theme="colored"
                     toastStyle={{
-                        backgroundColor: "rgba(128, 0, 255, 0.9)",
+                        backgroundColor: "var(--color-electric-violet-600)",
                         color: "#fff",
                         border: "1px solid var(--color-electric-violet-500)",
                         borderRadius: "20px",
