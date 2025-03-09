@@ -34,6 +34,9 @@ export const Footer = () => {
                     <li className="hover:text-electric-violet-400 transition-colors duration-200">
                         <Link to="/contacto">Contáctanos</Link>
                     </li>
+                    <li className="hover:text-electric-violet-400 transition-colors duration-200">
+                        <Link to="/ayuda">Centro de ayuda</Link>
+                    </li>
                 </ul>
             </nav>
         </footer>
