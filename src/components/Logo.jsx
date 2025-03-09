@@ -1,11 +1,11 @@
 import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 
-export const Logo = ({ primary, secondary, isOpen, toggle }) => {
+export const Logo = ({ primary, secondary, isOpen, toggle, zIndex }) => {
     return (
         <Link
             to="/"
-            className="z-40 w-1/2 sm:w-52 cursor-pointer"
+            className={`${zIndex} w-1/2 sm:w-52 cursor-pointer`}
             onClick={isOpen ? toggle : null}
         >
             <motion.svg

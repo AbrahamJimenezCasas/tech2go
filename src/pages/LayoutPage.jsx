@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Outlet, useSearchParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { Navbar } from "../components/navbar/Navbar.jsx";
@@ -13,6 +13,7 @@ export const LayoutPage = () => {
 
     const { token } = useAuth();
     const { requests } = useRequestsByUser(token);
+    const [pendingRequests, setPendingRequests] = useState(0);
 
     useEffect(() => {
         if (requests.length > 0) {
@@ -20,6 +21,7 @@ export const LayoutPage = () => {
                 `Tienes ${requests.length} solicitudes de compra pendientes`
             );
         }
+        setPendingRequests(requests.length);
     }, [requests.length]);
 
     useEffect(() => {
@@ -37,9 +39,10 @@ export const LayoutPage = () => {
             }
         }
     }, [type, message]);
+
     return (
         <>
-            <Navbar />
+            <Navbar pendingRequests={pendingRequests} />
             <main className="bg-light min-h-[calc(100svh-15rem)]">
                 <Outlet />
                 <ToastContainer
