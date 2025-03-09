@@ -164,6 +164,27 @@ export const getUserRequestsService = async (id) => {
     return data.solicitudesCompra;
 };
 
+export const sendRecoveryPassController = async (email) => {
+    try {
+        const response = await fetch(`${apiPath}/usuarios/password/recovery`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                //Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(email),
+        });
+        const data = await response.json();
+        if (!response.ok) {
+            throw new Error(data.message || "No se pudo enviar el código");
+        }
+        return true;
+    } catch (error) {
+        console.error("Error en sendRecoveryPassController", error);
+        return false;
+    }
+};
+
 /* ARTICULOS */
 
 export const newProductService = async (info, token) => {
