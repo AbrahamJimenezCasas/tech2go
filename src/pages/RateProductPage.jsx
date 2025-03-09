@@ -46,7 +46,7 @@ export const RateProductPage = () => {
     }
 
     return (
-        <section className="flex flex-col justify-center items-center p-10">
+        <section className="flex flex-col justify-center items-center p-10 md:mt-15 lg:mt-15">
             <h2 className="mb-8 font-bold text-electric-violet-800 text-3xl md:text-4xl lg:text-4xl text-center">
                 {valoration
                     ? "Reseña del producto"
