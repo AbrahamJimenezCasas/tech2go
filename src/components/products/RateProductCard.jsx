@@ -4,7 +4,7 @@ export const RateProductCard = ({ product }) => {
     const foto = fotos ? fotos[0] : null;
 
     return (
-        <div className="flex flex-col items-center bg-light shadow-dark/10 shadow-lg p-4 rounded-2xl w-1/3">
+        <div className="flex flex-col items-center bg-light shadow-dark/10 shadow-lg p-4 rounded-2xl w-full sm:w-1/3">
             <img
                 src={
                     foto

@@ -44,7 +44,7 @@ export const AcceptRejectBuyRequestPage = () => {
 
     return (
         <section className="flex justify-center items-center bg-light p-6 lg:px-32 2xl:px-40 lg:py-8 w-full min-h-[calc(100svh-15rem)]">
-            <section className="flex items-center gap-4 bg-electric-violet-50 shadow-lg p-10 rounded-2xl w-10/12">
+            <section className="flex sm:flex-row flex-col items-center gap-4 bg-electric-violet-50 shadow-lg p-10 rounded-2xl w-10/12">
                 {product && <RateProductCard product={product} />}
                 {request && (
                     <div className="flex flex-col gap-2 w-2/3 font-body text-electric-violet-950 text-center">

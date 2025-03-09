@@ -69,6 +69,7 @@ export const Navbar = () => {
                     secondary="fill-electric-violet-950"
                     isOpen={isOpen}
                     toggle={() => toggleOpen()}
+                    zIndex="z-40"
                 />
 
                 {/* MENU PANTALLAS GRANDES */}
