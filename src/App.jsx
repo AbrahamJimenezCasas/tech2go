@@ -20,6 +20,7 @@ import { BuyRequestsUserPage } from "./pages/BuyRequestsUserPage.jsx";
 import { SoldProductPage } from "./pages/SoldProductPage.jsx";
 import { WhoWeArePage } from "./pages/WhoWeArePage.jsx";
 import { PolityPrivace } from "./pages/PolityPrivace.jsx";
+import { ContactPage } from "./pages/ContactPage.jsx";
 const App = () => {
     /* ESTÁN CREADAS LAS RUTAS Y DOCUMENTOS PARA TODAS LAS PÁGINAS QUE TENEMOS EN LAS TAREAS.
     Podemos añadir más paginas en base al wireframe o si vemos alguna necesidad
@@ -74,7 +75,11 @@ const App = () => {
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="*" element={<NotFoundPage />} />
                 <Route path="/sobre-nosotros" element={<WhoWeArePage />} />
-                <Route path="/politica-privacidad" element={<PolityPrivace />} />
+                <Route
+                    path="/politica-privacidad"
+                    element={<PolityPrivace />}
+                />
+                <Route path="/contacto" element={<ContactPage />} />
             </Route>
         </Routes>
     );

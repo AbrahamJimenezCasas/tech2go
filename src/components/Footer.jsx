@@ -31,6 +31,9 @@ export const Footer = () => {
                             Política de privacidad
                         </Link>
                     </li>
+                    <li className="hover:text-electric-violet-400 transition-colors duration-200">
+                        <Link to="/contacto">Contáctanos</Link>
+                    </li>
                 </ul>
             </nav>
         </footer>
