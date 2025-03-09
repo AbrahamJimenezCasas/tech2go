@@ -15,11 +15,14 @@ export const RatingForm = ({ productId }) => {
         setValue,
         watch,
         formState: { errors },
-    } = useForm();
+    } = useForm({
+        defaultValues: { valoracion: 0 },
+    });
     // setValue es una función que nos da useForm() para cambiar el valor de un campo sin que el usuario lo escriba.
 
     // Cuando el usuario presiona "Enviar", ponemos isLoading = true para deshabilitar el botón.
     const [isLoading, setIsLoading] = useState(false);
+    const [ratingError, setRatingError] = useState(false);
     const { token } = useAuth();
 
     // Observar el valor de la calificación seleccionada
@@ -27,6 +30,13 @@ export const RatingForm = ({ productId }) => {
 
     // función que se ejecuta cuando el usuario envía la valoración
     const submit = async (data) => {
+        if (data.valoracion === 0) {
+            setRatingError(true);
+            return;
+        }
+
+        setRatingError(false);
+
         try {
             setIsLoading(true); // desactivamos el botón mientras se envía
 
@@ -63,7 +73,12 @@ export const RatingForm = ({ productId }) => {
                         <button
                             type="button"
                             key={value}
-                            onClick={() => setValue("valoracion", value)}
+                            onClick={() => {
+                                setValue("valoracion", value, {
+                                    shouldValidate: true,
+                                });
+                                setRatingError(false);
+                            }}
                             className="focus:outline-none"
                         >
                             <Star
@@ -72,9 +87,9 @@ export const RatingForm = ({ productId }) => {
                         </button>
                     ))}
                 </div>
-                {errors.rating && (
-                    <p className="text-red-500 text-sm">
-                        Por favor selecciona una calificación.
+                {ratingError && (
+                    <p className="text-red-500 text-sm text-center whitespace-nowrap">
+                        Por favor, selecciona una calificación.
                     </p>
                 )}
 

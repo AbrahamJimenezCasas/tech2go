@@ -25,7 +25,7 @@ export const LayoutPage = () => {
     }, [requests.length]);
 
     useEffect(() => {
-        if (type) {
+        if (type && message) {
             if (type === "error") {
                 toast.error(message);
             } else if (type === "success") {
@@ -46,18 +46,24 @@ export const LayoutPage = () => {
             <main className="bg-light min-h-[calc(100svh-15rem)]">
                 <Outlet />
                 <ToastContainer
-                    position="top-right"
+                    position="top-center"
                     autoClose={5000}
-                    hideProgressBar={false}
+                    hideProgressBar={true}
                     newestOnTop={true}
                     closeOnClick={true}
                     rtl={false}
-                    pauseOnFocusLoss
+                    pauseOnFocusLoss={false}
                     draggable
-                    pauseOnHover
-                    theme="light"
+                    pauseOnHover={false}
+                    theme="colored"
                     toastStyle={{
-                        backgroundColor: "var(--color-electric-violet-100)",
+                        backgroundColor: "rgba(128, 0, 255, 0.9)",
+                        color: "#fff",
+                        border: "1px solid var(--color-electric-violet-500)",
+                        borderRadius: "20px",
+                        boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.3)",
+                        minWidth: "350px",
+                        padding: "16px",
                     }}
                 />
             </main>
