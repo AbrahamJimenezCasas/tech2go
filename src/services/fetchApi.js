@@ -190,15 +190,19 @@ export const editRecoveryPassService = async (
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
-            //Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ recoveryPassCode, newPassword }),
     });
-    const data = await response.json();
+
     if (!response.ok) {
-        throw new Error(data.message || "No se pudo restablecer la contraseña");
+        const errorData = await response.json();
+        throw new Error(
+            errorData.message || "Error al restablecer la contraseña"
+        );
     }
-    return true;
+
+    const { message } = await response.json();
+    return message;
 };
 
 /* ARTICULOS */

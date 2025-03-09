@@ -9,6 +9,7 @@ import {
     updatePasswordService,
     updateUserService,
     sendRecoveryPassController,
+    editRecoveryPassService,
 } from "../services/fetchApi.js";
 
 export const useUser = (id, token) => {
@@ -141,6 +142,25 @@ export const useUser = (id, token) => {
         }
     };
 
+    const resetPassword = async (recoveryPass, newPassword) => {
+        try {
+            setLoading(true);
+            setError(null);
+            setSuccessMessage(null);
+
+            const message = await editRecoveryPassService(
+                recoveryPass,
+                newPassword
+            );
+            setSuccessMessage(message);
+        } catch (error) {
+            setError(error.message || "Error al cambiar la contraseña.");
+            throw error;
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return {
         user,
         sales,
@@ -153,5 +173,6 @@ export const useUser = (id, token) => {
         deletedAvatar,
         updatedPassword,
         sendRecoveryEmail,
+        resetPassword,
     };
 };
