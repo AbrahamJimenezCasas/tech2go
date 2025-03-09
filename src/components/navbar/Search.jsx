@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-
 import { useProducts } from "../../hooks/useProducts.js";
 import { Link } from "react-router-dom";
 
@@ -25,15 +24,23 @@ export const Search = () => {
 
     return (
         <section className="relative w-full lg:w-3/4 xl:w-1/2 font-body text-electric-violet-950">
-            <input
-                type="text"
-                name="search"
-                value={search}
-                onChange={handleChange}
-                placeholder="Busca un artículo por su nombre"
-                autoComplete="off"
-                className="bg-electric-violet-50 px-6 py-2 border-2 border-electric-violet-50 focus:border-electric-violet-300 rounded-3xl focus:outline-none focus:ring-0 w-full transition-colors duration-200"
-            />
+            <div className="relative">
+                <input
+                    type="text"
+                    name="search"
+                    value={search}
+                    onChange={handleChange}
+                    placeholder="Busca un artículo por su nombre"
+                    autoComplete="off"
+                    className="bg-electric-violet-50 px-6 py-2 border-2 border-electric-violet-50 focus:border-electric-violet-300 rounded-3xl focus:outline-none focus:ring-0 w-full transition-colors duration-200"
+                />
+                <img
+                    className="top-0 right-2 absolute w-16 pointer-events-none"
+                    onClick={() => setIsSearching(false)}
+                    src="/imgs/spyro.png"
+                    alt="Spyro"
+                />
+            </div>
             <AnimatePresence initial={false}>
                 {isSearching && (
                     <motion.ul

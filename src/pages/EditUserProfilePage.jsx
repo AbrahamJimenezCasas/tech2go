@@ -78,11 +78,14 @@ export const EditUserProfilePage = () => {
     };
 
     const updateProfile = async () => {
-        await updateUser(formData);
-        setMessage("Perfil actualizado correctamente");
-        setMessageType("success");
-        setMessage("Error al actualizar el perfil");
-        setMessageType("error");
+        try {
+            await updateUser(formData);
+            setMessage("Perfil actualizado correctamente");
+            setMessageType("success");
+        } catch (error) {
+            setMessage("Error al actualizar el perfil");
+            setMessageType("error");
+        }
     };
 
     // Función para cambiar la contraseña
@@ -116,10 +119,10 @@ export const EditUserProfilePage = () => {
     };
 
     return (
-        <main>
-            <div className="bg-white shadow-md mx-auto mt-8 p-6 rounded-lg max-w-2xl">
-                <h1 className="mb-4 font-bold text-electric-violet-700 text-3xl text-center">
-                    Editar Perfil
+        <main className="p-6 lg:px-32 2xl:px-40 lg:py-8 w-full">
+            <div className="bg-white shadow-dark/10 shadow-md mx-auto p-6 rounded-lg max-w-2xl font-body">
+                <h1 className="mb-4 font-display font-bold text-electric-violet-700 text-3xl text-center">
+                    Editar perfil
                 </h1>
                 {message && (
                     <p
@@ -147,14 +150,14 @@ export const EditUserProfilePage = () => {
                         <div className="flex justify-center items-center bg-gray-200 rounded-full w-20 h-20">
                             <FontAwesomeIcon
                                 icon={faUser}
-                                className="text-gray-500 text-3xl"
+                                className="text-electric-violet-950 text-3xl"
                             />
                         </div>
                     )}
                     <input
                         type="file"
                         onChange={handleAvatarChange}
-                        className="mt-2 text-sm"
+                        className="px-4 py-2 border-2 border-electric-violet-200 focus:border-electric-violet-800 rounded-3xl focus:outline-none focus:ring-0 w-full transition-colors duration-200"
                     />
                     <div className="flex justify-center gap-4 mt-2">
                         <button
@@ -187,7 +190,7 @@ export const EditUserProfilePage = () => {
                                 name={key}
                                 value={value}
                                 onChange={handleInputChange}
-                                className="p-2 border rounded-full w-full"
+                                className="px-4 py-2 border-2 border-electric-violet-200 focus:border-electric-violet-800 rounded-3xl focus:outline-none focus:ring-0 w-full transition-colors duration-200"
                             />
                         </div>
                     ))}
@@ -224,13 +227,13 @@ export const EditUserProfilePage = () => {
                                     name={key}
                                     value={value}
                                     onChange={handlePasswordChange}
-                                    className="p-2 pr-10 border rounded-full w-full"
+                                    className="px-4 py-2 border-2 border-electric-violet-200 focus:border-electric-violet-800 rounded-3xl focus:outline-none focus:ring-0 w-full transition-colors duration-200"
                                 />
                                 <FontAwesomeIcon
                                     icon={
                                         showPassword[key] ? faEyeSlash : faEye
                                     }
-                                    className="top-3 right-3 absolute text-gray-500 cursor-pointer"
+                                    className="top-1/2 right-4 absolute text-electric-violet-300 hover:text-electric-violet-500 text-xl transition-colors -translate-y-1/2 duration-200 cursor-pointer"
                                     onClick={() =>
                                         setShowPassword((prev) => ({
                                             ...prev,

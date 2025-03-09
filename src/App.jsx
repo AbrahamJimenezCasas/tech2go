@@ -15,10 +15,11 @@ import { RegisterPage } from "./pages/RegisterPage.jsx";
 import { ValidatePage } from "./pages/ValidatePage.jsx";
 import { LoginPage } from "./pages/LoginPage.jsx";
 import { NotFoundPage } from "./pages/NotFoundPage.jsx";
-import { WhoWeAre } from "./pages/WhoWeAre.jsx";
 import { AcceptRejectBuyRequestPage } from "./pages/AcceptRejectBuyRequestPage.jsx";
 import { BuyRequestsUserPage } from "./pages/BuyRequestsUserPage.jsx";
-
+import { SoldProductPage } from "./pages/SoldProductPage.jsx";
+import { WhoWeArePage } from "./pages/WhoWeArePage.jsx";
+import { PolityPrivace } from "./pages/PolityPrivace.jsx";
 const App = () => {
     /* ESTÁN CREADAS LAS RUTAS Y DOCUMENTOS PARA TODAS LAS PÁGINAS QUE TENEMOS EN LAS TAREAS.
     Podemos añadir más paginas en base al wireframe o si vemos alguna necesidad
@@ -29,21 +30,16 @@ const App = () => {
         <Routes>
             <Route path="/" element={<LayoutPage />}>
                 <Route index element={<HomePage />} />
-                {/* SARA, principal & landing articulos */}
                 <Route path="/articulos" element={<ProductsPage />} />
-                {/* SARA principal & landing articulos */}
                 <Route path="/articulos/:id" element={<ProductPage />} />
-                {/* ESTER detalle artículo*/}
                 <Route
                     path="/vender-articulo"
                     element={<PublishProductPage />}
                 />
-                {/* ESTER publicación artículos*/}
                 <Route
                     path="/solicitudes-compra"
                     element={<BuyRequestsPage />}
                 />
-                {/* NATALIA lista solicitudes de compra*/}
                 <Route
                     path="/usuario/solicitudes"
                     element={<BuyRequestsUserPage />}
@@ -52,40 +48,33 @@ const App = () => {
                     path="/articulos/:id/solicitudes/:id_sol"
                     element={<AcceptRejectBuyRequestPage />}
                 />
+                <Route path="/vendido/:id" element={<SoldProductPage />} />
                 <Route
                     path="/articulos/:id/:id_sol/valorar"
                     element={<RateProductPage />}
                 />
-                {/* ANA valoracion de una venta*/}
                 <Route
                     path="/articulos-pendientes"
                     element={<PendingProductsPage />}
-                />{" "}
-                {/* NATALIA articulos no publicados*/}
+                />
                 <Route path="/usuarios" element={<UsersPage />} />
-                {/* ABRAHAM lista usuarios*/}
                 <Route path="/usuario" element={<ProfilePage />}>
                     <Route index element={<UserProfilePage />} />
                     <Route path="/usuario/:id" element={<UserProfilePage />} />
-                </Route>{" "}
-                {/* SARA detalle usuario con historico*/}
+                </Route>
                 <Route
                     path="/usuario/editar"
                     element={<EditUserProfilePage />}
                 />
-                {/* NATALIA datos usuario con posibilidad de cambio*/}
                 <Route path="/registro" element={<RegisterPage />} />
-                {/* ANA registro*/}
                 <Route
                     path="/validar/:registrationCode"
                     element={<ValidatePage />}
                 />
-                {/* ABRAHAM validacion usuario*/}
-                <Route path="/login" element={<LoginPage />} />{" "}
-                {/* SARA login */}
-                <Route path="*" element={<NotFoundPage />} />{" "}
-                {/* ANA not found*/}
-                <Route path="/sobre-nosotros" element={<WhoWeAre />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="*" element={<NotFoundPage />} />
+                <Route path="/sobre-nosotros" element={<WhoWeArePage />} />
+                <Route path="/politica-privacidad" element={<PolityPrivace />} />
             </Route>
         </Routes>
     );

@@ -58,10 +58,10 @@ export const RateProductPage = () => {
             <div className="flex flex-col md:flex-row lg:flex-row items-center justify-center gap-9 bg-light shadow-lg mx-auto p-10 rounded-xl w-[90%] max-w-5xl">
                 {product && <RateProductCard product={product} />}
 
-                <div className="w-2/3">
+                <div className="w-full sm:w-2/3">
                     {valoration ? (
                         <div className="p-4 rounded-lg">
-                            <div className="flex items-center gap-2">
+                            <div className="sm:flex flex-col items-center gap-2">
                                 <p className="font-semibold text-electric-violet-900 text-xl">
                                     Valoración:
                                 </p>

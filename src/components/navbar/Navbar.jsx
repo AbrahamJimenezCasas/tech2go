@@ -11,7 +11,7 @@ import { Button } from "../Button.jsx";
 import { ProfileMenu } from "./ProfileMenu.jsx";
 import { Search } from "./Search.jsx";
 
-export const Navbar = () => {
+export const Navbar = ({ pendingRequests }) => {
     const [isOpen, toggleOpen] = useCycle(false, true);
     const { token } = useAuth();
 
@@ -69,6 +69,7 @@ export const Navbar = () => {
                     secondary="fill-electric-violet-950"
                     isOpen={isOpen}
                     toggle={() => toggleOpen()}
+                    zIndex="z-40"
                 />
 
                 {/* MENU PANTALLAS GRANDES */}
@@ -94,7 +95,10 @@ export const Navbar = () => {
                                     </Button>
                                 </li>
                                 <li className="relative">
-                                    <ProfileMenu colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light" />
+                                    <ProfileMenu
+                                        colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light"
+                                        pendingRequests={pendingRequests}
+                                    />
                                 </li>
                             </>
                         ) : (
@@ -127,14 +131,14 @@ export const Navbar = () => {
                     className="lg:hidden"
                 >
                     <motion.section
-                        className={`z-30 top-0 right-0 w-full h-svh bg-electric-violet-800 ${
+                        className={`z-30 top-0 right-0 max-w-full w-full h-screen bg-electric-violet-800 ${
                             isOpen ? "fixed" : "absolute"
                         }`}
                         variants={sidebar}
                     />
                     <motion.ul
                         variants={variants}
-                        className={`z-30 fixed top-0 right-0 w-full h-screen pt-24 pr-6 flex flex-col items-end gap-4 text-electric-violet-50 text-3xl ${
+                        className={`z-30  fixed top-0 right-0 w-full h-screen pt-24 pr-6 flex flex-col items-end gap-4 text-electric-violet-50 text-3xl ${
                             isOpen
                                 ? "pointer-events-auto"
                                 : "pointer-events-none"
@@ -179,6 +183,7 @@ export const Navbar = () => {
                                         colors="bg-electric-violet-50 hover:bg-electric-violet-900 
                                     text-electric-violet-800 hover:text-electric-violet-50 text-lg"
                                         toggleOpen={toggleOpen}
+                                        pendingRequests={pendingRequests}
                                     />
                                 </motion.li>
                             </>

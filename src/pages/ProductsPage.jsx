@@ -162,7 +162,7 @@ export const ProductsPage = () => {
     return (
         <>
             <section className="flex justify-end items-center gap-8 bg-electric-violet-800 px-6 lg:px-32 2xl:px-40 py-2 w-full h-16">
-                <ul className="flex gap-4 text-electric-violet-300">
+                <ul className="flex flex-wrap justify-end gap-2 sm:gap-4 text-electric-violet-300 text-base">
                     {sorts.map((sort, i) => (
                         <li
                             key={i}
