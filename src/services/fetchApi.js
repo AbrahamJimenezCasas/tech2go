@@ -165,24 +165,21 @@ export const getUserRequestsService = async (id) => {
 };
 
 export const sendRecoveryPassController = async (email) => {
-    try {
-        const response = await fetch(`${apiPath}/usuarios/password/recovery`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                //Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify({ email }),
-        });
-        const data = await response.json();
-        if (!response.ok) {
-            throw new Error(data.message || "No se pudo enviar el código");
-        }
-        return true;
-    } catch (error) {
-        console.error("Error en sendRecoveryPassController", error);
-        return false;
+    const response = await fetch(`${apiPath}/usuarios/password/recovery`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+    });
+
+    if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Error al recuperar contraseña");
     }
+
+    const { message } = await response.json();
+    return message;
 };
 
 export const editRecoveryPassService = async (
