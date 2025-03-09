@@ -172,7 +172,7 @@ export const sendRecoveryPassController = async (email) => {
                 "Content-Type": "application/json",
                 //Authorization: `Bearer ${token}`,
             },
-            body: JSON.stringify(email),
+            body: JSON.stringify({ email }),
         });
         const data = await response.json();
         if (!response.ok) {
@@ -183,6 +183,25 @@ export const sendRecoveryPassController = async (email) => {
         console.error("Error en sendRecoveryPassController", error);
         return false;
     }
+};
+
+export const editRecoveryPassService = async (
+    recoveryPassCode,
+    newPassword
+) => {
+    const response = await fetch(`${apiPath}/usuarios/password/recovery`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            //Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ recoveryPassCode, newPassword }),
+    });
+    const data = await response.json();
+    if (!response.ok) {
+        throw new Error(data.message || "No se pudo restablecer la contraseña");
+    }
+    return true;
 };
 
 /* ARTICULOS */
