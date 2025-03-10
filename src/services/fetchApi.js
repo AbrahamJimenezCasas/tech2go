@@ -164,6 +164,48 @@ export const getUserRequestsService = async (id) => {
     return data.solicitudesCompra;
 };
 
+export const sendRecoveryPassController = async (email) => {
+    const response = await fetch(`${apiPath}/usuarios/password/recovery`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+    });
+
+    if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Error al recuperar contraseña");
+    }
+
+    const { message } = await response.json();
+    return message;
+};
+
+export const editUserPasswordWithPassController = async (
+    email,
+    recoveryPass,
+    newPassword
+) => {
+    const response = await fetch(`${apiPath}/usuarios/password/recovery`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, recoveryPass, newPassword }),
+    });
+
+    if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(
+            errorData.message || "Error al restablecer la contraseña"
+        );
+    }
+
+    const { message } = await response.json();
+    return message;
+};
+
 /* ARTICULOS */
 
 export const newProductService = async (info, token) => {

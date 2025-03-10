@@ -20,6 +20,8 @@ import { BuyRequestsUserPage } from "./pages/BuyRequestsUserPage.jsx";
 import { SoldProductPage } from "./pages/SoldProductPage.jsx";
 import { WhoWeArePage } from "./pages/WhoWeArePage.jsx";
 import { PolityPrivace } from "./pages/PolityPrivace.jsx";
+import { RecoveryPasswordPage } from "./pages/RecoveryPasswordPage.jsx";
+import { ResetPasswordPage } from "./pages/ResetPasswordPage.jsx";
 import { ContactPage } from "./pages/ContactPage.jsx";
 import { HelpCenterPage } from "./pages/HelpCenterPage.jsx";
 const App = () => {
@@ -79,6 +81,14 @@ const App = () => {
                 <Route
                     path="/politica-privacidad"
                     element={<PolityPrivace />}
+                />
+                <Route
+                    path="/usuarios/password/recovery"
+                    element={<RecoveryPasswordPage />}
+                />
+                <Route
+                    path="/usuarios/password/reset"
+                    element={<ResetPasswordPage />}
                 />
                 <Route path="/contacto" element={<ContactPage />} />
                 <Route path="/ayuda" element={<HelpCenterPage />} />

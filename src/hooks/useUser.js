@@ -8,6 +8,8 @@ import {
     updateAvatarService,
     updatePasswordService,
     updateUserService,
+    sendRecoveryPassController,
+    editUserPasswordWithPassController,
 } from "../services/fetchApi.js";
 
 export const useUser = (id, token) => {
@@ -122,6 +124,44 @@ export const useUser = (id, token) => {
         }
     };
 
+    const sendRecoveryEmail = async (email) => {
+        try {
+            setLoading(true);
+            setError(null);
+            setSuccessMessage(null);
+
+            const message = await sendRecoveryPassController(email);
+            setSuccessMessage(message);
+        } catch (error) {
+            setError(
+                error.message || "Error al enviar el código de recuperación"
+            );
+            throw error;
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const resetPassword = async (email, recoveryPass, newPassword) => {
+        try {
+            setLoading(true);
+            setError(null);
+            setSuccessMessage(null);
+
+            const message = await editUserPasswordWithPassController(
+                email,
+                recoveryPass,
+                newPassword
+            );
+            setSuccessMessage(message);
+        } catch (error) {
+            setError(error.message || "Error al cambiar la contraseña.");
+            throw error;
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return {
         user,
         sales,
@@ -133,5 +173,7 @@ export const useUser = (id, token) => {
         updatedAvatar,
         deletedAvatar,
         updatedPassword,
+        sendRecoveryEmail,
+        resetPassword,
     };
 };

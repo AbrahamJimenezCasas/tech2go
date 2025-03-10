@@ -126,7 +126,11 @@ export const EditUserProfilePage = () => {
                 </h1>
                 {message && (
                     <p
-                        className={`text-${messageType === "success" ? "green" : "red"}-600 text-center font-semibold`}
+                        className={`text-center font-semibold ${
+                            messageType === "success"
+                                ? "text-green-600"
+                                : "text-red-600"
+                        }`}
                     >
                         {message}
                     </p>

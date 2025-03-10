@@ -1,4 +1,4 @@
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi";
 import { useAuth } from "../../hooks/useAuth.js";
@@ -64,6 +64,11 @@ export const LoginForm = () => {
                 errors={errors}
                 register={register}
             />
+            <Link to="/usuarios/password/recovery">
+                <p className="mt-1 p-1 w-full text-electric-violet-950 hover:text-electric-violet-800 text-center transition-colors duration-200">
+                    ¿Olvidaste tu contraseña? Pincha aquí.
+                </p>
+            </Link>
             <Button
                 colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light w-fit mt-8"
                 type="submit"
