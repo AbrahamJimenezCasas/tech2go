@@ -31,6 +31,7 @@ export const ResetPasswordPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        // Verificación de que todos los campos estén completos
         if (
             !formData.email ||
             !formData.newPassword ||
@@ -41,6 +42,7 @@ export const ResetPasswordPage = () => {
             return;
         }
 
+        // Verificación de que las contraseñas coincidan
         if (formData.newPassword !== formData.confirmPassword) {
             setMessage("Las contraseñas no coinciden.");
             setMessageType("error");
@@ -49,10 +51,11 @@ export const ResetPasswordPage = () => {
 
         try {
             await resetPassword(
+                formData.email,
                 recoveryPass,
-                formData.newPassword,
-                formData.email
+                formData.newPassword
             );
+
             setMessage("Contraseña cambiada con éxito. Redirigiendo...");
             setMessageType("success");
 
