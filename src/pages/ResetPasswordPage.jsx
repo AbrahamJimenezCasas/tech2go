@@ -140,6 +140,7 @@ export const ResetPasswordPage = () => {
                     >
                         <FontAwesomeIcon
                             icon={showPassword ? faEyeSlash : faEye}
+                            className="top-1/2 right-4 absolute text-electric-violet-300 hover:text-electric-violet-500 text-xl transition-colors -translate-y-1/2 duration-200 cursor-pointer"
                         />
                     </button>
                 </div>
@@ -165,6 +166,7 @@ export const ResetPasswordPage = () => {
                     >
                         <FontAwesomeIcon
                             icon={showConfirmPassword ? faEyeSlash : faEye}
+                            className="top-1/2 right-4 absolute text-electric-violet-300 hover:text-electric-violet-500 text-xl transition-colors -translate-y-1/2 duration-200 cursor-pointer"
                         />
                     </button>
                 </div>
