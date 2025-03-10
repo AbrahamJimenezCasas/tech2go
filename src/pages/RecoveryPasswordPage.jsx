@@ -42,7 +42,11 @@ export const RecoveryPasswordPage = () => {
 
             {message && (
                 <p
-                    className={`text-${messageType === "success" ? "green" : "red"}-600 text-center font-semibold`}
+                    className={`text-center font-semibold ${
+                        messageType === "success"
+                            ? "text-green-600"
+                            : "text-red-600"
+                    }`}
                 >
                     {message}
                 </p>
@@ -64,7 +68,7 @@ export const RecoveryPasswordPage = () => {
 
             <button
                 onClick={handleSubmit}
-                className="w-full bg-electric-violet-600 text-white py-2 px-4 rounded-full transition duration-200 ease-in-out transform hover:bg-electric-violet-700 hover:scale-105 active:scale-95 shadow-md"
+                className="w-auto bg-electric-violet-600 text-white py-1 px-4 rounded-full transition duration-200 ease-in-out transform hover:bg-electric-violet-700 hover:scale-105 active:scale-95 shadow-md mx-auto block"
             >
                 Enviar Código
             </button>
