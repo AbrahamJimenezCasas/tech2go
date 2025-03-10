@@ -168,7 +168,6 @@ export const PublishProductForm = () => {
                 type="submit"
                 disabled={isLoading}
             >
-                {" "}
                 Publicar
             </Button>
         </Form>

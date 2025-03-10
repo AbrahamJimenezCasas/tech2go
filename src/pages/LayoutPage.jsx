@@ -43,7 +43,7 @@ export const LayoutPage = () => {
     return (
         <>
             <Navbar pendingRequests={pendingRequests} />
-            <main className="bg-light min-h-[calc(100svh-15rem)]">
+            <main className="relative bg-light min-h-[calc(100svh-15rem)]">
                 <Outlet />
                 <ToastContainer
                     position="top-center"
