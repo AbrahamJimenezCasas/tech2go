@@ -19,7 +19,7 @@ import { EditProductForm } from "../forms/EditProductForm.jsx";
 import { useState } from "react";
 import { AnimatePresence } from "motion/react";
 
-export const ProductDetail = ({ product }) => {
+export const ProductDetail = ({ product, update }) => {
     const { token } = useAuth();
 
     const staticPath = import.meta.env.VITE_BACKEND_STATIC;
@@ -154,6 +154,7 @@ export const ProductDetail = ({ product }) => {
                         product={product}
                         toggle={toggleVisible}
                         token={token}
+                        update={update}
                     />
                 )}
             </AnimatePresence>

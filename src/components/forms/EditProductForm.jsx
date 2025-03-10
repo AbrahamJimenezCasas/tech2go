@@ -7,7 +7,13 @@ import { useState } from "react";
 import { updateProductService } from "../../services/fetchApi.js";
 import { toast } from "react-toastify";
 
-export const EditProductForm = ({ isVisible, product, toggle, token }) => {
+export const EditProductForm = ({
+    isVisible,
+    product,
+    toggle,
+    token,
+    update,
+}) => {
     const {
         register,
         handleSubmit,
@@ -28,6 +34,7 @@ export const EditProductForm = ({ isVisible, product, toggle, token }) => {
             setIsLoading(true);
 
             await updateProductService(product.id, token, data);
+            update();
 
             toast.success("Artículo actualizado con éxito");
         } catch (error) {
