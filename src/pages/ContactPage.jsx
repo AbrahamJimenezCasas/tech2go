@@ -25,45 +25,51 @@ export const ContactPage = () => {
     return (
         <section className="flex flex-col">
             <article className="relative flex justify-center items-center bg-[url('/imgs/gamer.png')] sm:bg-[url('/imgs/gamer.png')] md:bg-[url('/imgs/gamer.png')] lg:bg-[url('/imgs/gamer.png')] bg-cover bg-no-repeat bg-center w-full h-90">
-                <h2 className="mb-15 pb-2 font-display font-bold text-light text-7xl">
+                <h2 className="mb-15 pb-2 font-display font-bold text-light text-5xl md:text-7xl lg:text-7xl">
                     Contáctanos
                 </h2>
             </article>
-            <article className="flex flex-col lg:flex-row justify-center items-center gap-20 p-20">
-                <div className="flex flex-col gap-3 lg:self-start">
-                    <p>
+            <article className="flex lg:flex-row flex-col justify-center items-center gap-20 p-20">
+                <div className="flex flex-col lg:self-start gap-3">
+                    <p className="text-xl">
                         <FontAwesomeIcon
                             icon={faPhone}
                             style={{ color: "#bb00ff" }}
                         />
-                        <span className="font-bold"> Teléfono:</span> +34
-                        912345678
+                        <span className="font-bold text-electric-violet-700 text-2xl">
+                            Teléfono:
+                        </span>
+                        +34 912345678
                     </p>
-                    <p>
+                    <p className="text-xl">
                         <FontAwesomeIcon icon={faEnvelope} />
-                        <span className="font-bold"> Correo:</span>{" "}
+                        <span className="font-bold text-electric-violet-700 text-2xl">
+                            Correo:
+                        </span>
                         tech2go@gmail.com
                     </p>
-                    <p>
+                    <p className="text-xl">
                         <FontAwesomeIcon
                             icon={faLocationDot}
                             style={{ color: "#ff0000" }}
                         />
-                        <span className="font-bold"> Localización:</span> Silent
-                        Hill
+                        <span className="font-bold text-electric-violet-700 text-2xl">
+                            Localización:
+                        </span>
+                        Silent Hill
                     </p>
                 </div>
                 <iframe
                     id="maps"
                     allowFullScreen=""
-                    className="rounded-3xl w-120 h-86 "
+                    className="rounded-3xl w-64 md:w-120 lg:w-120 h-64 md:h-86 lg:h-86"
                     loading="lazy"
                 ></iframe>
                 <div>
                     <img
-                        src="../../public/imgs/resethill-3347744937.jpeg"
+                        src="/imgs/silenthill.jpg"
                         alt="Silent Hill"
-                        className="rounded-3xl w-120 h-86 object-cover"
+                        className="rounded-3xl object-cover"
                     />
                 </div>
             </article>

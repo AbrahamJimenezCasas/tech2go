@@ -31,16 +31,6 @@ export const HelpCenterPage = () => {
             ),
         },
         {
-            question: "¿Cómo valorar un producto o ver valoraciones?",
-            answer: "En Tech2Go la opinión de nuestros clientes es fundamental. Las valoraciones ayudan a otros compradores a tomar decisiones informadas y nos permiten mejorar continuamente.\n\nPara valorar un producto:\nRecuerda que solo podrás valorar un producto después de que el vendedor haya aprobado la compra.\n\n1.Visita tu perfil de usuario.\n2.Busca el producto en la lista de solicitudes de compra.\n3.Selecciona el icono del bocadillo.\n4.Elige una calificación de 1 a 5 estrellas, donde 1 es la peor valoración y 5 la mejor.\n5.Escribe un comentario sobre tu experiencia de compra.\n6.Presiona el botón “Enviar”.\n\nPara ver las valoraciones de otros clientes:\n\n1.Busca el producto que te interesa.\n2.Selecciona el icono del bocadillo.\n3.Podrás visualizar las reseñas de otros clientes.",
-            icon: (
-                <FontAwesomeIcon
-                    icon={faStar}
-                    style={{ color: "#5903af", fontSize: "2rem" }}
-                />
-            ),
-        },
-        {
             question: "¿Cómo vender un producto?",
             answer: "Si deseas vender productos tecnológicos, Tech2Go te permite publicarlos fácilmente para llegar a más compradores.\n\nSigue estos pasos para vender un artículo:\n\n1.Accede a la página de inicio.\n2.Haz clic en el botón “Vender”.\n3.Completa los campos con la información del artículo y sube imágenes para que los clientes lo vean en detalle.\n4.Selecciona “Publicar”.\n5.Tu producto pasará por un proceso de verificación de hasta 48 horas antes de aparecer en tu perfil.\n6.Una vez publicada la venta, recibirás notificaciones cuando haya interesados.\n7.Podrás aceptar o rechazar las solicitudes de compra desde tu perfil.",
             icon: (
@@ -70,28 +60,38 @@ export const HelpCenterPage = () => {
                 />
             ),
         },
+        {
+            question: "¿Cómo valorar un producto o ver valoraciones?",
+            answer: "En Tech2Go la opinión de nuestros clientes es fundamental. Las valoraciones ayudan a otros compradores a tomar decisiones informadas y nos permiten mejorar continuamente.\n\nPara valorar un producto:\nRecuerda que solo podrás valorar un producto después de que el vendedor haya aprobado la compra.\n\n1.Visita tu perfil de usuario.\n2.Busca el producto en la lista de solicitudes de compra.\n3.Selecciona el icono del bocadillo.\n4.Elige una calificación de 1 a 5 estrellas, donde 1 es la peor valoración y 5 la mejor.\n5.Escribe un comentario sobre tu experiencia de compra.\n6.Presiona el botón “Enviar”.\n\nPara ver las valoraciones de otros clientes:\n\n1.Busca el producto que te interesa.\n2.Selecciona el icono del bocadillo.\n3.Podrás visualizar las reseñas de otros clientes.",
+            icon: (
+                <FontAwesomeIcon
+                    icon={faStar}
+                    style={{ color: "#5903af", fontSize: "2rem" }}
+                />
+            ),
+        },
     ];
 
     return (
         <section className="p-15">
-            <h2 className="text-4xl md:text-5xl lg:text-5xl text-center font-bold text-electric-violet-900 mb-20">
+            <h2 className="mb-20 font-bold text-electric-violet-900 text-4xl md:text-5xl lg:text-5xl text-center">
                 Centro de Ayuda
             </h2>
-            <div className="grid gird-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-10 justify-center place-items-center">
+            <div className="justify-center gap-10 grid md:grid-cols-2 lg:grid-cols-3 gird-cols-1">
                 {helpReq.map((item, index) => (
                     <article
                         key={index}
                         onClick={() => toggleAnswer(index)}
-                        className="w-60 h-60 border-2 border-electric-violet-700 rounded-2xl p-4 cursor-pointer flex flex-col justify-center items-center"
+                        className="flex flex-col items-center p-4 border-2 border-electric-violet-700 rounded-2xl w-60 md:w-full h-fit cursor-pointer"
                     >
-                        <header className="flex flex-col text-center  gap-7">
+                        <header className="flex flex-col gap-7 text-center">
                             {item.icon}
-                            <h3 className="text-xl text-electric-violet-900 font-bold">
+                            <h3 className="font-bold text-electric-violet-900 text-xl">
                                 {item.question}
                             </h3>
                         </header>
                         {openIndex === index && (
-                            <p className="mt-3 text-sm text-gray-800 whitespace-pre-line">
+                            <p className="mt-3 text-gray-800 text-sm whitespace-pre-line">
                                 {item.answer}
                             </p>
                         )}
