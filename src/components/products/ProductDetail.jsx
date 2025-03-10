@@ -92,15 +92,36 @@ export const ProductDetail = ({ product }) => {
                     </p>
                 </section>
                 <section className="flex flex-col items-center sm:items-end gap-2 sm:gap-4 w-full lg:w-1/2">
-                    {token && (
-                        <Button
-                            colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light w-fit "
-                            toggle={() => purchase()}
-                        >
-                            Solicitar compra
-                        </Button>
+                    {token &&
+                        userSeller &&
+                        userActive &&
+                        userSeller.username !== userActive.username && (
+                            <div className="flex flex-col items-center sm:items-end gap-1">
+                                <Button
+                                    colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light w-fit"
+                                    disabled={
+                                        product.vendido === 1 ? true : false
+                                    }
+                                    toggle={() => purchase()}
+                                >
+                                    Solicitar compra
+                                </Button>
+                                {product.vendido === 1 && (
+                                    <p className="font-body text-electric-violet-950">
+                                        Este producto ya se ha vendido
+                                    </p>
+                                )}
+                            </div>
+                        )}
+
+                    {userSeller && (
+                        <section className="mt-10 sm:mt-6 font-display font-bold text-electric-violet-950 font-italic">
+                            <p className="sm:text-left text-center uppercase">
+                                Vendido por:
+                            </p>
+                            <UserCard user={userSeller} />
+                        </section>
                     )}
-                    {userSeller && <UserCard user={userSeller} />}
                 </section>
             </main>
         </article>

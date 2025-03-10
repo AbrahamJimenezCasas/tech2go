@@ -10,10 +10,12 @@ import { MenuToggle } from "./MenuToggle.jsx";
 import { Button } from "../Button.jsx";
 import { ProfileMenu } from "./ProfileMenu.jsx";
 import { Search } from "./Search.jsx";
+import { useUser } from "../../hooks/useUser.js";
 
 export const Navbar = ({ pendingRequests }) => {
     const [isOpen, toggleOpen] = useCycle(false, true);
     const { token } = useAuth();
+    const { user } = useUser(null, token);
 
     const sidebar = {
         open: (height = 1000) => ({
@@ -164,6 +166,18 @@ export const Navbar = ({ pendingRequests }) => {
                                         Explorar usuarios
                                     </Button>
                                 </motion.li>
+                                {user?.rol === "admin" && (
+                                    <motion.li variants={items}>
+                                        <Button
+                                            colors="bg-electric-violet-50 hover:bg-electric-violet-900 
+                                    text-electric-violet-800 hover:text-electric-violet-50 flex gap-2 items-center"
+                                            path="/articulos-pendientes"
+                                            toggle={() => toggleOpen()}
+                                        >
+                                            Articulos pendientes
+                                        </Button>
+                                    </motion.li>
+                                )}
                                 <motion.li variants={items}>
                                     <Button
                                         colors="bg-electric-violet-50 hover:bg-electric-violet-900 
@@ -219,14 +233,24 @@ export const Navbar = ({ pendingRequests }) => {
             </header>
             <section className="flex justify-between items-center bg-light px-4 lg:px-12 py-2 w-full h-16">
                 <Search />
-                {token && (
-                    <Button
-                        colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light hidden lg:block"
-                        path="/usuarios"
-                    >
-                        Explorar usuarios
-                    </Button>
-                )}
+                <div className="flex gap-4">
+                    {token && (
+                        <Button
+                            colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light hidden lg:block"
+                            path="/usuarios"
+                        >
+                            Explorar usuarios
+                        </Button>
+                    )}
+                    {user?.rol === "admin" && (
+                        <Button
+                            colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light hidden lg:block"
+                            path="/articulos-pendientes"
+                        >
+                            Articulos pendientes
+                        </Button>
+                    )}
+                </div>
             </section>
         </>
     );

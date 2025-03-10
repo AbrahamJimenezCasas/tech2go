@@ -105,7 +105,7 @@ export const RatingForm = ({ productId }) => {
                 <Button
                     colors="bg-electric-violet-500 text-light mt-4"
                     type="submit"
-                    isLoading={isLoading}
+                    disabled={isLoading}
                 >
                     Enviar
                 </Button>

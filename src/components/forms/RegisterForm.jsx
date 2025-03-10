@@ -101,7 +101,7 @@ export const RegisterForm = () => {
             <Button
                 colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light w-fit mt-8"
                 type="submit"
-                isLoading={isLoading}
+                disabled={isLoading}
             >
                 Regístrate
             </Button>
