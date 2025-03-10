@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useUser } from "../hooks/useUser.js";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 export const ResetPasswordPage = () => {
     const [searchParams] = useSearchParams();
@@ -17,6 +19,8 @@ export const ResetPasswordPage = () => {
 
     const [message, setMessage] = useState("");
     const [messageType, setMessageType] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     // Manejar cambios en los inputs
     const handleChange = (e) => {
@@ -27,11 +31,19 @@ export const ResetPasswordPage = () => {
         }));
     };
 
+    // Alternar visibilidad de la contraseña
+    const togglePasswordVisibility = () => {
+        setShowPassword((prev) => !prev);
+    };
+
+    const toggleConfirmPasswordVisibility = () => {
+        setShowConfirmPassword((prev) => !prev);
+    };
+
     // Envío del formulario
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Verificación de que todos los campos estén completos
         if (
             !formData.email ||
             !formData.newPassword ||
@@ -42,7 +54,6 @@ export const ResetPasswordPage = () => {
             return;
         }
 
-        // Verificación de que las contraseñas coincidan
         if (formData.newPassword !== formData.confirmPassword) {
             setMessage("Las contraseñas no coinciden.");
             setMessageType("error");
@@ -55,7 +66,6 @@ export const ResetPasswordPage = () => {
                 recoveryPass,
                 formData.newPassword
             );
-
             setMessage("Contraseña cambiada con éxito. Redirigiendo...");
             setMessageType("success");
 
@@ -108,40 +118,56 @@ export const ResetPasswordPage = () => {
                     className="px-4 py-2 border-2 border-electric-violet-200 focus:border-electric-violet-800 rounded-3xl focus:outline-none focus:ring-0 w-full transition-colors duration-200 tracking-widest"
                 />
             </div>
-            <div className="mb-4">
+
+            <div className="mb-4 relative">
                 <label className="block text-gray-700 font-medium">
                     Nueva contraseña:
                 </label>
-                <input
-                    type="password"
-                    name="newPassword"
-                    value={formData.newPassword}
-                    onChange={handleChange}
-                    required
-                    className="px-4 py-2 border-2 border-electric-violet-200 focus:border-electric-violet-800 rounded-3xl focus:outline-none focus:ring-0 w-full transition-colors duration-200"
-                />
+                <div className="relative">
+                    <input
+                        type={showPassword ? "text" : "password"}
+                        name="newPassword"
+                        value={formData.newPassword}
+                        onChange={handleChange}
+                        required
+                        className="px-4 py-2 border-2 border-electric-violet-200 focus:border-electric-violet-800 rounded-3xl focus:outline-none focus:ring-0 w-full transition-colors duration-200 pr-12"
+                    />
+                    <button
+                        type="button"
+                        onClick={togglePasswordVisibility}
+                        className="absolute inset-y-0 right-4 flex items-center text-gray-500"
+                    >
+                        <FontAwesomeIcon
+                            icon={showPassword ? faEyeSlash : faEye}
+                        />
+                    </button>
+                </div>
             </div>
 
-            <div className="mb-4">
+            <div className="mb-4 relative">
                 <label className="block text-gray-700 font-medium">
                     Confirmar contraseña:
                 </label>
-                <input
-                    type="password"
-                    name="confirmPassword"
-                    value={formData.confirmPassword}
-                    onChange={handleChange}
-                    required
-                    className="px-4 py-2 border-2 border-electric-violet-200 focus:border-electric-violet-800 rounded-3xl focus:outline-none focus:ring-0 w-full transition-colors duration-200"
-                />
+                <div className="relative">
+                    <input
+                        type={showConfirmPassword ? "text" : "password"}
+                        name="confirmPassword"
+                        value={formData.confirmPassword}
+                        onChange={handleChange}
+                        required
+                        className="px-4 py-2 border-2 border-electric-violet-200 focus:border-electric-violet-800 rounded-3xl focus:outline-none focus:ring-0 w-full transition-colors duration-200 pr-12"
+                    />
+                    <button
+                        type="button"
+                        onClick={toggleConfirmPasswordVisibility}
+                        className="absolute inset-y-0 right-4 flex items-center text-gray-500"
+                    >
+                        <FontAwesomeIcon
+                            icon={showConfirmPassword ? faEyeSlash : faEye}
+                        />
+                    </button>
+                </div>
             </div>
-
-            <button
-                onClick={handleSubmit}
-                className="w-full bg-electric-violet-600 text-white py-2 px-4 rounded-full transition duration-200 ease-in-out transform hover:bg-electric-violet-700 hover:scale-105 active:scale-95 shadow-md"
-            >
-                Cambiar Contraseña
-            </button>
         </main>
     );
 };
