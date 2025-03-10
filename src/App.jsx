@@ -22,6 +22,8 @@ import { WhoWeArePage } from "./pages/WhoWeArePage.jsx";
 import { PolityPrivace } from "./pages/PolityPrivace.jsx";
 import { RecoveryPasswordPage } from "./pages/RecoveryPasswordPage.jsx";
 import { ResetPasswordPage } from "./pages/ResetPasswordPage.jsx";
+import { ContactPage } from "./pages/ContactPage.jsx";
+import { HelpCenterPage } from "./pages/HelpCenterPage.jsx";
 const App = () => {
     /* ESTÁN CREADAS LAS RUTAS Y DOCUMENTOS PARA TODAS LAS PÁGINAS QUE TENEMOS EN LAS TAREAS.
     Podemos añadir más paginas en base al wireframe o si vemos alguna necesidad
@@ -88,6 +90,8 @@ const App = () => {
                     path="/usuarios/password/reset"
                     element={<ResetPasswordPage />}
                 />
+                <Route path="/contacto" element={<ContactPage />} />
+                <Route path="/ayuda" element={<HelpCenterPage />} />
             </Route>
         </Routes>
     );

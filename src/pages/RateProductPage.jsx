@@ -46,7 +46,7 @@ export const RateProductPage = () => {
     }
 
     return (
-        <section className="flex flex-col justify-center items-center p-10 md:mt-15 lg:mt-15">
+        <section className="flex flex-col justify-center items-center p-10">
             <h2 className="mb-8 font-bold text-electric-violet-800 text-3xl md:text-4xl lg:text-4xl text-center">
                 {valoration
                     ? "Reseña del producto"
@@ -55,7 +55,7 @@ export const RateProductPage = () => {
                       : null}
             </h2>
 
-            <div className="flex flex-col md:flex-row lg:flex-row items-center justify-center gap-9 bg-light shadow-lg mx-auto p-10 rounded-xl w-[90%] max-w-5xl">
+            <div className="flex sm:flex-row flex-col justify-center items-center gap-9 bg-light shadow-lg mx-auto p-10 rounded-xl w-[90%] max-w-5xl">
                 {product && <RateProductCard product={product} />}
 
                 <div className="w-full sm:w-2/3">
