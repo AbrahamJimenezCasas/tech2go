@@ -12,16 +12,15 @@ export const ContactPage = () => {
 
     function actualizarMapa(latitud, longitud) {
         const iframe = document.getElementById("maps");
+        const url = `https://maps.google.com/maps?q=${latitud},${longitud}&z=15&output=embed`;
         if (iframe) {
-            const url = `https://maps.google.com/maps?q=${latitud},${longitud}&z=15&output=embed`;
-
             iframe.src = url;
         }
     }
 
     useEffect(() => {
         actualizarMapa(latitud, longitud);
-    }, []);
+    }, [latitud, longitud]);
 
     return (
         <section className="flex flex-col">

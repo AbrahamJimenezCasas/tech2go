@@ -9,6 +9,7 @@ export const Footer = () => {
                 primary="electric-violet-200"
                 secondary="fill-electric-violet-400"
             />
+
             <nav className="flex md:flex-row flex-col gap-1 md:gap-16 md:mr-10 font-body text-electric-violet-200 text-sm">
                 <ul className="flex md:flex-col gap-2 md:gap-0">
                     <li className="text-light">Categorías</li>
