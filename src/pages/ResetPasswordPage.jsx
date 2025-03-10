@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useUser } from "../hooks/useUser.js";
-import { Input } from "../components/forms/Input.jsx";
 
 export const ResetPasswordPage = () => {
     const [searchParams] = useSearchParams();
@@ -10,6 +9,8 @@ export const ResetPasswordPage = () => {
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
+        email: "",
+        recoveryCode: "",
         newPassword: "",
         confirmPassword: "",
     });
@@ -22,7 +23,7 @@ export const ResetPasswordPage = () => {
         const { name, value } = e.target;
         setFormData((prev) => ({
             ...prev,
-            [name]: value,
+            [name]: value ?? "",
         }));
     };
 
@@ -30,7 +31,11 @@ export const ResetPasswordPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!formData.newPassword || !formData.confirmPassword) {
+        if (
+            !formData.email ||
+            !formData.newPassword ||
+            !formData.confirmPassword
+        ) {
             setMessage("Por favor, completa todos los campos.");
             setMessageType("error");
             return;
@@ -43,7 +48,11 @@ export const ResetPasswordPage = () => {
         }
 
         try {
-            await resetPassword(recoveryPass, formData.newPassword);
+            await resetPassword(
+                recoveryPass,
+                formData.newPassword,
+                formData.email
+            );
             setMessage("Contraseña cambiada con éxito. Redirigiendo...");
             setMessageType("success");
 
@@ -68,16 +77,45 @@ export const ResetPasswordPage = () => {
                 </p>
             )}
 
+            {/* Campo para el email */}
+            <div className="mb-4">
+                <label className="block text-gray-700 font-medium">
+                    Correo electrónico:
+                </label>
+                <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="px-4 py-2 border-2 border-electric-violet-200 focus:border-electric-violet-800 rounded-3xl focus:outline-none focus:ring-0 w-full transition-colors duration-200"
+                />
+            </div>
+
+            <div className="mb-4">
+                <label className="block text-gray-700 font-medium">
+                    Código de recuperación:
+                </label>
+                <input
+                    type="text"
+                    name="recoveryCode"
+                    value={formData.recoveryCode}
+                    onChange={handleChange}
+                    required
+                    className="px-4 py-2 border-2 border-electric-violet-200 focus:border-electric-violet-800 rounded-3xl focus:outline-none focus:ring-0 w-full transition-colors duration-200 tracking-widest"
+                />
+            </div>
             <div className="mb-4">
                 <label className="block text-gray-700 font-medium">
                     Nueva contraseña:
                 </label>
-                <Input
+                <input
                     type="password"
                     name="newPassword"
                     value={formData.newPassword}
-                    handleChange={handleChange}
+                    onChange={handleChange}
                     required
+                    className="px-4 py-2 border-2 border-electric-violet-200 focus:border-electric-violet-800 rounded-3xl focus:outline-none focus:ring-0 w-full transition-colors duration-200"
                 />
             </div>
 
@@ -85,12 +123,13 @@ export const ResetPasswordPage = () => {
                 <label className="block text-gray-700 font-medium">
                     Confirmar contraseña:
                 </label>
-                <Input
+                <input
                     type="password"
                     name="confirmPassword"
                     value={formData.confirmPassword}
-                    handleChange={handleChange}
+                    onChange={handleChange}
                     required
+                    className="px-4 py-2 border-2 border-electric-violet-200 focus:border-electric-violet-800 rounded-3xl focus:outline-none focus:ring-0 w-full transition-colors duration-200"
                 />
             </div>
 

@@ -182,8 +182,9 @@ export const sendRecoveryPassController = async (email) => {
     return message;
 };
 
-export const editRecoveryPassService = async (
-    recoveryPassCode,
+export const editUserPasswordWithPassController = async (
+    email,
+    recoveryPass,
     newPassword
 ) => {
     const response = await fetch(`${apiPath}/usuarios/password/recovery`, {
@@ -191,7 +192,7 @@ export const editRecoveryPassService = async (
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ recoveryPassCode, newPassword }),
+        body: JSON.stringify({ email, recoveryPass, newPassword }),
     });
 
     if (!response.ok) {

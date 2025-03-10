@@ -9,7 +9,7 @@ import {
     updatePasswordService,
     updateUserService,
     sendRecoveryPassController,
-    editRecoveryPassService,
+    editUserPasswordWithPassController,
 } from "../services/fetchApi.js";
 
 export const useUser = (id, token) => {
@@ -142,13 +142,14 @@ export const useUser = (id, token) => {
         }
     };
 
-    const resetPassword = async (recoveryPass, newPassword) => {
+    const resetPassword = async (email, recoveryPass, newPassword) => {
         try {
             setLoading(true);
             setError(null);
             setSuccessMessage(null);
 
-            const message = await editRecoveryPassService(
+            const message = await editUserPasswordWithPassController(
+                email,
                 recoveryPass,
                 newPassword
             );

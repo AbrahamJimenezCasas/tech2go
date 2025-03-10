@@ -1,12 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"; // 🔹 Importamos useNavigate
 import { useUser } from "../hooks/useUser.js";
-import { Input } from "../components/forms/Input.jsx";
 
 export const RecoveryPasswordPage = () => {
     const [email, setEmail] = useState("");
     const { sendRecoveryEmail } = useUser();
     const [message, setMessage] = useState("");
     const [messageType, setMessageType] = useState("");
+    const navigate = useNavigate(); // 🔹 Creamos navigate
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -22,8 +23,9 @@ export const RecoveryPasswordPage = () => {
             setMessage("Código enviado, revisa tu email.");
             setMessageType("success");
 
-            // Limpiar el campo de email después del envío
-            setEmail("");
+            setTimeout(() => {
+                navigate("/usuarios/password/reset");
+            });
         } catch (error) {
             setMessage(
                 error.message || "Error al enviar código de recuperación."
@@ -50,12 +52,13 @@ export const RecoveryPasswordPage = () => {
                 <label className="block text-gray-700 font-medium">
                     Correo Electrónico:
                 </label>
-                <Input
+                <input
                     type="email"
                     name="email"
                     value={email}
-                    handleChange={(e) => setEmail(e.target.value)}
+                    onChange={(e) => setEmail(e.target.value)}
                     required
+                    className="px-4 py-2 border-2 border-electric-violet-200 focus:border-electric-violet-800 rounded-3xl focus:outline-none focus:ring-0 w-full transition-colors duration-200"
                 />
             </div>
 
