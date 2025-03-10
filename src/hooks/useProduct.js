@@ -1,8 +1,7 @@
-
 import { useEffect, useState } from "react";
 import { getProductService } from "../services/fetchApi.js";
 
-export const useProduct = (id) => {
+export const useProduct = (id, updates) => {
     const [product, setProduct] = useState([]);
 
     const [loading, setLoading] = useState(true);
@@ -13,17 +12,17 @@ export const useProduct = (id) => {
             try {
                 setLoading(true);
 
-                const data = await getProductService(id);                          
+                const data = await getProductService(id);
                 setProduct(data);
             } catch (error) {
-                   setError(error.message || "Error al obtener el artículo");
+                setError(error.message || "Error al obtener el artículo");
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchProduct();    
-    }, [id]);
+        fetchProduct();
+    }, [id, updates]);
 
     return { product, loading, error };
 };

@@ -23,7 +23,7 @@ export const Search = () => {
     }, [products]);
 
     return (
-        <section className="relative w-full lg:w-3/4 xl:w-1/2 font-body text-electric-violet-950">
+        <section className="relative w-full lg:w-7/12 xl:w-1/2 font-body text-electric-violet-950">
             <div className="relative">
                 <input
                     type="text"
