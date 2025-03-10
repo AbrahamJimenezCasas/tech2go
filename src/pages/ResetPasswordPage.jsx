@@ -1,12 +1,10 @@
 import { useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useUser } from "../hooks/useUser.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 export const ResetPasswordPage = () => {
-    const [searchParams] = useSearchParams();
-    const recoveryPass = searchParams.get("recoveryPass");
     const { resetPassword } = useUser();
     const navigate = useNavigate();
 
@@ -63,13 +61,13 @@ export const ResetPasswordPage = () => {
         try {
             await resetPassword(
                 formData.email,
-                recoveryPass,
+                formData.recoveryCode,
                 formData.newPassword
             );
             setMessage("Contraseña cambiada con éxito. Redirigiendo...");
             setMessageType("success");
 
-            setTimeout(() => navigate("/users/login"), 2000);
+            setTimeout(() => navigate("/login"), 2000);
         } catch (error) {
             setMessage(error.message || "Error al cambiar la contraseña.");
             setMessageType("error");
@@ -90,7 +88,6 @@ export const ResetPasswordPage = () => {
                 </p>
             )}
 
-            {/* Campo para el email */}
             <div className="mb-4">
                 <label className="block text-gray-700 font-medium">
                     Correo electrónico:
@@ -168,6 +165,12 @@ export const ResetPasswordPage = () => {
                     </button>
                 </div>
             </div>
+            <button
+                onClick={handleSubmit}
+                className="w-full bg-electric-violet-600 text-white py-2 px-4 rounded-full transition duration-200 ease-in-out transform hover:bg-electric-violet-700 hover:scale-105 active:scale-95 shadow-md"
+            >
+                Confirmar
+            </button>
         </main>
     );
 };
