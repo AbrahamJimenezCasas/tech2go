@@ -22,37 +22,37 @@ export const WhoWeArePage = () => {
         {
             nombre: "Nuestra Bri",
             descripcion:
-                "Bri se sacrifico por nosotros en el desembarco de normandia, saco al equipo adelante y nos salvo, haciendo posible que hicieramos esta aplicacion tan perfecta. Bri es nuestra familia y siempre lo sera, desde el equipo pokemon hasta el equipo tech2go siempre tendra un lugar en nuetros corazones. Hablo por todo el equipo diciendo que Bri siempre nos animo y que siempre la recordaremos y la querremos.",
+                "Bri se sacrificó por nosotros en el desembarco de Normandía. Sacó al equipo adelante y nos salvó, haciendo posible que hiciéramos esta aplicación tan perfecta. Bri es nuestra familia y siempre lo será, desde el equipo Pokémon hasta el equipo Tech2go siempre tendrá un lugar en nuetros corazones. Hablo por todo el equipo diciendo que Bri siempre nos animó y que siempre la recordaremos y la querremos.",
             img: "/imgs/bri.png",
         },
         {
             nombre: "Sara",
             descripcion:
-                "Sara es la jefa del equipo y el pilar cuando uno se frustra, sin duda ella tiene siempre claro que hacer en cada momento y es una de las mejores lideres que hemos conocido",
+                "Sara es la jefa del equipo y el pilar cuando uno se frustra. Sin duda ella tiene siempre claro que hacer en cada momento y es una de las mejores líderes que hemos conocido",
             img: "/imgs/sara.jpg",
         },
         {
             nombre: "Natalia",
             descripcion:
-                "Natalia la madre del grupo, se comenta que en realidad el codigo lo hizo su hijo, aun no nacio pero sabemos que lo hizo el, NO TENGO PRUEBAS PERO TAMPOCO DUDAS.",
+                "Natalia es la madre del grupo y se comenta que en realidad el código lo hizo su hijo. Aún no nació, pero sabemos que lo hizo él. NO TENGO PRUEBAS, PERO TAMPOCO DUDAS.",
             img: "/imgs/natalia.png",
         },
         {
             nombre: "Ana",
             descripcion:
-                "Ana es la responsable de la explotacion de las alpacas, tenemos a mas de 200 alpacas trabajando para nosotros y ella les dio un futuro mejor y ahora trabajan en el soporte de la empresa y tambien hicieron varias partes del codigo.",
+                "Ana es la responsable de la explotación de las alpacas. Tenemos a más de 200 alpacas trabajando para nosotros y ella les dio un futuro mejor. Ahora trabajan en el soporte de la empresa y también hicieron varias partes del código.",
             img: "/imgs/ana.png",
         },
         {
             nombre: "Ester",
             descripcion:
-                "Ester dio la idea de este proyecto y centrarse en parte en el mundo gaming, ya que cito textualmente ella dijo: estic fins als collons, que xa non se venden xogos físicos, que carallo é isto, e por riba tamén conseguiremos móbiles e ordenadores para vender con calidade. Asique en parte Ester tuvo esta maravillosa idea llamada tech2go.",
+                "Ester dio la idea de este proyecto y que se centrara, en parte, en el mundo gaming, ya que cito textualmente lo que ella dijo: estic fins als collons, que xa non se venden xogos físicos, que carallo é isto, e por riba tamén conseguiremos móbiles e ordenadores para vender con calidade. Así que, en parte, Ester tuvo esta maravillosa idea llamada Tech2go.",
             img: "/imgs/ester.jpg",
         },
         {
             nombre: "Abraham",
             descripcion:
-                "Abraham tambien conocido como el crativo en ocasiones, fue el encagardo de que el gobierno de españa nos librara de pagar todos los impuestos y el iva. Si quereis una clase o un curso de como libraros de los impuestos os lo dejo a precio de bootcamp",
+                "Abraham, también conocido como el crativo, en ocasiones fue el encargado de que el gobierno de España nos librara de pagar todos los impuestos y el IVA. Si queréis una clase o un curso de como libraros de los impuestos, os lo dejo a precio de bootcamp",
             img: "/imgs/abraham.jpg",
         },
         {
