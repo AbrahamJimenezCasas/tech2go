@@ -21,11 +21,6 @@ export const Footer = () => {
                     href="https://youtube.com/@axelphoenixx?si=mB9EULaUxr0CjIDf"
                     target="_blank"
                 >
-                    {/* <img
-                        className="w-8 md:w-12 lg:w-16 h-8 md:h-12 lg:h-16"
-                        src="/imgs/icons8-youtube-80.png"
-                        alt="youtube"
-                    /> */}
                     <FontAwesomeIcon
                         icon={faYoutube}
                         className="text-electric-violet-50 hover:text-electric-violet-300 text-4xl lg:text-6xl transition-colors duration-200 cursor-pointer"
@@ -35,22 +30,12 @@ export const Footer = () => {
                     href="https://www.instagram.com/arrogantemadrid/?hl=es"
                     target="_blank"
                 >
-                    {/* <img
-                        className="w-8 md:w-12 lg:w-16 md:h-12h-8 lg:h-16"
-                        src="/imgs/icons8-instagram-94.png"
-                        alt="instagram"
-                    /> */}
                     <FontAwesomeIcon
                         icon={faInstagram}
                         className="text-electric-violet-50 hover:text-electric-violet-300 text-4xl lg:text-6xl transition-colors duration-200 cursor-pointer"
                     />
                 </a>
                 <a href="https://x.com/Zacatrus" target="_blank">
-                    {/* <img
-                        className="w-8 md:w-12 lg:w-16 h-8 md:h-12 lg:h-16"
-                        src="/imgs/icons8-twitterx-64.png"
-                        alt="twitter"
-                    /> */}
                     <FontAwesomeIcon
                         icon={faXTwitter}
                         className="text-electric-violet-50 hover:text-electric-violet-300 text-4xl lg:text-6xl transition-colors duration-200 cursor-pointer"
@@ -60,11 +45,6 @@ export const Footer = () => {
                     href="https://www.tiktok.com/@yerbamatelab?is_from_webapp=1&sender_device=pc"
                     target="_blank"
                 >
-                    {/* <img
-                        className="w-8 md:w-12 lg:w-16 h-8 md:h-12 lg:h-16"
-                        src="/imgs/icons8-tik-tok-100.png"
-                        alt="tiktok"
-                    /> */}
                     <FontAwesomeIcon
                         icon={faTiktok}
                         className="text-electric-violet-50 hover:text-electric-violet-300 text-4xl lg:text-6xl transition-colors duration-200 cursor-pointer"

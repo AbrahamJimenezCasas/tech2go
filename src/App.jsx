@@ -19,17 +19,12 @@ import { AcceptRejectBuyRequestPage } from "./pages/AcceptRejectBuyRequestPage.j
 import { BuyRequestsUserPage } from "./pages/BuyRequestsUserPage.jsx";
 import { SoldProductPage } from "./pages/SoldProductPage.jsx";
 import { WhoWeArePage } from "./pages/WhoWeArePage.jsx";
-import { PolityPrivace } from "./pages/PolityPrivace.jsx";
+import { PrivacyPolicyPage } from "./pages/PrivacyPolicyPage.jsx";
 import { RecoveryPasswordPage } from "./pages/RecoveryPasswordPage.jsx";
 import { ResetPasswordPage } from "./pages/ResetPasswordPage.jsx";
 import { ContactPage } from "./pages/ContactPage.jsx";
 import { HelpCenterPage } from "./pages/HelpCenterPage.jsx";
 const App = () => {
-    /* ESTÁN CREADAS LAS RUTAS Y DOCUMENTOS PARA TODAS LAS PÁGINAS QUE TENEMOS EN LAS TAREAS.
-    Podemos añadir más paginas en base al wireframe o si vemos alguna necesidad
-
-    Recordatorio borrar comentarios al final
-    */
     return (
         <Routes>
             <Route path="/" element={<LayoutPage />}>
@@ -80,7 +75,7 @@ const App = () => {
                 <Route path="/sobre-nosotros" element={<WhoWeArePage />} />
                 <Route
                     path="/politica-privacidad"
-                    element={<PolityPrivace />}
+                    element={<PrivacyPolicyPage />}
                 />
                 <Route
                     path="/usuarios/password/recovery"

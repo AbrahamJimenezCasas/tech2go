@@ -18,12 +18,12 @@ export const SaleCard = ({ index, sale }) => {
             <div className="flex items-center gap-4 h-full">
                 {foto ? (
                     <img
-                        className="rounded-2xl h-11/12"
+                        className="rounded-2xl h-11/12 aspect-square"
                         src={`${staticPath}/articulos/${sale.vendedorId}/${sale.articuloId}/${foto.foto}`}
                     />
                 ) : (
                     <img
-                        className="rounded-2xl h-11/12"
+                        className="rounded-2xl h-11/12 aspect-square"
                         src="/imgs/no-img-available.png"
                     />
                 )}
@@ -45,13 +45,13 @@ export const SaleCard = ({ index, sale }) => {
                     {[...Array(valoracion)].map((_, i) => (
                         <Star
                             key={i}
-                            classes="w-6 stroke-electric-violet-800 fill-electric-violet-800"
+                            classes="w-4 sm:w-6 stroke-electric-violet-800 fill-electric-violet-800"
                         />
                     ))}
                     {[...Array(5 - valoracion)].map((_, i) => (
                         <Star
                             key={i}
-                            classes="w-6 stroke-electric-violet-800"
+                            classes="w-4 sm:w-6 stroke-electric-violet-800"
                         />
                     ))}
                 </section>

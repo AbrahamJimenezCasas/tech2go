@@ -27,10 +27,10 @@ export const UserProfilePage = () => {
                             <img
                                 src={`${staticPath}/avatars/${user.id}/${user.avatar}`}
                                 alt={user?.username}
-                                className="rounded-full w-16 h-16 object-cover"
+                                className="rounded-full w-16 h-16 object-cover aspect-square"
                             />
                         ) : (
-                            <div className="flex justify-center items-center bg-electric-violet-50 rounded-full min-w-16 min-h-16">
+                            <div className="flex justify-center items-center bg-electric-violet-50 rounded-full w-16 h-16 aspect-square">
                                 <FontAwesomeIcon
                                     icon={faUser}
                                     className="text-electric-violet-200 text-3xl"
@@ -41,7 +41,6 @@ export const UserProfilePage = () => {
                             {user?.username}
 
                             {currentUser && currentUser?.id === user?.id && (
-
                                 <Link to="/usuario/editar">
                                     <FontAwesomeIcon
                                         icon={faPenToSquare}

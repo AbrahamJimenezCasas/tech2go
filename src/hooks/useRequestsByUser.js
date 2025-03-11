@@ -23,7 +23,7 @@ export const useRequestsByUser = (token) => {
         };
 
         fetchRequests();
-    }, []);
+    }, [token]);
 
     return { requests, loading, error };
 };

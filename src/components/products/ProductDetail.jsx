@@ -76,7 +76,7 @@ export const ProductDetail = ({ product, update }) => {
                                 ? `${staticPath}/articulos/${product.vendedorId}/${product.id}/${foto.foto}`
                                 : "/imgs/no-img-available.png"
                         }
-                        className="shadow-lg rounded-2xl w-full sm:w-8/12 h-full sm:h-auto object-cover"
+                        className="shadow-lg rounded-2xl w-full sm:w-8/12 h-full sm:h-auto object-cover aspect-square"
                         alt={`Imagen de ${product.nombre}`}
                     />
                 </header>

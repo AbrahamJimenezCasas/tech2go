@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useUser } from "../hooks/useUser.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { Button } from "../components/Button.jsx";
 
 export const ResetPasswordPage = () => {
     const { resetPassword } = useUser();
@@ -75,8 +76,8 @@ export const ResetPasswordPage = () => {
     };
 
     return (
-        <main className="max-w-2xl mx-auto mt-8 p-6 bg-white shadow-md rounded-lg">
-            <h1 className="text-3xl font-bold mb-4 text-electric-violet-700 text-center">
+        <main className="bg-white shadow-md mx-auto mt-8 p-6 rounded-lg max-w-2xl">
+            <h1 className="mb-4 font-bold text-electric-violet-700 text-3xl text-center">
                 Restablecer Contraseña
             </h1>
 
@@ -93,7 +94,7 @@ export const ResetPasswordPage = () => {
             )}
 
             <div className="mb-4">
-                <label className="block text-gray-700 font-medium">
+                <label className="block font-medium text-gray-700">
                     Correo electrónico:
                 </label>
                 <input
@@ -107,7 +108,7 @@ export const ResetPasswordPage = () => {
             </div>
 
             <div className="mb-4">
-                <label className="block text-gray-700 font-medium">
+                <label className="block font-medium text-gray-700">
                     Código de recuperación:
                 </label>
                 <input
@@ -116,12 +117,12 @@ export const ResetPasswordPage = () => {
                     value={formData.recoveryCode}
                     onChange={handleChange}
                     required
-                    className="px-4 py-2 border-2 border-electric-violet-200 focus:border-electric-violet-800 rounded-3xl focus:outline-none focus:ring-0 w-full transition-colors duration-200 tracking-widest"
+                    className="px-4 py-2 border-2 border-electric-violet-200 focus:border-electric-violet-800 rounded-3xl focus:outline-none focus:ring-0 w-full tracking-widest transition-colors duration-200"
                 />
             </div>
 
-            <div className="mb-4 relative">
-                <label className="block text-gray-700 font-medium">
+            <div className="relative mb-4">
+                <label className="block font-medium text-gray-700">
                     Nueva contraseña:
                 </label>
                 <div className="relative">
@@ -131,12 +132,12 @@ export const ResetPasswordPage = () => {
                         value={formData.newPassword}
                         onChange={handleChange}
                         required
-                        className="px-4 py-2 border-2 border-electric-violet-200 focus:border-electric-violet-800 rounded-3xl focus:outline-none focus:ring-0 w-full transition-colors duration-200 pr-12"
+                        className="px-4 py-2 pr-12 border-2 border-electric-violet-200 focus:border-electric-violet-800 rounded-3xl focus:outline-none focus:ring-0 w-full transition-colors duration-200"
                     />
                     <button
                         type="button"
                         onClick={togglePasswordVisibility}
-                        className="absolute inset-y-0 right-4 flex items-center text-gray-500"
+                        className="right-4 absolute inset-y-0 flex items-center text-gray-500"
                     >
                         <FontAwesomeIcon
                             icon={showPassword ? faEyeSlash : faEye}
@@ -146,8 +147,8 @@ export const ResetPasswordPage = () => {
                 </div>
             </div>
 
-            <div className="mb-4 relative">
-                <label className="block text-gray-700 font-medium">
+            <div className="relative mb-4">
+                <label className="block font-medium text-gray-700">
                     Confirmar contraseña:
                 </label>
                 <div className="relative">
@@ -157,12 +158,12 @@ export const ResetPasswordPage = () => {
                         value={formData.confirmPassword}
                         onChange={handleChange}
                         required
-                        className="px-4 py-2 border-2 border-electric-violet-200 focus:border-electric-violet-800 rounded-3xl focus:outline-none focus:ring-0 w-full transition-colors duration-200 pr-12"
+                        className="px-4 py-2 pr-12 border-2 border-electric-violet-200 focus:border-electric-violet-800 rounded-3xl focus:outline-none focus:ring-0 w-full transition-colors duration-200"
                     />
                     <button
                         type="button"
                         onClick={toggleConfirmPasswordVisibility}
-                        className="absolute inset-y-0 right-4 flex items-center text-gray-500"
+                        className="right-4 absolute inset-y-0 flex items-center text-gray-500"
                     >
                         <FontAwesomeIcon
                             icon={showConfirmPassword ? faEyeSlash : faEye}
@@ -171,12 +172,14 @@ export const ResetPasswordPage = () => {
                     </button>
                 </div>
             </div>
-            <button
-                onClick={handleSubmit}
-                className="w-auto bg-electric-violet-600 text-white py-1 px-4 rounded-full transition duration-200 ease-in-out transform hover:bg-electric-violet-700 hover:scale-105 active:scale-95 shadow-md mx-auto block"
+
+            <Button
+                colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light w-fit mx-auto block"
+                type="submit"
+                toggle={handleSubmit}
             >
                 Confirmar
-            </button>
+            </Button>
         </main>
     );
 };

@@ -15,12 +15,12 @@ export const ProductCard = ({ index, product }) => {
                 <div className="flex items-center gap-4 h-full">
                     {foto ? (
                         <img
-                            className="rounded-2xl h-11/12"
+                            className="rounded-2xl h-11/12 aspect-square"
                             src={`${staticPath}/articulos/${product.vendedorId}/${product.id}/${foto.foto}`}
                         />
                     ) : (
                         <img
-                            className="rounded-2xl h-11/12"
+                            className="rounded-2xl h-11/12 aspect-square"
                             src="/imgs/no-img-available.png"
                         />
                     )}

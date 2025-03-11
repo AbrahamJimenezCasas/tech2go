@@ -19,12 +19,12 @@ export const RequestCard = ({ index, solicitud }) => {
             >
                 {foto ? (
                     <img
-                        className="rounded-2xl h-11/12"
+                        className="rounded-2xl h-11/12 aspect-square"
                         src={`${staticPath}/articulos/${solicitud.vendedorId}/${solicitud.articuloId}/${foto.foto}`}
                     />
                 ) : (
                     <img
-                        className="rounded-2xl h-11/12"
+                        className="rounded-2xl h-11/12 aspect-square"
                         src="/imgs/no-img-available.png"
                     />
                 )}

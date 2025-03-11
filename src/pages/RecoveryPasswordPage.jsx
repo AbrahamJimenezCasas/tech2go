@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"; // 🔹 Importamos useNavigate
 import { useUser } from "../hooks/useUser.js";
+import { Button } from "../components/Button.jsx";
 
 export const RecoveryPasswordPage = () => {
     const [email, setEmail] = useState("");
@@ -35,8 +36,8 @@ export const RecoveryPasswordPage = () => {
     };
 
     return (
-        <main className="max-w-2xl mx-auto mt-8 p-6 bg-white shadow-md rounded-lg">
-            <h1 className="text-3xl font-bold mb-4 text-electric-violet-700 text-center">
+        <main className="bg-white shadow-md mx-auto mt-8 p-6 rounded-lg max-w-2xl">
+            <h1 className="mb-4 font-bold text-electric-violet-700 text-3xl text-center">
                 Recuperar Contraseña
             </h1>
 
@@ -53,7 +54,7 @@ export const RecoveryPasswordPage = () => {
             )}
 
             <div className="mb-4">
-                <label className="block text-gray-700 font-medium">
+                <label className="block font-medium text-gray-700">
                     Correo Electrónico:
                 </label>
                 <input
@@ -66,12 +67,13 @@ export const RecoveryPasswordPage = () => {
                 />
             </div>
 
-            <button
-                onClick={handleSubmit}
-                className="w-auto bg-electric-violet-600 text-white py-1 px-4 rounded-full transition duration-200 ease-in-out transform hover:bg-electric-violet-700 hover:scale-105 active:scale-95 shadow-md mx-auto block"
+            <Button
+                colors="bg-electric-violet-800 hover:bg-electric-violet-900 text-light w-fit mx-auto block"
+                type="submit"
+                toggle={handleSubmit}
             >
-                Enviar Código
-            </button>
+                Enviar código
+            </Button>
         </main>
     );
 };

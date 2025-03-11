@@ -13,13 +13,13 @@ export const ProductDetailCard = ({ id, name, price, pic }) => {
                         ? `${staticPath}/articulos/${pic}`
                         : "/imgs/no-img-available.png"
                 }
-                className="rounded-2xl w-full h-3/4 object-cover transition-transform group-hover:-translate-y-1 duration-200"
+                className="rounded-2xl w-full h-3/4 object-cover aspect-square transition-transform group-hover:-translate-y-1 duration-200"
             />
             <p className="group-hover:text-electric-violet-800 mt-4 w-full font-body font-bold text-electric-violet-950 text-right leading-none transition-colors duration-200">
                 {name}
             </p>
             <p className="w-full font-body font-light text-electric-violet-950 text-right leading-none">
-                {price}
+                {price}€
             </p>
         </Link>
     );

@@ -16,7 +16,7 @@ export const Input = ({ label, type, step, name, errors, register }) => {
     return (
         <label className="w-full font-body">
             <span className="ml-2 font-bold text-electric-violet-950">
-                {label}
+                {type === "number" ? `${label} €` : label}
             </span>
             <div className="relative mt-2">
                 {type === "number" ? (
