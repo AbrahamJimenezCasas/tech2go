@@ -31,33 +31,34 @@ export const ContactPage = () => {
             </article>
             <article className="flex lg:flex-row flex-col justify-center items-center gap-20 p-20">
                 <div className="flex flex-col lg:self-start gap-3">
-                    <p className="text-xl">
+                    <div className="text-lg">
                         <FontAwesomeIcon
                             icon={faPhone}
                             style={{ color: "#bb00ff" }}
                         />
-                        <span className="font-bold text-electric-violet-700 text-2xl">
+                        <span className="font-bold text-electric-violet-700">
                             Teléfono:
                         </span>
-                        +34 912345678
-                    </p>
-                    <p className="text-xl">
+                        <p>+34 912345678</p>
+                    </div>
+                    <div className="text-lg">
                         <FontAwesomeIcon icon={faEnvelope} />
-                        <span className="font-bold text-electric-violet-700 text-2xl">
+                        <span className="font-bold text-electric-violet-700">
+                            {" "}
                             Correo:
-                        </span>
-                        tech2go@gmail.com
-                    </p>
-                    <p className="text-xl">
+                        </span>{" "}
+                        <p>tech2go@gmail.com</p>
+                    </div>
+                    <div className="text-lg">
                         <FontAwesomeIcon
                             icon={faLocationDot}
                             style={{ color: "#ff0000" }}
-                        />
-                        <span className="font-bold text-electric-violet-700 text-2xl">
+                        />{" "}
+                        <span className="font-bold text-electric-violet-700">
                             Localización:
-                        </span>
-                        Silent Hill
-                    </p>
+                        </span>{" "}
+                        <p>Silent Hill</p>
+                    </div>
                 </div>
                 <iframe
                     id="maps"
