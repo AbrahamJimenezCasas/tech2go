@@ -55,7 +55,7 @@ export const ProfileMenu = ({ colors, toggleOpen, pendingRequests }) => {
                         initial={{ opacity: 0, scale: 0 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0 }}
-                        className="top-12 right-0 z-10 absolute bg-electric-violet-300/90 shadow-2xl shadow-dark/10 rounded-2xl w-30"
+                        className="top-12 right-0 z-10 absolute bg-electric-violet-300 shadow-2xl shadow-dark/10 rounded-2xl w-30"
                     >
                         <ul className="px-4 py-2 text-electric-violet-950 text-right">
                             <ProfileMenuItem toggle={toggleVisible}>
