@@ -52,7 +52,7 @@ export const WhoWeArePage = () => {
         {
             nombre: "Abraham",
             descripcion:
-                "Abraham, también conocido como el crativo, en ocasiones fue el encargado de que el gobierno de España nos librara de pagar todos los impuestos y el IVA. Si queréis una clase o un curso de como libraros de los impuestos, os lo dejo a precio de bootcamp",
+                "Abraham, también conocido como el creativo, en ocasiones fue el encargado de que el gobierno de España nos librara de pagar todos los impuestos y el IVA. Si queréis una clase o un curso de como libraros de los impuestos, os lo dejo a precio de bootcamp",
             img: "/imgs/abraham.jpg",
         },
         {

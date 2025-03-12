@@ -142,16 +142,16 @@ export const EditUserProfilePage = () => {
                         <img
                             src={URL.createObjectURL(avatar)}
                             alt="Avatar Preview"
-                            className="rounded-full w-20 h-20"
+                            className="rounded-full w-20 h-20 mb-4"
                         />
                     ) : currentUser?.avatar ? (
                         <img
                             src={`${staticPath}/avatars/${currentUser.id}/${currentUser.avatar}`}
                             alt="Avatar"
-                            className="rounded-full w-20 h-20"
+                            className="rounded-full w-20 h-20 mb-4"
                         />
                     ) : (
-                        <div className="flex justify-center items-center bg-gray-200 rounded-full w-20 h-20">
+                        <div className="flex justify-center items-center bg-gray-200 rounded-full w-20 h-20 mb-4">
                             <FontAwesomeIcon
                                 icon={faUser}
                                 className="text-electric-violet-950 text-3xl"
