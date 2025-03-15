@@ -46,7 +46,6 @@ export const RegisterForm = () => {
 
             // si el registro es exitoso, muestra un mensaje y redirige al usuario a /login
             // toast es una librería que muestra mensajes emergentes en pantalla
-            // /login???????
             setTimeout(() => {
                 navigate(`/login?${params.toString()}`);
                 toast.info("Comprueba tu correo para activar tu cuenta");

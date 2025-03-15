@@ -1,8 +1,7 @@
 export const ImageInput = (props) => {
-    const { label, name, errors, handleClick, handleChange, preview } = props;
-    const error = errors?.[name];
+    const { name, handleClick, handleChange, preview } = props;
     return (
-        <label className={error ? "label-error" : ""}>
+        <label>
             <div className="input-container">
                 <input
                     type="file"
